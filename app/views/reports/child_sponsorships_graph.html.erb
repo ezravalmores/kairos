@@ -1,0 +1,80 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+   new Highcharts.Chart({
+      chart: {
+         renderTo: 'orders_chart',
+         margin: [20,0,20,0]
+      },
+      title: {
+         text: 'Tasks'
+      },
+      plotArea: {
+         shadow: null,
+         borderWidth: null,
+         backgroundColor: null
+      },
+      tooltip: {
+         formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ (this.y / <%= @activities.count %>) * 100 +' % (' + this.y + ')';
+         }
+      },
+      plotOptions: {
+         pie: {
+            allowPointSelect: true,
+            cursor: 'pointer'
+         }
+      },
+      legend: {
+         layout: 'vertical',
+         style: {
+            left: 'auto',
+            bottom: '0',
+            right: '0',
+            top: 'auto'
+         }
+      },
+       series: [{
+         type: 'pie',
+         name: 'Activity',
+         data: <%= @series %>
+      }]
+   });
+});
+</script>
+<div id ='page-wrap'>
+<div id="left-side" class="mains" >  
+  <h3>Child Sponsorhip Tasks Report</h3>
+  <div style='float:left;width: 100%;height:50px'>
+    <%= form_tag :url => child_sponsorships_graph_url , :method => 'get' do %>
+      <div id='text_container_report'> 
+        <%= label :from_date, "from" %>&nbsp;	 
+        <%= text_field_tag(:from_date, params[:from_date],:class =>"input_right", :id => "search_from_date") %>
+	  </div>
+	  <div id='text_container_report'> 	
+        <%= label :to_date, "to" %>&nbsp;	 
+	    <%= text_field_tag(:to_date, params[:to_date],:class =>"input_right", :id => "search_to_date") %>
+      </div>
+      <div id="button_place_right">
+        <%= submit_tag "Generate Graph", :class => "btn btn-primary" %>
+      </div>
+    <% end %>	
+  </div>
+ 
+
+<div id="activity_summary">
+ <h3>Activities Summary</h3>	
+ <ul>
+   <li>Answering Emails <div id='number_container'>#</div></li>
+   <li>Processing Broken Reports  <div id='number_container'>#</div></li>
+   <li>Special Reports/Processing Idle Reports  <div id='number_container'>#</div></li>
+   <li>Special Reports/Processing Overdue Accounts  <div id='number_container'>#</div></li>
+   <li>Incoming Calls/Receive  <div id='number_container'>#</div></li>
+   <li>Outgoing calls/Callbacks  <div id='number_container'>#</div></li>
+   <li>Processing Voluntary Cancelations  <div id='number_container'>#</div></li>
+   <li>Processing International Spreadsheet  <div id='number_container'>#</div></li>
+ </ul>
+</div>	
+
+  <%# Expects 'total' and 'series' to be passed as local variables... %>
+<div id="orders_chart" class='highcharts'><%= @series %></div>
+</div>

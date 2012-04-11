@@ -1,0 +1,37 @@
+<div id="inside-right">
+  <div style ='margin-left:-40px'> 
+    <div id="label_text_holder">
+      <div id="left"><%= label :total, "Total"%></div>
+      <div id="right_with_bg_right">
+        <label><%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"hours") %> hours :
+        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"minutes") %> minutes :
+        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"seconds") %> seconds</label>
+	  </div>
+
+	
+	  <div id="left"><%= label :break, "Break"%></div>
+	  <div id="right_with_bg_right">
+        <label><%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"hours") %> hours :
+        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"minutes") %> minutes :
+        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"seconds") %> seconds </label>
+	  </div>
+	
+	  <div id='left'><%= label :productive, "Productive"%></div>
+	  <div id="right_with_bg_right">
+        <label><%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours") %> hours :
+        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %> minutes :
+        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"seconds") %> seconds </label>
+	  </div>
+	
+	  <% if compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f < 90  %>
+	  <div id='left_red'><%= label :utilization_rate, "Utilization Rate"%></div>
+	  
+	  <% elsif compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f >= 90 %>
+	  <div id='left_green'><%= label :utilization_rate, "Utilization Rate"%></div>
+	
+	  <% end %>
+	  <div id="right_with_bg_right">
+      <label><%= compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")) %>&nbsp; percent</label>
+	  </div>
+	  </div>
+	  </div>

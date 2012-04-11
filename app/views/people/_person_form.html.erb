@@ -1,0 +1,95 @@
+<fieldset>
+    <div class='control-group'>
+       <%= f.label :first_name, :class => 'control-label' %>
+       <div class= "controls">	
+        <%= f.text_field :first_name,:class => 'text_field' %>
+	   </div>
+	</div>
+	
+	 <div class='control-group'>
+       <%= f.label :last_name, :class => 'control-label' %>
+       <div class ="controls">	
+         <%= f.text_field :last_name,:class => 'text_field' %>
+	   </div>
+	</div>
+	
+	 <br/><br/>
+	 
+	<div class='control-group'>
+       <%= f.label :email_address, :class => 'control-label' %>
+       <div class ="controls">	
+         <%= f.text_field :email_address,:class => 'text_field' %>
+	   </div>
+	</div>
+	
+    <div class='control-group'>
+       <%= f.label :username, :class => 'control-label' %>
+       <div class = "controls">	
+       <%= f.text_field :username,:class => 'text_field' %>
+	   </div>
+	</div>
+	
+	<div class='control-group'>
+       <%= f.label :password, :class => 'control-label' %>
+       <div class ="controls">	
+       <%= f.password_field :password,:class => 'text_field' %>
+	   </div>
+	</div>
+	
+   <br/><br/>
+  
+   <% if current_user.is_supervisor? || current_user.is_admin? %>
+
+   <div class='control-group'>
+      <%= f.label :role_id, :class => 'control-label' %>
+      <div class ="controls">	
+	    <%= f.select(:role_id, Role.all.collect{|r| [r.name, r.id] }, :class => 'text_field') %>
+      </div> 
+   </div>
+   
+   <br/><br/>   
+
+   <div class='control-group'>
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class ="controls">	
+	   <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :class => 'text_field') %>
+      </div>
+   </div>
+   <% end %>
+   <br/><br/>	
+<% if current_user.is_admin? || current_user.is_supervisor? %> 
+   <h1>User Time Settings</h4>
+   <span><em>This will set the users start time and end of shift time</em></span><br/>
+   <span><em>It should be in military time</em></span><br/><br/><br/>
+   	    <div class='control-group'>
+	       <%= f.label :start_time, :class => 'control-label' %>
+	       <div class= "controls">	
+	     <% if !@person.start_time.nil? %> 
+	       <%= f.text_field :start_time, :value => @person.start_time.strftime("%H:%M:%S"), :class => 'text_field' %><p>
+		 <% else %>
+		   <%= f.text_field :start_time, :value => "00:00:00", :class => 'text_field' %><p>
+		 <% end %>
+	   </div>
+	  </div>
+	
+	 	<div class='control-group'>
+	       <%= f.label :end_time, :class => 'control-label' %>
+	       <div class= "controls">	
+	     <% if !@person.start_time.nil? %> 
+	       <%= f.text_field :end_time, :value => @person.end_time.strftime("%H:%M:%S"), :class => 'text_field' %><p>
+		 <% else %>
+		   <%= f.text_field :end_time, :value => "00:00:00", :class => 'text_field' %><p>
+		 <% end %>
+	   </div>
+	  </div>
+	</div>
+<% end %>
+
+<br/<br/>
+<div style="margin-left:700px;margin-bottom:20px">	
+   <%= f.submit "Save my Changes",:class => "btn btn-primary" %>   
+</div>	
+
+</fieldset> 
+</div> 
+</div> 

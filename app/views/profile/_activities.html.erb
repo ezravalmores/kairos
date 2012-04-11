@@ -1,0 +1,17 @@
+<% if @activities.count != 0 %>
+<div id="special-gifts" class="report">
+    <table>
+        <tr>
+            <th>Start Time</th>
+			<th>End Time</th>
+            <th>Activity</th>
+			<th>Specific Activity</th>
+            <th>Total Time</th>
+            <th></th>
+                   
+        </tr>
+<div id ="activities">
+  <%= render :partial => 'profile/activity', :collection => @activities %>
+</div>
+</table>
+<% end %>

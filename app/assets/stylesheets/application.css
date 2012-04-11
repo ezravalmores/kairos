@@ -1,0 +1,773 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+body { 
+padding-top: 90px;
+background: #cccccc;
+}
+
+.txt{
+ margin-top:5px;
+ width: 200px;
+ height: 15px;
+}
+
+#form_time_div{
+ padding: 10px;
+ border: solid 2px #f0f0f0;	
+ height:180px;
+ padding: 10px;
+ width: 900px;
+ margin-top: 10px;
+}
+
+#report_form_time_div{
+ padding: 10px;
+ border: solid 2px #f0f0f0;	
+ height:300px;
+ padding: 10px;
+ width: 900px;
+ margin-top: 10px;
+ margin-bottom: 5px;
+}
+
+#report_form_time_div label{
+ font-weight: bold;
+}	
+
+#inside-left{
+ float:left;
+ width: 450px;
+ border: solid 1px #f0f0f0;		
+ padding-left: 5px;
+ padding-top: 5px;
+ padding-right: 5px;
+ background:#f0f0f0;
+}
+
+#report_inside-left{
+ float:left;
+ width: 890px;
+ border: solid 1px #f0f0f0;		
+ padding: 5px;
+ background:#f0f0f0;
+}
+
+#inside-right{
+ float:left;
+ width: 410px;
+ border: solid 1px #f0f0f0;		
+ padding: 5px;
+ margin-left: 10px;
+ background:#f0f0f0;
+}
+
+#label_holder{
+ background-color: #3b5998;	
+ width: 100px;
+ margin-left: 40px;
+}
+
+#label_text_holder{
+ width: 470px;
+ float: left; 
+	
+ margin-left: 30px;
+}
+#left{
+ background-color: #3b5998;	
+ float:left;
+ width: 100px;	
+ margin: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-right-radius: 5px;
+ 
+ moz-border-top-right-radius: 5px;
+ moz-border-bottom-right-radius: 5px;
+ webkit-border-top-right-radius: 5px;
+ webkit-border-bottom-right-radius: 5px;
+}
+
+#left_long{
+ background-color: #3b5998;	
+ float:left;
+ width: 400px;	
+ margin: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-right-radius: 5px;
+
+ moz-border-top-right-radius: 5px;
+ moz-border-bottom-right-radius: 5px;
+ webkit-border-top-right-radius: 5px;
+ webkit-border-bottom-right-radius: 5px;
+ padding: 10px;
+}
+
+#left_long label{
+ color: #FFFFFF;
+ font-size: 40px;	
+}
+
+#left_long_small{
+ background-color: #3b5998;	
+ float:left;
+ width: 400px;	
+ margin: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-right-radius: 5px;
+
+ moz-border-top-right-radius: 5px;
+ moz-border-bottom-right-radius: 5px;
+ webkit-border-top-right-radius: 5px;
+ webkit-border-bottom-right-radius: 5px;
+ padding: 1px;
+}
+
+#left_long_small label{
+ color: #FFFFFF;
+ font-size: 12px;
+ margin-left:5px;	
+}
+
+#left_red{
+ background-color: #dd3c10;	
+ float:left;
+ width: 100px;	
+ margin: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-right-radius: 5px;
+ 
+ moz-border-top-right-radius: 5px;
+ moz-border-bottom-right-radius: 5px;
+ webkit-border-top-right-radius: 5px;
+ webkit-border-bottom-right-radius: 5px;
+}
+
+#left_green{
+ background-color: #00FF00;	
+ float:left;
+ width: 95px;	
+ margin: 5px;
+ padding-left: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-right-radius: 5px;
+
+ moz-border-top-right-radius: 5px;
+ moz-border-bottom-right-radius: 5px;
+ webkit-border-top-right-radius: 5px;
+ webkit-border-bottom-right-radius: 5px;
+}
+
+#left label{
+ color: #FFFFFF;
+ margin-left: 5px;	
+}
+
+#left_red label{
+ color: #FFFFFF;
+ margin-left: 5px;	
+}
+
+#right{
+ float: left;
+ width: 300px;	
+ margin: 5px;
+}
+
+#report_right{
+ float: left;
+ width: 500px;	
+ margin: 5px;
+}
+
+#report_right_below{
+ float: left;
+ width: 250px;	
+ margin: 5px;
+}
+
+/*________Approvals_______*/
+
+#activity_initial{
+ margin-top: 10px;
+ margin-left: 10px;
+ margin-right: 10px;
+ height: 40px;
+ padding-top: 15px;
+ padding-left: 10px;
+ background-color: #eceff6;
+ border-bottom: solid 1px #d4dae8;
+}
+
+#activity_initial label{
+ font-size: 20px;
+
+}
+
+#activity_initial:hover{
+background-color: #d4dae8;
+}
+
+#activity_container{
+ display: none;
+ margin-left: 10px;
+ margin-right: 10px;
+ padding: 10px;
+ background-color: #d4dae8;
+ height: auto;
+}
+
+#activity_container form{
+ margin-left: 3px;
+ margin-top: 0px;
+}
+
+#leave_initial{
+ margin-left: 10px;
+ margin-right: 10px;
+ height: 40px;
+ padding-top: 15px;
+ margin-bottom: 15px;
+ padding-left: 10px;
+ background-color: #eceff6;
+ border-bottom: solid 1px #d4dae8;
+}
+
+#leave_initial:hover{
+background-color: #d4dae8;
+}
+#leave_container{
+ display: none;
+ margin-left: 10px;
+ margin-right: 10px;
+ padding: 10px;
+ background-color: #d4dae8;
+ height: auto;
+ margin-top: -20px;
+}
+
+
+#leave_initial label{
+ font-size: 20px;
+}
+
+div#table_layout {
+  background: url('search-header-background.png') repeat-x;
+  border:1px solid #91a7b4;
+  font-size:1.1em;
+  width: 870px;  	
+}
+#table_holder{
+ margin-top: 10px;
+}
+
+.approval_form_button{
+ background-color: #eceff6;
+ color:#333; 
+ text-shadow: 0 1px 0 rgba(255,255,255,1);
+ width: 200px;
+ height: 40px;
+ margin-top: 5px;
+
+ 	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.approval_form_button:hover{
+ background-color: #ccc;
+}
+/***************************
+  Table
+ ***************************/
+
+div.tbl_layout {
+  background:#eee url('http://cs.ncm.org/images/search-header-background.png') repeat-x;
+  border:1px solid #ccc;
+
+  padding-top: 20px;
+  width: 500px;
+
+}
+div.tbl_layout table {
+  border-collapse:collapse;
+  font-size:.85em !important;
+  height:100%;
+  width:100%;
+}     
+div.tbl_layout td {
+  font-size:.85em !important;
+  height:30px !important;  
+  padding:10px;
+  text-align:left; 
+}
+div.tbl_layout *.letters {
+  text-align:center;
+}
+div.tbl_layout th {
+  color:#20333b;
+  font-weight:bold;
+  padding:5px;
+  text-align:left;
+}     
+div.tbl_layout tr.even {
+  background-color:#eceff6 ;
+}
+div.tbl_layout tr.odd {
+  background-color:#fff;
+}
+
+div#table_layout tr:hover div.handle {
+  display:block;
+}
+div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
+  background-color:#ffa !important;
+}
+#ot_approv{
+ width: 20px;
+ height: 15px;
+ background-color:#FF0000;
+ color: #FFFFFF;
+ font-weight: bold; 
+ border-radius: 5px;
+ 
+}
+#reg_approv{
+ width: 20px;
+ height: 15px;
+ background-color: #3b5998;
+ color: #FFFFFF;
+ font-weight: bold; 
+ border-radius: 5px;
+}
+
+#reg_approv label{
+ padding: 7px;
+ margin-top: 5px;
+}
+#ot_approv label{
+ padding: 4px;
+ margin-top: 5px;
+}
+#right_with_bg{
+ float: left;
+ width: 350px;	
+ margin: 5px;
+ background-color: #909090;
+ border-top-left-radius: 5px;
+ border-bottom-left-radius: 5px;
+}
+
+#right_with_bg label{
+ color: #FFFFFF;	
+ margin-left: 10px;
+}
+
+#right_with_bg_right{
+ float: left;
+ width: 310px;	
+ margin: 5px;
+ background-color: #909090;
+ border-top-left-radius: 5px;
+ border-bottom-left-radius: 5px;
+}
+
+#right_with_bg_right label{
+ color: #FFFFFF;	
+ margin-left: 10px;
+}
+
+/*........flash*/
+
+#flash_notice{
+  background-color:#d0ffc9;
+  color:#4a4;
+  height: 30px;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-left: 10px;	
+  border-bottom:1px solid #aedda7;
+  border-top:1px solid #aedda7;
+  display:none;
+}
+
+#flash_notice h3 {
+  background: url('tick.png')  2px no-repeat;
+  padding:0px 10px 10px 40px;
+  font-size: 14px;
+}	
+
+#flash_warning{
+  background-color:#ffc9d1;
+  color: #900202;	
+  height: 30px;
+  font-size: 14px;
+  padding-left: 10px;	
+  	
+  border-bottom:1px solid #900202;
+  border-top:1px solid #900202;
+  display:none;
+}
+
+#flash_warning h3 {
+  background: url('error.png') 10px 10px no-repeat;
+  padding:0px 10px 10px 40px;
+    font-size: 14px;
+}
+
+#hide{
+ display:none;	
+}
+
+#is_not_submitted_approved{
+ background-color:#FFFF00;
+ height: 15px;
+ width: 15px;
+ float:left;
+ margin-left: 5px;	
+}
+
+#is_approved{
+ background-color:	#00BFFF;
+ height: 15px;
+ width: 15px;
+ float:left;
+ margin-left: 5px;	
+}
+
+#is_submitted{
+ background-color:	#ADFF2F;
+ height: 15px;
+ width: 15px;
+ float:left;
+ margin-left: 5px; 	
+}
+
+#ot{
+ width: 20px;
+ height: 20px;
+ background-color:#FF0000;
+ color: #FFFFFF;
+ font-weight: bold; 
+ border-radius: 10px;
+ padding-left: 5px;
+}
+
+#link_ot{
+ color: #FFFFFF;
+ background-color:#FF0000;
+ font-size: 9px;
+ padding: 1px 3px 3px 3px;
+ border-radius: 5px;
+}
+
+#link_reg{
+ color: #FFFFFF;
+ background-color:#3b5998;
+ font-size: 9px;
+ padding: 1px 3px 3px 3px;
+ border-radius: 5px;
+}
+
+#reg{
+ width: 15px;
+ height: 15px;
+ background-color: #3b5998;
+ color: #FFFFFF;
+ font-weight: bold; 
+ border-radius: 5px;
+ padding: 1px;
+}
+
+#reg a{
+ font-size: 10px;
+}
+
+.ot_label{
+ font-weight: bold;
+ color: #FF0000;
+}
+.reg_label{
+ font-weight: bold;
+ color: #3b5998;          
+}
+
+***************************
+  Special gifts
+ ***************************/
+
+div#special-gifts {
+  
+  border:1px solid #f0f0f0;
+  font-size:1.1em;
+  margin:20px 30px 30px 25px;
+  padding-top:0px;
+  position:relative;
+  width: 650px;
+  float:left;
+  	
+}
+div#special-gifts div.handle {
+  background: url('hover-handle-background.gif') right top repeat-x;
+  display:none;
+  margin-top:-7px;
+  padding:5px 0 0 5px;
+  height:25px;
+  position:absolute;
+  margin-left:5px;
+  width:70px;
+}
+
+.source {
+  padding-left:10px !important;
+  width:149px;
+}
+
+/* Shows the handle when the mouse is over the row */
+div#special-gifts tr:hover div.handle {
+    display:block;
+}
+
+div#special-gifts table {
+  border-spacing:0 0;
+  font-size:.9em !important;
+  width:100%;
+  padding:bottom :100px;
+}
+div#special-gifts tr {
+  position:relative;
+  vertical-align:top;
+}
+div#special-gifts td {
+  border-bottom:1px solid #eee !important;
+  line-height:19px;
+  padding:2px;
+  padding-top: 8px;
+  position:relative;
+
+}
+/* Shows the handle when the mouse is over the row */
+div#special-gifts tr:hover div.handle {
+  display:block;
+}
+div#special-gifts tr.even:hover,div#special-gifts tbody tr.odd:hover {
+  background-color:#ffa !important;
+}
+div#special-gift td.sponsor {
+  width:225px;
+}
+
+/***************************
+  Report
+ ***************************/
+
+div.report {
+
+  border:1px solid #ccc;
+  padding:0px 0 10px 0;
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-right: 10px;
+  width: 920px;
+}
+div.report table {
+  border-collapse:collapse;
+  font-size:.85em !important;
+  height:100%;
+  width:100%;
+}     
+div.report td {
+  font-size:1em !important;
+  height:30px !important;  
+  padding:5px;
+  text-align:center; 
+}
+div.report *.letters {
+  text-align:center;
+}
+div.report th {
+  background: #3b5998;
+  color:#FFFFFF;
+  font-weight:bold;
+  padding:5px;
+  text-align:center;
+}     
+div.report tr.even {
+  background-color:#f0f0f0;
+}
+div.report tr.odd {
+  background-color:#fff;
+}
+
+header, section, aside {
+  display:block;
+}
+
+header {
+  background-color:  #3b5998;
+  color:#fff;
+  font-size:.9em;
+  height:40px;
+  padding:5px 20px;
+}
+header h1 {
+  float:left;
+  font-size:2em;
+  font-weight:bold;
+  padding-left: 45px;
+  padding-top:8px;
+}
+
+nav {
+  float:right;
+  overflow:visible;
+
+}
+nav a, nav a:visited {
+  color:#fff;
+}
+
+/*________LOGIN________*/
+
+div#login-wrap {
+
+  margin:auto auto auto auto;
+  padding-top:25px;
+  position:relative;
+  width:450px;
+}
+#login {
+  background:#fff;
+  border-radius: 8px;
+  color:#468;
+  margin:100px auto auto auto;
+  padding:5px 25px 5px 15px;
+  position:relative;
+  width:300px;
+  height:220px;
+
+  -moz-box-shadow: 3px 3px 6px #888;
+  -webkit-box-shadow: 3px 3px 6px #888;
+  box-shadow: 3px 3px 6px #888;
+}
+#login h2 {
+  margin-top: 10px;
+  margin-bottom:15px;
+  margin-left: 20px;
+}
+.input {
+  font-size:1.1em !important;
+  padding:4px;
+  height: 27px;
+  width:250px;
+  margin-top: 5px;
+  margin-left:20px;
+}
+#login form{
+  margin-left: 1px;
+}
+
+.gray_button{
+ background-color: #ddd;
+ color:#333; 
+ text-shadow: 0 1px 0 rgba(255,255,255,1);
+ width: 200px;
+ height: 40px;
+
+ 	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.gray_button:hover{
+ background-color: #ccc;
+}
+
+/*__________People___________*/
+
+// Place all the styles related to the people controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#people_container{
+ margin-top: 15px
+}
+#people_container h2{
+  border-bottom: solid 1px #eceff6 ;
+  font-size:1.2em;
+  margin:0 0 0px 0;
+  padding:5px;
+}
+
+#people_container h2:hover{
+  border-bottom: solid 1px #eceff6 ;
+  font-size:1.2em;
+  margin:0 0 0px 0;
+  padding:5px;
+  background-color: #d4dae8;
+}
+
+#people_container h2.people_handle{
+  background: url('hover-handle-background.gif') right top repeat-x;
+  display:none;
+  margin-top:-24px;
+  padding:5px 0 0 5px;
+  height:50px;
+  position:absolute;
+  right:-40px;
+  width:35px;
+}
+
+#person label{
+ padding-left: 10px;
+ margin-top: 20px;
+ font-size: 15px;
+}
+
+.add_link{
+ background-color: #d4dae8;
+ padding: 10px;
+ padding-right: 10px;
+ text-decoration: none; 
+}
+.add_link:hover{
+ background-color: #eceff6;
+ padding: 10px;
+ text-decoration: none;  
+}
+#link_edit{
+ float:right;
+ margin-right: 10px;
+}
+#link_edit a{
+ font-size: 10px; 
+}
+#name_container{
+ float:left;
+ width: 200px; 
+ height: 50px; 	
+}
+#level_links_container{
+ float:right;
+ width: 300px;	
+}
+#container{
+ width: 500px;
+ heigth: 100px;	
+}
+
+.between_dates{
+ width: 140px;	
+}
+
+#search_container{
+ width: 800px;
+ margin: 5px;	
+ float: left;	
+}

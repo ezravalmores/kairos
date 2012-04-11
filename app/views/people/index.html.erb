@@ -1,0 +1,34 @@
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'>
+  <h4>Existing user in the system</h4>
+  <br/>
+  <div style='margin-left: 810px'>
+  <%= link_to 'Add New User',new_person_path, :class => 'btn btn-primary' %>
+  </div> 
+  <div id="special-gifts" class="report">
+     <table>
+       <tr>
+         <th>Name</th>
+		  <th>Department</th>
+          <th>Email Address</th>
+  		  <th>Role</th>	
+          <th></th>        
+       </tr>
+	<% for person in @people %> 
+	<tr class="<%= cycle('odd','even') %>"> 
+      <td><%= person.first_name %> <%= person.last_name %></td>
+      <td><%= person.department.name%></td>
+      <td><%= person.email_address %></td>
+      <td><%= person.role.name %></td>
+ 	  <td>
+	    <div class='handle'>
+            <%=link_to image_tag('trash.gif',:class => 'trash'), person_path(person), :confirm => 'Are you sure you want to delete this user?', :method => :delete %>&nbsp;<%= link_to "Edit",edit_person_url(person) %>
+ 		</div>
+      </td>
+	<% end %>
+  
+ 
+</div>
+</div>
+</div>

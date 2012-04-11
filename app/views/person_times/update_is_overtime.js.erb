@@ -1,0 +1,1 @@
+$("#person_<%= @activity.id %>").replaceWith("<%=escape_javascript render(:partial => 'profile/activity', :object => @activity) %>");

@@ -1,0 +1,107 @@
+<script>
+  $(document).ready(function() {
+   $('#from_date').datepicker({
+	     showOn: "both", 
+	      buttonImage: "<%= asset_path('calendar.gif') %>", 
+	      buttonImageOnly: true,
+		  		changeMonth: true,
+				changeYear: true,
+				hideIfNoPrevNext: true,
+				currentText: 'today',
+				dateFormat: 'yy-mm-dd'
+	    });
+	   $('#to_date').datepicker({
+		     showOn: "both", 
+		      buttonImage: "<%= asset_path('calendar.gif') %>", 
+		      buttonImageOnly: true,
+			  		changeMonth: true,
+					changeYear: true,
+					hideIfNoPrevNext: true,
+					currentText: 'today',
+					dateFormat: 'yy-mm-dd'
+		    });		
+});
+</script>
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'>
+ 	    <h4>Tasks Report</h4>
+		<div id ="report_form_time_div">
+		  <div id ="report_inside-left">
+			<div style='margin:10px'>
+			<label style='font-size:20px'>Seach Form</label>
+			<em>you can select from different options to search</em>
+			<div style='margin-top:-20px;float:right'>
+			<label style='font-size:20px'><%= @tasks.count if !@tasks.nil? %> Tasks</label>	
+		 	</div>
+			</div>	
+				
+			
+		
+	        <%= form_tag :url => tasks_report_url do  %>
+			 <fieldset>
+			  
+			  <div id="search_container"> 	
+	            <div id ="report_right"><%= label :start_time, "Date Range" %>
+	 		      <%= text_field_tag(:from_date, params[:from_date],:class => 'between_dates', :id => "from_date") %> &nbsp; <em>and</em> &nbsp; <%= text_field_tag(:to_date,params[:to_date],:class => 'between_dates', :id => "to_date") %></br>
+				  <em>2012-03-28</em>	
+				</div>
+			  </div>
+	 
+			  <div id="search_container">	
+			    <div id ="report_right_below"><%= label :team, "Select Team" %>
+			      <%= select_tag('department_id',	options_from_collection_for_select(options_for_team, :id, :name, params[:department_id]),:include_blank => true) %>
+			   </div>
+			
+			   <div id ="report_right_below"><%= label :person_id, "Select Person" %>
+		         <%= select_tag("person_id", option_groups_from_collection_for_select(options_for_team,:people,:name, :id, :first_name, params[:person_id]),:include_blank => true) %>
+			   </div> 
+			   
+			   <div id ="report_right_below"><%= label :activity_id, "Select Task" %>
+                 <%= select_tag('activity_id',	options_from_collection_for_select(options_for_report_activity, :id, :name,params[:activity_id]),:include_blank => true) %>
+			   </div>
+				</div>
+			     <div style='float:left;margin:5px;width:100px'><%= submit_tag "Search Tasks", :class => 'btn btn-primary' %></div><div id='right'><%= button 'Generate Spreadsheet', generate_spreadsheets_url, :class => 'btn btn-primary' %></div>
+	
+			</fieldset>	
+	        <% end %>
+	      </div>
+	     </div>
+		<% if !@tasks.nil? %>
+		<% if @tasks.count != 0 %>
+		<div id="special-gifts" class="report">
+		    <table>
+		        <tr>
+		            <th>Date</th>
+					<th>Person</th>
+		            <th>Activity</th>
+					<th>Specific Activity</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+		            <th>Total Time</th>
+		            <th></th>
+		        </tr>
+				<% for task in @tasks %>
+				  <tr class="<%= cycle('odd','even') %>">
+				  	<td><%= task.created_at.strftime("%B %d, %Y") %></td>
+					<td><%= task.person.first_name + " " + task.person.last_name%></td>
+					<td><%= task.activity.name if !task.activity.nil? %></td>
+					<td><%= task.specific_activity.name if !task.specific_activity.nil? %></td>
+					<td><%= task.start_time.strftime('%l:%M:%S %p').downcase if !task.start_time.nil? %></td>
+					<td><%= task.end_time.strftime('%l:%M:%S %p').downcase if !task.end_time.nil? %></td>
+					<td><%= task.total_time.strftime('%H:%M:%S') if !task.total_time.nil? %></td>
+					<td>
+					  <div class="handle">
+						 <%=link_to image_tag('trash.gif',:class => 'trash'), person_time_path(task), :confirm => 'Are you sure you want to delete this task?', :method => :delete %>
+					     <%= link_to "edit", edit_person_time_url(task) %>
+					  </div>		
+					</td>	
+				  </tr>	
+				<% end %>			
+			</table>	
+		</div>
+		<% end %>	
+		<% end %>
+	  </div>
+  </div>
+</div>	

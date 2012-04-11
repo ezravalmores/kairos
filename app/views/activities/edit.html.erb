@@ -1,0 +1,37 @@
+<div id ='page-wrap'>
+<div id="left-side" class="mains" >	 
+ <h3>Edit this activity</h3>  
+	
+<%= form_for (@activity) do |f| %>
+  	 <h1>Activity Information</h4>
+      <span><em>Be sure sot set the department where the activity will be included</em></span><br/><br/>
+ 	   <div class ="form_layout">
+	     <div class ="inside_form_layout">
+	       <div id='div_fieldset'>
+	         <%= f.label :name %>
+	       </div>
+	       <div id='div_fieldset'>	
+	         <%= f.text_field :name %>
+		   </div>
+		   <div id='div_fieldset'>
+		     <%= f.label :description %>
+		   </div>
+		   <div id='div_fieldset'>  
+		     <%= f.text_field :description %><p>
+		   </div>
+		   <div id='div_fieldset'>
+		     <%= f.label :department %>
+		   </div>
+		   <div id='div_fieldset'>  
+		     <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :include_blank => true) %>
+		   </div>
+		  </div>
+		</div>
+		<div class ="form_layout">
+		<div style ="margin-top:200px;padding-left:100px">	
+		    <%= f.submit "Save my Changess",:class => "btn btn-primary" %>       
+		   </div>	
+		</div>
+<% end %>
+</div>
+</div>

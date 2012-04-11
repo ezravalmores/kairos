@@ -1,0 +1,9 @@
+<%
+render_tabnav :user, :html => { :class => 'tabnav left' } do 
+  add_tab do |t|
+    t.named 'Time Keeping'
+    t.links_to time_url
+    t.highlights_on :controller => 'profile'
+  end
+end 
+%>

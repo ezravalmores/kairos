@@ -1,0 +1,39 @@
+<div class='container'>    
+  <div class='row'>
+    <div class='span13'>
+ <h4>Create new specific activity</h4> <br/> 
+	
+<%= form_for (@specific_activity),:class => 'form-horizontal'  do |f| %>
+  	 <h1>Specific Activity Information</h4>
+      <span><em>Be sure sot set the activity where the specific activity will be included</em></span><br/><br/> <br/>	
+ 	   <div class ="form_layout">
+	     <div class ="inside_form_layout">
+	       <div id='div_fieldset'>
+	         <%= f.label :name %>
+	       </div>
+	       <div id='div_fieldset'>	
+	         <%= f.text_field :name %>
+		   </div>
+		   <div id='div_fieldset'>
+		     <%= f.label :description %>
+		   </div>
+		   <div id='div_fieldset'>  
+		     <%= f.text_field :description %><p>
+		   </div>
+		   <div id='div_fieldset'>
+		     <%= f.label :activity %>
+		   </div>
+		   <div id='div_fieldset'>  
+		     <%= f.select(:activity_id, Activity.all.collect{|a| [a.name, a.id] }, :include_blank => true, :class => 'select_menus') %>
+		   </div>
+		  </div>
+		</div>
+		<div class ="form_layout">
+		  <div style ="margin-top:50px;padding-left:10px">	
+		    <%= f.submit "Save",:class => "btn btn-primary" %>       
+		  </div>	
+	    </div>
+<% end %>
+</div>
+</div>
+</div>

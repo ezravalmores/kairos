@@ -1,0 +1,16 @@
+<div class='container'>    
+  <div class='row'>
+    <div class='span13'>
+      <h4>Edit this System User <div style='float:right'><%= link_to "send welcome message", welcome_message_person_url(@person), :class => 'white_link' , :method => 'put' %>    
+      </div></h4>  
+      <br/><br/>	
+      <%= form_for (@person), :html => {:class => 'form-horizontal'}  do |f| %>
+  	    <h1>Profile Information</h4>
+        <span><em>Who this person is and how they will access the system</em></span><br/><br/><br/>
+ 	    <%= render :partial => 'person_form', :locals => { :f => f } %>
+      <% end %>
+		</div>  
+	</div>
+</div>
+
+

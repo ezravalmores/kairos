@@ -1,0 +1,8 @@
+<%= @person.first_name %>
+
+<%= nested_form_for (@person) do |f| %>
+  	 <h1>Profile Information</h4>
+      <span><em>Who this person is and how they will access the system</em></span><br/><br/>
+ 	   <%= render :partial => 'person_form', :locals => { :f => f } %>
+<% end %>
+</div>

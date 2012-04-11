@@ -1,0 +1,39 @@
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'> 
+ <h4>Create new activity</h4>  
+ <br/>
+<%= form_for (@activity), :html => {:class => 'form-horizontal'} do |f| %>
+  	 <h1>Activity Information</h4>
+      <span><em>Be sure sot set the department where the activity will be included</em></span><br/><br/><br/>
+		<fieldset>
+	       <div class='control-group'>
+	         <%= f.label :name, :class => 'control-label' %>
+	         <div class ="controls" >
+	           <%= f.text_field :name, :class => 'text_field' %>
+		     </div>
+		   </div>
+		
+		    <div class='control-group'>
+		         <%= f.label :description, :class => 'control-label' %>
+		         <div class ="controls" >
+		           <%= f.text_field :description, :class => 'text_field' %>
+			     </div>
+		   </div>
+			
+		   <div id='control-group'>
+		     <%= f.label :department_id , :class => 'control-label' %>
+		     <div class='controls'>  
+		     <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :include_blank => true) %>
+		     </div>
+		   </div>
+		<div class ="form_layout">
+		  <div style ="margin-top:200px;padding-left:100px">	
+			  <%= f.submit "Save my Changess",:class => "btn btn-primary" %>       
+			</div>	
+		  </div>	 
+		</fieldset>	
+<% end %>
+</div>
+</div>
+</div>

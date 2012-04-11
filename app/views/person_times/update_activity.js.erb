@@ -1,0 +1,2 @@
+$j("#activity_<%= escape_javascript("#{@activity.id}") %>").replaceWith("<%= escape_javascript(render(:partial => "sprout/shared/note", :object => @note)) %>");
+$j("#activity_<%= escape_javascript("#{@activity.id}") %>").effect("highlight", {}, 3000);

@@ -1,0 +1,14 @@
+<%if !flash.blank? %>
+  <% if flash[:notice] %>
+    <div id="flash_notice">
+      <h3><%= flash[:notice]%></h3>
+      <% flash[:notice] = nil %>
+    </div>
+  <% end %>
+  <% if flash[:warning] %>
+    <div id="flash_warning">
+      <h3><%= flash[:warning]%></h3>
+      <% flash[:warning] = nil %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+.sass-cache/
+.bundle
+assets/photos
+config/*.yml
+db/*.sqlite3
+log/*.log
+public/downloads
+tmp/
+test/coverage.data
+vendor/ruby

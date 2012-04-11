@@ -1,0 +1,14 @@
+<div id='login-wrap'>
+<div id = "login">
+<h2>USER LOGIN </h2>
+<%= form_tag :action => :login do %>
+
+        <%= text_field_tag :username,nil,:size => 20, :placeholder => "username", :class=> "input" %>
+  
+        <%= password_field_tag :password,nil,:size => 28, :class => "input", :placeholder => "password" %>
+    <div style="margin-left:150px;text-align:center;">
+        <%= submit_tag "login to system", :class => "btn btn-primary" %>
+    </div>
+<% end %>
+</div>
+</div>

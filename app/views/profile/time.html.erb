@@ -1,0 +1,34 @@
+<script>
+  $(document).ready(function() {
+   $('#search_date').datepicker({
+	     showOn: "both", 
+	      buttonImage: "<%= asset_path('calendar.gif') %>", 
+	      buttonImageOnly: true,
+		  		changeMonth: true,
+				changeYear: true,
+				hideIfNoPrevNext: true,
+				currentText: 'today',
+				dateFormat: 'yy-mm-dd'
+	    });	
+});
+</script>
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'>			
+    <h3><%= @person.first_name %> <%= @person.last_name %>
+	   <div style='float:right;margin-top:0px:margin-right:40px'> 
+	    <%= form_tag :url => time_url , :method => 'get' do %>
+	         <div style='margin-top:-4px'>
+
+	         <%= text_field_tag(:date, params[:date],:placeholder => "search date", :id => "search_date", :class => 'txt') %>
+
+			  <%= submit_tag("Search", :class => 'btn btn-primary') %>
+			  <%= link_to "Add Task", new_person_time_url, :class => 'btn btn-primary' %>
+	          </div>
+	    <% end %>
+	   </div>
+	</h3>
+    <%= render :partial => 'activity_info' %>
+		</div>  
+	</div>
+</div>

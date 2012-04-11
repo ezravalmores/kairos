@@ -1,0 +1,67 @@
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'>
+<h4>List of requests for approval</h4>
+  <div id='activity_initial'>
+    <label>Submitted Activities</label>
+  </div>
+  <div id='activity_container'> 
+   <%= form_tag approve_activities_person_times_url,:method => :put do %> 
+    <div style ='margin-left: 0px'> <%= submit_tag "Approve Activities", :class => "btn btn-primary", :confirm => 'Are you sure you want to approve these activities?' %>
+	</div><br/>
+    <div id='table_layout' class='tbl_layout'>
+	    <table>
+	        <tr> 
+		       <th width="3px"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'activities')" }) %></th>
+				<th>Date</th>
+		        <th>Activity by</th>
+	            <th>Start Time</th>
+				<th>End Time</th>
+	            <th>Activity</th>
+	            <th>Specific Activity</th>
+	            <th>Total Time</th>
+	            <th></th>           
+	        </tr>
+	        <% for activity in @activities %>
+	        <tr class="<%= cycle('odd','even') %>">
+		      <td style="padding: 5px; height: 3px"><%= check_box_tag("activities[]",activity.id,false,{ :class => "activities", :onclick => "toggleMaster(this,'select_all')" }) %></td>
+		      <td><%= activity.created_at.strftime("%B %d, %Y") %></td>
+		      <td><%= activity.person.first_name %></td>   
+		      <td><%= activity.start_time.strftime('%l:%M:%S %p') if !activity.start_time.nil? %></td>   
+		      <td><%= activity.end_time.strftime('%l:%M:%S %p') if !activity.end_time.nil? %></td>   
+		      <td><%= activity.activity.name if !activity.activity_id.nil? %></td>
+		      <td><%= activity.specific_activity.name if !activity.specific_activity_id.nil? %></td>  
+		      <td><%= activity.total_time.strftime("%H:%M:%S") if !activity.total_time.nil? %></td>  
+		      <td>
+			   	 <% if activity.is_overtime == 1 %>
+					    <span class="label label-error">Overtime</span>
+					<% else %>
+					    <span class="label label-inverse">Standard</span>
+					<% end %>
+			  </td>    
+		    </tr>
+		    <% end %>
+		</table>
+	</div>
+  <% end %>	
+  </div>
+
+  <div id='leave_initial'>
+    <label>Submitted Requests for leaves</label>
+  </div>
+  <div id='leave_container'>
+    <div id='table_layout' class='tbl_layout'>
+	    <table>
+	        <tr> 
+		         <th width="3%" class="checkbox"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'unmatched')" }) %></th>
+				<th>Name</th>
+		        <th>Leave Type</th>
+	            <th>Reason</th>
+				<th>Date</th>       
+	        </tr>
+		</table>
+	</div>
+  </div>
+</div>
+</div>
+</div>		

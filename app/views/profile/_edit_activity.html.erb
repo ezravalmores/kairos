@@ -1,0 +1,4 @@
+<%= form_tag update_activity_person_times_url,:method => :put do %>
+      <td id="wow"><%= status_dropdown(activity) %></td>
+      <%= hidden_field_tag(:person_time_id, activity.id) %>
+<% end %>

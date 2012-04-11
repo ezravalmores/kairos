@@ -1,0 +1,42 @@
+<div class='container'>    
+  <div class='row'>
+	  <div class='span13'>
+	
+    <h4>List of Activities</h4>	
+	     <div style='margin-left: 800px;margin-top: 20px;margin-bottom:20px'>
+		  <%= link_to 'Add New Activity',new_activity_path, :class => 'btn btn-primary' %>
+		  </div>
+    <div id="special-gifts" class="report">
+      <table>
+        <tr>
+          <th>Activity Name</th>
+		  <th>Description</th>
+          <th>Department</th>
+          <th></th>        
+        </tr>
+		<% for activity in @activities %>
+		  <tr class="<%= cycle('odd','even') %>">
+		    <td><%= activity.name %></td>
+		    <td><%= activity.description %></td>
+		    <td>
+			  <% if !activity.department.nil? %>
+		        <%= activity.department.name %>
+		      <% else %>
+		        <%= "All Department" %>
+		      <% end %>
+		    </td> 
+		    <td>
+			  <div class='handle'>
+			   
+			   <%=link_to image_tag('trash.gif',:class => 'trash'), activity_path(activity), :confirm => 'Are you sure you want to delete this activity?', :method => :delete %>
+			   <%= link_to 'edit', edit_activity_url(activity), :class => "edit" %>
+			 </div>	
+		 	</td>
+		  </tr>
+		<% end %>
+	  </table>		
+      </div>
+
+  </div>
+</div>
+</div>

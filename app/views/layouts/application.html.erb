@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kairos</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag  "application" %>
+   <%= javascript_include_tag "application",'jquery-1.4.2.min',"highcharts",'datepicker','approvals','jquery','jquery-ui','jquery_ujs','flash_message_notice','flash_message_warning','bootstrap','bootstrap.min.js','bootstrap-drowpdown' %>
+   <%= csrf_meta_tags %>
+   <%= yield(:head) %>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+	<%= render :partial => 'layouts/flash_message' %>	
+	<header>
+	  	<div style="float:left;margin-left: 10px;margin-bottom: 15px">
+		  <%= image_tag('nazcompassion_logo.gif', :size => "80x90") %>
+		  	
+		</div>	
+	  <%= render :partial => 'layouts/nav' if current_user %>
+	</header>	
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+        </a>
+	   <a class="brand" href="#">KAIROS</a>	
+       <% if current_user %>
+       
+        <div style="margin-left:-100px"> 
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Time Keeping", time_url %></li>
+            <li><%= link_to "My Leaves", leaves_url %></li>
+            <li> <%= link_to "Calendar", "" %></li>
+			<li><%= link_to "Share Point", "" %></li>
+			<li><%= link_to "Approvals", approval_url %></li>
+          </ul>
+		 <% if current_user.is_admin? || current_user.is_supervisor? %>
+		 <ul class="nav nav-pills">
+		    <li class="dropdown" id="menu1">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+		    Reports
+		    <b class="caret"></b>
+		    </a>
+		    <ul class="dropdown-menu">
+			  <li> <%= link_to "Tasks Report", tasks_report_url %></li>
+		
+		      <li class="divider"></li>
+		      <li><a href="#">Separated link</a></li>
+		    </ul>
+		 <% end %>
+		 </ul>
+		   <% if current_user.is_admin? %>
+		    <ul class="nav nav-pills">
+	          <li class="dropdown" id="menu2">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#menu2">
+	          Administrator
+	          <b class="caret"></b>
+	          </a>
+	        <ul class="dropdown-menu">
+		      <li> <%= link_to "People", people_url %></li>
+		      <li><%= link_to "Activities", activities_url %></li>
+              <li><%= link_to "Special Activities", specific_activities_url %></li>
+
+	          <li class="divider"></li>
+	          <li><a href="#">Separated link</a></li>
+	       </ul>
+	  	   <% end %>	
+        </div>
+        </div>
+       <% end %>
+      </div>
+    </div>
+  </div>
+	
+	
+	 <br/>
+	<%= yield %>
+	</div>
+
+</body>
+</html>
