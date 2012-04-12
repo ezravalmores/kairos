@@ -1,15 +1,37 @@
 <script>
   $(document).ready(function() {
-   $('#search_date').datepicker({
-	     showOn: "both", 
-	      buttonImage: "<%= asset_path('calendar.gif') %>", 
-	      buttonImageOnly: true,
-		  		changeMonth: true,
-				changeYear: true,
-				hideIfNoPrevNext: true,
-				currentText: 'today',
-				dateFormat: 'yy-mm-dd'
-	    });	
+    $('#search_date').datepicker({
+	  showOn: "both", 
+	  buttonImage: "<%= asset_path('calendar.gif') %>", 
+	  buttonImageOnly: true,
+	  changeMonth: true,
+	  changeYear: true,
+	  hideIfNoPrevNext: true,
+	  currentText: 'today',
+	  dateFormat: 'yy-mm-dd'
+	});	
+   	$(document).ready(function() {
+	//    jQuery('#regform_district_id').html("<option value=''>Select District</option>");
+	  jQuery('#act_id').change(function() {
+        var data=$('#act_id').val();
+	    $.ajax({
+	      type: "POST",
+	      url: "http://"+location.host+"/dynamic_specific_tasks/"+data,
+	      data: data,
+	      beforeSend: function()
+	      {
+		  //alert('hi');
+	      //$('#status').html('<img src="loading.gif">');
+	       },
+	       success: function(response)
+	       {
+	       //alert(response);
+	       //$('#regform_district_id').html(html);    //dynamic_districts.js.erb
+	       //$('#status').html(html);
+	       }
+	       });
+	    });
+	});
 });
 </script>
 <div class='container'>    
@@ -22,8 +44,6 @@
 
 	         <%= text_field_tag(:date, params[:date],:placeholder => "search date", :id => "search_date", :class => 'txt') %>
 
-			  <%= submit_tag("Search", :class => 'btn btn-primary') %>
-			  <%= link_to "Add Task", new_person_time_url, :class => 'btn btn-primary' %>
 	          </div>
 	    <% end %>
 	   </div>
