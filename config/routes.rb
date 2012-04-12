@@ -68,6 +68,9 @@ Ncm1Kairos::Application.routes.draw do
   match "/reports/search_tasks" => "reports#search_tasks", :as => :search_tasks
   #match "/people" => "people#welcome_message", :as => :welcome_message
   match "/reports/generate_spreadsheets" => "reports#generate_spreadsheets", :as => :generate_spreadsheets
+  match 'profile/update_specific_activity_select/:id', :controller=>'profile', :action => 'update_specific_activity_select'
+  
+  match "dynamic_specific_tasks/:id" => "profile#dynamic_specific_tasks", :via => [:post]
   
   resources :leaves
     resources :people, :except => [:show] do
