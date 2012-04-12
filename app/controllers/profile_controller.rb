@@ -18,4 +18,12 @@ class ProfileController < ApplicationController
      @other_people_activities = PersonTime.user_activities_today.other_user_activities_today(current_user.id)   
      @specific_activities
   end  
+  
+  def dynamic_specific_tasks
+      @specific_tasks = SpecificActivity.find_all_by_activity_id(params[:id])
+
+      respond_to do |format|
+        format.js{}           
+      end
+  end
 end
