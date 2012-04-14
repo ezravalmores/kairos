@@ -1,0 +1,4 @@
+$('#specific_activity_id').empty();
+<% for task in @specific_tasks %>
+  $('#specific_activity_id').append($("<option></option>").attr("value",<%= task.id %>).text('<%= task.description %>'));
+<% end %>
