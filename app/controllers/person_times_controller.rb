@@ -1,7 +1,7 @@
 require 'time_diff'
 
 class PersonTimesController < ApplicationController
-  
+  include ActionView::Helpers::NumberHelper
   before_filter :authorize
   
   def new
@@ -61,6 +61,14 @@ class PersonTimesController < ApplicationController
       
       if params[:end_shift].to_i != 1
         new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) 
+      else
+        @person = current_user
+        @activities = @person.person_times.user_activities_today.order("created_at DESC") 
+        @productive_hours = @activities.get_productive_hours
+        hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours")
+        minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")
+        th = number_with_precision(TotalHour.save_utilization_rate(hours,minutes),:precision => 2)
+        TotalHour.create!(:person_id => current_user.id,:total_utilization_rate => th, :shift_date => Date.today)
       end
        
       respond_to do |format|
