@@ -10,17 +10,17 @@ class ReportsController < ApplicationController
        flash[:warning] = "No results was found"
      else
        template = "reports/tasks_report.xls.eku"
-       #spawn do
+
          @tasks = tasks
          @report_type = "tasks_report"
          spreadsheets["tasks_report.xls"] = 
          render_to_string(:template => template,:layout => false)
-         #render_to_string(:template => template,:layout => false)
+  
          public_filename = Archiver.bundle(spreadsheets,@report_type)
-       #end 
+         
+         send_file(File.join("public",public_filename), :disposition => 'attachment') 
        flash[:notice] = "Spreadsheet has been successfuly processed"   
      end    
-     redirect_to :back  
   end  
   
   def child_sponsorships_graph
