@@ -2,7 +2,7 @@
   <td>
 	<div style="margin-left:-30px">
 	<% if !activity.is_submitted? && !activity.is_approved? %>
-      <span class="label label-warning">Not Submitted</span>
+      <span class="label label-warning">ns</span>
     <% elsif activity.is_submitted? && activity.is_approved == nil %>
       <span class="label label-success">Submitted</span>
     <% elsif activity.is_approved? %>
@@ -12,7 +12,7 @@
     <% if activity.is_overtime == 1 %>
 	    <span class="label label-important">Overtime</span>
 	<% else %>
-	    <span class="label label-inverse">Standard</span>
+	    <span class="label label-inverse">st</span>
 	<% end %>
     &nbsp;&nbsp;<%= activity.start_time.strftime('%l:%M:%S %p').downcase if !activity.start_time.nil? %>
 	</div>
