@@ -34,7 +34,7 @@
 	           <div id="left"><%= label :specific_activity_id, "Specific Activity" %></div> 
 	           <div id="right"><%= select_tag("specific_activity_id",:id => "specific_activity_id", :include_blank => true) %> <%= hidden_field_tag(:person_time_id, @unfinished_activity.id) %></div></div></div><br/>
 			   <div style="margin-left:40px;margin-bottom:-10px;float:left;margin-top:10px">
-				<%= submit_tag "end current activity", :class => 'btn' %>&nbsp;&nbsp;<font style='color:#800000 '><em>this will end the current activity</em></font>
+				<%= submit_tag "end current activity", :class => 'btn' %>&nbsp;&nbsp;<font><%= check_box_tag(:end_shift) %> &nbsp;check this to end the shift</font>
 			  </div>	
 	   <% end %>
 	 </div></div>
@@ -45,6 +45,5 @@
 		    <%= label :message, "No Results found" %>
 		  </div>	
 		</div>	
-	<% end %>	
-	
+	<% end %>		
 </div></div>
