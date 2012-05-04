@@ -58,11 +58,13 @@ class PersonTimesController < ApplicationController
       total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
       
       updated = person_time.update_attributes(:total_time => total_time)
-      new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) if @activity.name != "End Shift" 
-
+      
+      if params[:end_shift].to_i != 1
+        new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) 
+      end
+       
       respond_to do |format|
         format.html { redirect_to time_url  }
-        #format.js {} # update_activity.js.erb
       end
       
       flash[:notice] = "Your activity was successfully ended!"  
