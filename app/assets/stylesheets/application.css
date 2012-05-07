@@ -35,7 +35,21 @@ background: #cccccc;
  margin-bottom: 5px;
 }
 
+#th_report_div{
+ padding: 10px;
+ border: solid 2px #f0f0f0;	
+ height:200px;
+ padding: 10px;
+ width: 900px;
+ margin-top: 10px;
+ margin-bottom: 5px;
+}
+
 #report_form_time_div label{
+ font-weight: bold;
+}
+
+#th_report_div label{
  font-weight: bold;
 }
 
@@ -190,6 +204,12 @@ background: #cccccc;
 #report_right{
  float: left;
  width: 500px;	
+ margin: 5px;
+}
+
+#th_div{
+ float: left;
+ width: 400px;	
  margin: 5px;
 }
 
