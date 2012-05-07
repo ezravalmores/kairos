@@ -65,6 +65,7 @@ Ncm1Kairos::Application.routes.draw do
   match "/approvals" => "approvals#approval", :as => :approval
   match "/reports" => "reports#child_sponsorships_graph", :as => :child_sponsorships_graph  
   match "/reports/tasks_report" => "reports#tasks_report", :as => :tasks_report
+  match "/reports/utilization_rate_report" => "reports#utilization_rate_report", :as => :utilization_rate_report  
   match "/reports/search_tasks" => "reports#search_tasks", :as => :search_tasks
   #match "/people" => "people#welcome_message", :as => :welcome_message
   match "/reports/generate_spreadsheets" => "reports#generate_spreadsheets", :as => :generate_spreadsheets
@@ -92,6 +93,7 @@ Ncm1Kairos::Application.routes.draw do
   #   get :child_sponsorships_graph
   #end   
   #end    
+  #resources :total_hours
   
   match "person_times/:id/update_is_overtime", :to => "person_times#update_is_overtime", :as => :update_is_overtime, :via => [:get]
   match "person_times/:id/update_is_not_overtime", :to => "person_times#update_is_not_overtime", :as => :update_is_not_overtime, :via => [:get]      
