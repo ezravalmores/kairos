@@ -9,5 +9,12 @@ class TotalHour < ActiveRecord::Base
    
   end
   
-  
+  def self.search_rate(user_id,from,to)
+    rates = []
+    if !from.blank? || !to.blank?
+      rates = where(["total_hours.shift_date >=? AND total_hours.shift_date <=?",from.to_date.beginning_of_day,to.to_date.end_of_day])
+      rates = rates.where(:person_id => user_id.to_i)
+      rates
+    end  
+  end
 end  
