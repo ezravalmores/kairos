@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   before_filter :authorize
   
   def generate_spreadsheets
@@ -60,5 +61,25 @@ class ReportsController < ApplicationController
        format.html # tasks_report.html.erb
        #format.xml  { render :xml => @people }
      end
-  end   
+  end 
+  
+  def utilization_rate_report
+    if !params[:from_date].blank? && !params[:to_date].blank? && !params[:person_id].blank?
+      @total_hours = TotalHour.search_rate(params[:person_id],params[:from_date],params[:to_date])
+ 
+      diff = params[:to_date].to_date - params[:from_date].to_date
+
+      days = diff.day.to_i / 1440 / 60
+      
+      if days == 0
+        @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / 1, :precision => 2)
+      else
+        @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / days.to_i, :precision => 2)
+      end
+          
+      session[:from_date] = params[:from_date]
+      session[:to_date] = params[:to_date]
+      
+    end
+  end    
 end
