@@ -1,0 +1,83 @@
+<script>
+  $(document).ready(function() {
+   $('#from_date').datepicker({
+	     showOn: "both", 
+	      buttonImage: "<%= asset_path('calendar.gif') %>", 
+	      buttonImageOnly: true,
+		  		changeMonth: true,
+				changeYear: true,
+				hideIfNoPrevNext: true,
+				currentText: 'today',
+				dateFormat: 'yy-mm-dd'
+	    });
+	   $('#to_date').datepicker({
+		     showOn: "both", 
+		      buttonImage: "<%= asset_path('calendar.gif') %>", 
+		      buttonImageOnly: true,
+			  		changeMonth: true,
+					changeYear: true,
+					hideIfNoPrevNext: true,
+					currentText: 'today',
+					dateFormat: 'yy-mm-dd'
+		    });		
+});
+</script>
+<div class='container'>    
+  <div class='row'>
+    <div class='span13'>
+      <h4>Employee Utilization Rate</h4>	
+      <div id ="th_report_div">
+	    <div id ="report_inside-left">
+		  <div style='margin:10px'>
+		    <label style='font-size:20px'>Seach Form</label>
+		    <em>you can select from different options to search</em>
+		    <div style='margin-top:-20px;float:right'>
+		      <label style='font-size:20px'>Total Utilization Rate: <%= @total_utilization if !@total_utilization.blank? %> %</label>	
+	 	    </div>
+		  </div>	
+        <%= form_tag :url => utilization_rate_report_url do  %>
+		 <fieldset>
+		  <div id="search_container"> 	
+            <div style="float:left;width: 800px"><%= label :start_time, "Date Range and Person" %>
+ 		      <%= text_field_tag(:from_date, params[:from_date],:class => 'between_dates', :id => "from_date") %> &nbsp; <em>to</em> &nbsp; <%= text_field_tag(:to_date,params[:to_date],:class => 'between_dates', :id => "to_date") %>
+
+	         <%= select_tag("person_id", option_groups_from_collection_for_select(options_for_team,:people,:name, :id, :first_name, params[:person_id]),:include_blank => true) %>
+		   </div>
+		
+		     <div style='float:left;margin:5px;width:100px'><%= submit_tag "Search Rates", :class => 'btn btn-primary' %></div></div>
+
+		</fieldset>	
+        <% end %>
+      </div>
+      </div>
+    <div id="special-gifts" class="report">
+      <table>
+        <tr>
+          <th>Date of shift</th>
+		  <th>Person</th>
+		  <th>Utilization Rate</th>
+		  <th></th>
+
+          
+        </tr>
+	    <% if !@total_hours.nil? %>
+		<% for total_hour in @total_hours %>
+		  <tr class="<%= cycle('odd','even') %>">
+		    <td><%= total_hour.shift_date.strftime("%B %d, %Y")  %></td>
+		    <td><%= total_hour.person.first_name + total_hour.person.last_name  %>
+			<td><%= total_hour.total_utilization_rate.to_s +  " " + "%" %></td>
+	 		<td></td>
+		
+			  <div class='handle'>
+			   
+
+			 </div>	
+		 	</td>
+		  </tr>
+		<% end %>
+		<% end %>
+	  </table>		
+      </div>
+  </div>
+</div>
+</div>
