@@ -8,7 +8,10 @@
 	  changeYear: true,
 	  hideIfNoPrevNext: true,
 	  currentText: 'today',
-	  dateFormat: 'yy-mm-dd'
+	  dateFormat: 'yy-mm-dd',
+	  onSelect: function(dateText, inst) {
+        $('#search_activities_form').submit();						
+      }
 	});	
    	$(document).ready(function() {
 	//    jQuery('#regform_district_id').html("<option value=''>Select District</option>");
@@ -39,7 +42,7 @@
 	  <div class='span13'>			
     <h3><%= @person.first_name %> <%= @person.last_name %>
 	   <div style='float:right;margin-top:0px:margin-right:40px'> 
-	    <%= form_tag :url => time_url , :method => 'get' do %>
+	    <%= form_tag(time_url ,:id => 'search_activities_form',:method => 'get') do %>
 	         <div style='margin-top:-4px'>
 
 	         <%= text_field_tag(:date, params[:date],:placeholder => "search date", :id => "search_date", :class => 'txt') %>
