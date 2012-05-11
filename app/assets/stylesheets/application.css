@@ -37,6 +37,18 @@ background: #cccccc;
 
 #report_form_time_div label{
  font-weight: bold;
+}
+
+#form_div{
+ padding: 10px;
+ padding: 10px;
+ width: 900px;
+ margin-top: 10px;
+ margin-bottom: 5px;
+}
+
+#form_div label{
+ font-weight: bold;
 }	
 
 #inside-left{
@@ -210,7 +222,6 @@ background-color: #d4dae8;
 }
 
 #activity_container{
- display: none;
  margin-left: 10px;
  margin-right: 10px;
  padding: 10px;
@@ -772,4 +783,8 @@ div#admin-dropdown {
   -moz-border-radius:15px;
   -webkit-border-radius:15px;
   border-radius:15px;  
+}
+.text-area{
+ width: 300px;
+ height: 70px;	
 }
