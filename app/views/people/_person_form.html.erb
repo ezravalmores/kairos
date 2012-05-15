@@ -31,8 +31,12 @@
 	
 	<div class='control-group'>
        <%= f.label :password, :class => 'control-label' %>
-       <div class ="controls">	
-       <%= f.password_field :password,:class => 'text_field' %>
+       <div class ="controls">
+	   <% if !@person.password.nil? %>
+       <%= f.password_field :password,:value => @person.password,:class => 'text_field' %>
+	   <% else %>
+	     <%= f.password_field :password,:class => 'text_field' %>
+	   <% end %>	
 	   </div>
 	</div>
 	
