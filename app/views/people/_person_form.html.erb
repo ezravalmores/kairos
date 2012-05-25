@@ -59,6 +59,17 @@
 	   <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :class => 'text_field') %>
       </div>
    </div>
+
+    <br/><br/>   
+
+   <span><em><label style="font-weight:bold;margin-left:60px">Check if user can approve tasks or leaves submitted by the user</label></em></span><br/>
+   <div class='control-group'>
+      <%= f.label :can_approve, "Can approve", :class => 'control-label' %>
+      <div class ="controls">	
+	    <%= f.check_box(:can_approve, :class => 'text_field') %>
+      </div> 
+   </div>
+
    <% end %>
    <br/><br/>	
 <% if current_user.is_admin? || current_user.is_supervisor? %> 
