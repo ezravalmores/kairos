@@ -19,7 +19,18 @@ Ncm1Kairos::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
+  
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     :enable_starttls_auto => true,
+     :address => 'smtp.gmail.com',
+     :port => 587,
+     :authentication => :plain,
+     :domain => '10.7.203.241',
+     :user_name => 'ezravalmores@gmail.com',
+     :password => 'ezda0830'
+   }
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
