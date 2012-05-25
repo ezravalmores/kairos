@@ -82,11 +82,21 @@ class PersonTimesController < ApplicationController
   end
   
   def submit_activities
-    activities = params[:activities]
-    PersonTime.submit_activities(current_user.id,activities)
+    if !params[:people].nil? 
+      activities = params[:activities]
+      people = Person.find(params[:people])
+      #people = people.map {|p| p.email_address}
+      PersonTime.submit_activities(current_user.id,activities)
+      for person in people
+        Kairos1Mailer.send_approvals(person,current_user).deliver
+      end
+      flash[:notice] = "Your activies submitted successfully!"
+    else
+      flash[:warning] = "Select People who will be notified with this submission"  
+    end
+    
     respond_to do |format|
       format.html { redirect_to :back }
-      flash[:notice] = "Your activies submitted successfully!"
     end  
   end
   
