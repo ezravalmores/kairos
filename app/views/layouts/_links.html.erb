@@ -26,9 +26,9 @@
 		  <li> <%= link_to "Tasks Report", tasks_report_url %></li>
 		  <li> <%= link_to "Utilization Rate Report", utilization_rate_report_url %></li>	
 	      <li class="divider"></li>
-	      <li><%= link_to "Activities", activities_url %></li>
-	      <li><%= link_to "Specific Activities", specific_activities_url %></li>
-
+	      <li><%= link_to "Activities", activities_url if current_user.is_supervisor? %></li>
+	      <li><%= link_to "Specific Activities", specific_activities_url if current_user.is_supervisor? %></li>
+	       <li><%= link_to "People", people_url if current_user.is_supervisor? %></li>
 	    </ul>
 	 <% end %>
 	</ul>
