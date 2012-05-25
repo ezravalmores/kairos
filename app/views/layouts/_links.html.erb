@@ -13,6 +13,7 @@
         <li><%= link_to "My Leaves", leaves_url %></li>
         <li> <%= link_to "Calendar", "" %></li>
 		<li><%= link_to "Share Point", "" %></li>
+	    <li><%= link_to "Approvals", approval_url if current_user.can_approve == true %></li>
       </ul>
 	 <% if current_user.is_admin? || current_user.is_supervisor? %>
 	 <ul class="nav nav-pills">
@@ -24,8 +25,6 @@
 	    <ul class="dropdown-menu">
 		  <li> <%= link_to "Tasks Report", tasks_report_url %></li>
 		  <li> <%= link_to "Utilization Rate Report", utilization_rate_report_url %></li>	
-	      <li class="divider"></li>
-	      <li><%= link_to "Approvals", approval_url %></li>
 	      <li class="divider"></li>
 	      <li><%= link_to "Activities", activities_url %></li>
 	      <li><%= link_to "Specific Activities", specific_activities_url %></li>
