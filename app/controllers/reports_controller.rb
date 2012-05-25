@@ -60,7 +60,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
        format.html # tasks_report.html.erb
        #format.xml  { render :xml => @people }
-     end
+    end
   end 
   
   def utilization_rate_report
@@ -69,13 +69,13 @@ class ReportsController < ApplicationController
  
       diff = params[:to_date].to_date - params[:from_date].to_date
 
-      days = diff.day.to_i / 1440 / 60
+      #@days = diff.day.to_i / 1440 / 60
       
-      if days == 0
-        @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / 1, :precision => 2)
-      else
-        @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / days.to_i, :precision => 2)
-      end
+      #if @days == 0
+       # @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / 1, :precision => 2)
+      #else
+        @total_utilization = number_with_precision(@total_hours.sum(:total_utilization_rate) / @total_hours.count, :precision => 2)
+      #end
           
       session[:from_date] = params[:from_date]
       session[:to_date] = params[:to_date]
