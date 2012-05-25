@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_filter :is_administrator
+  before_filter :is_sup_add
   
   def index
     @activities = Activity.all
