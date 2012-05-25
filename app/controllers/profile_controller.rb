@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
      @breaks = @activities.get_breaks(Activity.find_by_name("Break").id)
      @productive_hours = @activities.get_productive_hours
      @other_people_activities = PersonTime.user_activities_today.other_user_activities_today(current_user.id)   
-     @specific_activities
+     @persons_can_approved = Person.persons_can_approve(current_user.department_id) + Person.get_admins
   end  
   
   def dynamic_specific_tasks
