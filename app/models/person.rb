@@ -12,6 +12,14 @@ class Person < ActiveRecord::Base
   
   #scope :people_in_my_department,  lambda { |date| where(["(people.department_id =?",date]) }
   
+  def self.persons_can_approve(dep_id)
+    where(['people.department_id =? AND people.can_approve =?',dep_id,1])  
+  end  
+  
+  def self.get_admins
+    where(["people.role_id =?",1])
+  end  
+  
   def activity_series(persons,this_for,from_date,upto_date)
     summaries = []
     persons.each do |person|    
@@ -41,5 +49,9 @@ class Person < ActiveRecord::Base
   def interests_for(type)
     interests.select {|o| o.interest_type.name.downcase == type.to_s.downcase}
   end
+  
+  def name
+    first_name + " " + last_name
+  end  
   
 end
