@@ -38,6 +38,12 @@ class PersonTimesController < ApplicationController
   def update
     @person_time = PersonTime.find(params[:id])
     @person_time.update_attributes(params[:person_time])  
+    
+    difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
+    total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
+    
+    @person_time.total_time = total_time
+    @person_time.save
     respond_to do |format| 
       format.html { redirect_to tasks_report_url }
     end
@@ -45,7 +51,7 @@ class PersonTimesController < ApplicationController
   end  
   
   def update_activity
-    unless params[:person_time_id].nil? || params[:activity_id].nil? 
+    if !params[:activity_id].nil?
       @activity = Activity.find(params[:activity_id])
       
       person_time = PersonTime.find(params[:person_time_id])
@@ -61,32 +67,43 @@ class PersonTimesController < ApplicationController
       
       if params[:end_shift].to_i != 1
         new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) 
-      else
-        @person = current_user
-        @activities = @person.person_times.user_activities_today.order("created_at DESC") 
-        @productive_hours = @activities.get_productive_hours
-        hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours")
-        minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")
-        th = number_with_precision(TotalHour.save_utilization_rate(hours,minutes),:precision => 2)
-        TotalHour.create!(:person_id => current_user.id,:total_utilization_rate => th, :shift_date => Date.today)
-      end
-       
-      respond_to do |format|
-        format.html { redirect_to time_url  }
       end
       
       flash[:notice] = "Your activity was successfully ended!"  
     else
-      
-    end    
+      flash[:warning] = "Sorry, you need to select task to end it."  
+    end 
+      respond_to do |format|
+        format.html { redirect_to time_url  }
+      end   
   end
   
   def submit_activities
     if !params[:people].nil? 
       activities = params[:activities]
       people = Person.find(params[:people])
-      #people = people.map {|p| p.email_address}
       PersonTime.submit_activities(current_user.id,activities)
+       
+       activity = PersonTime.find(activities).last
+       total_hour = TotalHour.where(["shift_date >=? AND shift_date <=?",activity.created_at.beginning_of_day,activity.created_at.end_of_day])
+       total_hour = total_hour.all.last
+       
+       @person = current_user
+       @activities = @person.person_times.user_activities_today.order("created_at DESC") 
+       @productive_hours = @activities.get_productive_hours
+       
+       hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours")
+       minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")
+       
+       th = number_with_precision(TotalHour.save_utilization_rate(hours,minutes),:precision => 2)
+      
+       if total_hour.nil?     
+        TotalHour.create!(:person_id => current_user.id,:total_utilization_rate => th, :shift_date => Date.today)
+       else
+        total_hour.total_utilization_rate = th
+        total_hour.save
+       end   
+        
       for person in people
         Kairos1Mailer.send_approvals(person,current_user).deliver
       end
