@@ -13,7 +13,7 @@
 		 <% if !@person_time.start_time.nil? %>
          <%= f.text_field :start_time, :value => @person_time.start_time.strftime("%H:%M:%S"), :class => 'text_field' %>
          <% else %>
-			 <%= f.text_field :start_time, :class => 'text_field' %>
+			 <%= f.text_field :start_time, :id => 'start_time', :class => 'text_field' %>
 		 <% end %>	
 	   </div>
 	  </div>
@@ -24,21 +24,10 @@
 	     	 <% if !@person_time.end_time.nil? %>
 	         <%= f.text_field :end_time, :value => @person_time.end_time.strftime("%H:%M:%S"), :class => 'text_field' %>
 	         <% else %>
-				 <%= f.text_field :end_time, :class => 'text_field' %>
+				 <%= f.text_field :end_time,:id => 'end_time',:class => 'text_field' %>
 			 <% end %>
 	     </div>	
 	  </div>
-	 
-	 <div class='control-group'>  
-	   <%= f.label :total_time, "Total Time", :class => 'control-label' %>
-	     <div class='controls'>
-			 <% if !@person_time.total_time.nil? %>
-	         <%= f.text_field :total_time, :value => @person_time.total_time.strftime("%H:%M:%S"), :class => 'text_field' %>
-	         <% else %>
-				 <%= f.text_field :total_time, :class => 'text_field' %>
-			 <% end %>
-	     </div>
-	 </div>
 	
 	 <div class='control-group'>  
 	   <%= f.label :activity, "Select Activity", :class => 'control-label' %>	
