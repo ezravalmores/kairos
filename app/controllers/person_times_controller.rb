@@ -105,7 +105,7 @@ class PersonTimesController < ApplicationController
        end   
         
       for person in people
-        Kairos1Mailer.send_approvals(person,current_user).deliver
+        Kairos1Mailer.send_approvals(person,current_user,activity.created_at.strftime("%y-%m-%d")).deliver
       end
       flash[:notice] = "Your activies submitted successfully!"
     else
