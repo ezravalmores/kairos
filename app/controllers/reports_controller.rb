@@ -3,25 +3,44 @@ class ReportsController < ApplicationController
   before_filter :authorize
   
   def generate_spreadsheets
-     spreadsheets = {}
-    #if !params[:from_date].blank? || !params[:to_date].blank?
-      tasks = PersonTime.search_task(session[:from_date],session[:to_date],session[:department_id],session[:person_id],session[:activity_id]) 
-    #end  
-     if tasks.count == 0 
-       flash[:warning] = "No results was found"
-     else
-       template = "reports/tasks_report.xls.eku"
+    spreadsheets = {}
 
-         @tasks = tasks
-         @report_type = "tasks_report"
-         spreadsheets["tasks_report.xls"] = 
-         render_to_string(:template => template,:layout => false)
-  
+    if session[:what_report] == "tasks"
+      tasks = PersonTime.search_task(session[:from_date],session[:to_date],session[:department_id],session[:person_id],session[:activity_id]) 
+      template = "reports/tasks_report.xls.eku"  
+      @tasks_or_rates = tasks
+      @report_type = "tasks_report"
+      spreadsheets["tasks_report.xls"] = 
+      render_to_string(:template => template,:layout => false)
+      
+      
+       if tasks.count == 0 
+         flash[:warning] = "No results was found"
+       else 
          public_filename = Archiver.bundle(spreadsheets,@report_type)
-         
+
          send_file(File.join("public",public_filename), :disposition => 'attachment') 
-       flash[:notice] = "Spreadsheet has been successfuly processed"   
-     end    
+         flash[:notice] = "Spreadsheet has been successfuly processed"   
+       end
+    else
+      utilization_rates = TotalHour.search_rate(session[:person_id],session[:from_date],session[:to_date])
+      template = "reports/utilization_rate_report.xls.eku"
+      @tasks_or_rates = utilization_rates
+      @report_type = "tasks_report"
+      spreadsheets["utilization_rate_report.xls"] = 
+      render_to_string(:template => template,:layout => false)
+      
+       if utilization_rates.count == 0
+         flash[:warning] = "No results was found"
+       else 
+         public_filename = Archiver.bundle(spreadsheets,@report_type)
+
+         send_file(File.join("public",public_filename), :disposition => 'attachment') 
+         flash[:notice] = "Spreadsheet has been successfuly processed"   
+       end
+    end
+      
+    
   end  
   
   def child_sponsorships_graph
@@ -50,6 +69,7 @@ class ReportsController < ApplicationController
     session[:department_id] = params[:department_id]
     session[:person_id] = params[:person_id]
     session[:activity_id] = params[:activity_id]
+    session[:what_report] = params[:what_report]
     #end
   end 
   
@@ -79,7 +99,8 @@ class ReportsController < ApplicationController
           
       session[:from_date] = params[:from_date]
       session[:to_date] = params[:to_date]
-      
+      session[:person_id] = params[:person_id]
+      session[:what_report] = params[:what_report]
     end
   end    
 end
