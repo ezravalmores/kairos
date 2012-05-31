@@ -84,9 +84,8 @@ class PersonTimesController < ApplicationController
       people = Person.find(params[:people])
       PersonTime.submit_activities(current_user.id,activities)
        
-       activity = PersonTime.find(activities).last
+       activity = PersonTime.find(activities).first
        total_hour = TotalHour.where(["shift_date >=? AND shift_date <=? AND person_id =?",activity.created_at.beginning_of_day,activity.created_at.end_of_day,current_user.id])
-       #total_hour = total_hour.all.last
        
        @person = current_user
        @activities = PersonTime.where(:id => activities)
@@ -96,9 +95,9 @@ class PersonTimesController < ApplicationController
        minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")
        
        th = number_with_precision(TotalHour.save_utilization_rate(hours,minutes),:precision => 2)
-      
+       
        if total_hour.count == 0    
-        TotalHour.create!(:person_id => current_user.id,:total_utilization_rate => th, :shift_date => Date.today)
+        TotalHour.create!(:person_id => current_user.id,:total_utilization_rate => th, :shift_date => activity.created_at)
        else
         total_hour.last.total_utilization_rate = th.to_f
         total_hour.last.save
