@@ -61,6 +61,7 @@
                  <%= select_tag('activity_id',	options_from_collection_for_select(options_for_report_activity, :id, :name,params[:activity_id]),:include_blank => true) %>
 			   </div>
 				</div>
+				<%= hidden_field_tag :what_report, "tasks" %>
 			     <div style='float:left;margin:5px;width:100px'><%= submit_tag "Search Tasks", :class => 'btn btn-primary' %></div><div id='right'><%= button 'Generate Spreadsheet', generate_spreadsheets_url, :class => 'btn btn-primary' %></div>
 	
 			</fieldset>	
