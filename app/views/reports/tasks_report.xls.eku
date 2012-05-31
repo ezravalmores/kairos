@@ -4,8 +4,8 @@ sheet1.row(0).default_format = Spreadsheet::Format.new(:weight => :bold)
 sheet1.row(0).concat(["Date","Person","Activity","Specific Activity","Start Time","End Time", "Total Time"])
 row_number = 1
 
-unless @tasks.empty?
-  @tasks.each do |task|
+unless @tasks_or_rates.empty?
+  @tasks_or_rates.each do |task|
     sheet1[row_number,0] = task.created_at.strftime("%B %d, %Y")
     sheet1[row_number,1] = task.person.first_name.to_s + " " + task.person.last_name.to_s  unless task.person_id.nil?
     sheet1[row_number,2] = task.activity.name unless task.activity_id.nil?
