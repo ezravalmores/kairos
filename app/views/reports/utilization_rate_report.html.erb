@@ -43,8 +43,8 @@
 
 	         <%= select_tag("person_id", option_groups_from_collection_for_select(options_for_team,:people,:name, :id, :first_name, params[:person_id]),:include_blank => true) %>
 		   </div>
-		
-		     <div style='float:left;margin:5px;width:100px'><%= submit_tag "Search Rates", :class => 'btn btn-primary' %></div></div>
+		   	 <%= hidden_field_tag :what_report, "rates", :id => "what_report" %>
+		     <div style='float:left;margin:5px;width:100px'><%= submit_tag "Search Rates", :class => 'btn btn-primary' %></div><div id='right'><%= button 'Generate Spreadsheet', generate_spreadsheets_url, :class => 'btn btn-primary' %></div></div>
 
 		</fieldset>	
         <% end %>
