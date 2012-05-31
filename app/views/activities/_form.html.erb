@@ -1,0 +1,29 @@
+<br/><h1>Activity Information</h4>
+  <span><em>Be sure sot set the department where the activity will be included</em></span><br/><br/><br/>
+	<fieldset>
+       <div class='control-group'>
+         <%= f.label :name, :class => 'control-label' %>
+         <div class ="controls" >
+           <%= f.text_field :name, :class => 'text_field' %>
+	     </div>
+	   </div>
+	
+	    <div class='control-group'>
+	         <%= f.label :description, :class => 'control-label' %>
+	         <div class ="controls" >
+	           <%= f.text_field :description, :class => 'text_field' %>
+		     </div>
+	   </div>
+		
+	   <div id='control-group'>
+	     <%= f.label :department_id , :class => 'control-label' %>
+	     <div class='controls'>  
+	     <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :include_blank => true) %>
+	     </div>
+	   </div>
+	<div class ="form_layout">
+	  <div style ="margin-top:20px;">	
+		  <%= f.submit "Save my Changess",:class => "btn btn-primary" %>       
+		</div>	
+	  </div>	 
+	</fieldset>
