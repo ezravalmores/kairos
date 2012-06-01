@@ -39,11 +39,14 @@ class PersonTimesController < ApplicationController
     @person_time = PersonTime.find(params[:id])
     @person_time.update_attributes(params[:person_time])  
     
-    difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
-    total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
+    if !@person_time.end_time.nil?
+      difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
+      total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
     
-    @person_time.total_time = total_time
-    @person_time.save
+      @person_time.total_time = total_time
+      @person_time.save
+    end
+    
     respond_to do |format| 
       format.html { redirect_to tasks_report_url }
     end
