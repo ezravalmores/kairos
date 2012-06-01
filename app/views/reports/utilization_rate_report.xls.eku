@@ -9,6 +9,7 @@ unless @tasks_or_rates.empty?
     sheet1[row_number,0] = item.shift_date.strftime("%B %d, %Y")
     sheet1[row_number,1] = item.person.name
     sheet1[row_number,2] = item.total_utilization_rate
+    row_number += 1
   end
 else
   sheet1[0,0] = "Well, it looks like there aren't any utilization rates..."
