@@ -7,12 +7,12 @@ row_number = 1
 unless @tasks_or_rates.empty?
   @tasks_or_rates.each do |task|
     sheet1[row_number,0] = task.created_at.strftime("%B %d, %Y")
-    sheet1[row_number,1] = task.person.first_name.to_s + " " + task.person.last_name.to_s  unless task.person_id.nil?
-    sheet1[row_number,2] = task.activity.name unless task.activity_id.nil?
-    sheet1[row_number,3] = task.specific_activity.name unless task.specific_activity.nil?
-    sheet1[row_number,4] = task.start_time.strftime('%l:%M:%S %p').downcase unless task.start_time.nil?
-    sheet1[row_number,5] = task.end_time.strftime('%l:%M:%S %p').downcase unless task.end_time.nil?
-	sheet1[row_number,6] = task.total_time.strftime('%H:%M:%S') unless task.total_time.nil?
+    sheet1[row_number,1] = task.person.first_name.to_s + " " + task.person.last_name.to_s if !task.person_id.nil?
+    sheet1[row_number,2] = task.activity.name if !task.activity_id.nil?
+    sheet1[row_number,3] = task.specific_activity.name if !task.specific_activity.nil?
+    sheet1[row_number,4] = task.start_time.strftime('%l:%M:%S %p').downcase if !task.start_time.nil?
+    sheet1[row_number,5] = task.end_time.strftime('%l:%M:%S %p').downcase if !task.end_time.nil?
+	sheet1[row_number,6] = task.total_time.strftime('%H:%M:%S') if !task.total_time.nil?
     row_number += 1
   end
 else
