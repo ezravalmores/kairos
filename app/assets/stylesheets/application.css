@@ -255,7 +255,7 @@ background-color: #d4dae8;
 }
 
 #leave_initial{
- margin-left: 10px;
+
  margin-right: 10px;
  height: 40px;
  padding-top: 15px;
@@ -269,11 +269,11 @@ background-color: #d4dae8;
 background-color: #d4dae8;
 }
 #leave_container{
- display: none;
+ 
  margin-left: 10px;
  margin-right: 10px;
  padding: 10px;
- background-color: #d4dae8;
+ 
  height: auto;
  margin-top: -20px;
 }
@@ -541,14 +541,14 @@ div#special-gifts {
   	
 }
 div#special-gifts div.handle {
-  background: url('hover-handle-background.gif') right top repeat-x;
+  background: url('hover-handle-background.gif') right bottom repeat-x;
   display:none;
   margin-top:-7px;
   padding:5px 0 0 5px;
   height:25px;
   position:absolute;
   margin-left:5px;
-  width:70px;
+  width:90px;
 }
 
 .source {
@@ -611,7 +611,7 @@ div.report table {
 }     
 div.report td {
   font-size:1em !important;
-  height:30px !important;  
+  height:20px !important;  
   padding:5px;
   text-align:center; 
 }
@@ -626,7 +626,7 @@ div.report th {
   text-align:center;
 }     
 div.report tr.even {
-  background-color:#f0f0f0;
+  background-color:#E0FFFF;
 }
 div.report tr.odd {
   background-color:#fff;
