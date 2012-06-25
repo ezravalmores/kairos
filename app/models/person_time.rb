@@ -87,7 +87,7 @@ class PersonTime < ActiveRecord::Base
       tasks = tasks.where(["person_times.person_id =?",person_id]) if !person_id.blank?
     end 
     tasks
-  end  
+  end    
   
   def self.other_user_activities_today(user_id)
     where(["person_times.person_id !=? AND person_times.end_time IS NOT NULL and person_times.activity_id IS NOT NULL",user_id])
