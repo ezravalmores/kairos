@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
       utilization_rates = TotalHour.search_rate(session[:person_id],session[:from_date],session[:to_date])
       template = "reports/utilization_rate_report.xls.eku"
       @tasks_or_rates = utilization_rates
-      @report_type = "tasks_report"
+      @report_type = "utilization_rate_report"
       spreadsheets["utilization_rate_report.xls"] = 
       render_to_string(:template => template,:layout => false)
       
