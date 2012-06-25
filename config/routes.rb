@@ -62,7 +62,9 @@ Ncm1Kairos::Application.routes.draw do
   match "/login" => "login#login", :as => :login
   match "/logout" => "login#logout", :as => :logout
   match "/profile" => "profile#time", :as => :time
-  match "/approvals" => "approvals#approval", :as => :approval
+  #match "/user_liv" => "user_liv#create_leave", :as => :create_leave, :via => [:post]
+  match "/approvals/tasks_approval" => "approvals#tasks_approval", :as => :tasks_approval
+  match "/approvals/leaves_approval" => "approvals#leaves_approval", :as => :leaves_approval
   match "/reports" => "reports#child_sponsorships_graph", :as => :child_sponsorships_graph  
   match "/reports/tasks_report" => "reports#tasks_report", :as => :tasks_report
   match "/reports/utilization_rate_report" => "reports#utilization_rate_report", :as => :utilization_rate_report  
@@ -73,7 +75,24 @@ Ncm1Kairos::Application.routes.draw do
   
   match "dynamic_specific_tasks/:id" => "profile#dynamic_specific_tasks", :via => [:post]
   
-  resources :leaves
+  #resources :approvals do
+  #  collection do
+  #    put :approve_leaves  
+  #  end    
+  #end  
+  
+  resources :user_livs do
+    collection do
+      post :create_leave  
+      put :submit_leaves
+      put :approve_leaves 
+    end    
+    
+    member do
+      put :cancel_leave
+    end  
+  end
+  
     resources :people, :except => [:show] do
       member do
         put :welcome_message
