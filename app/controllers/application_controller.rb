@@ -37,9 +37,7 @@ class ApplicationController < ActionController::Base
        end
        
        def is_sup_add
-          if current_user.is_supervisor? || current_user.is_admin? 
-            approval_url
-          else
+          unless !current_user.is_supervisor? || !current_user.is_admin? 
             redirect_to :back
             flash[:warning] = "You are not authorize!"
           end
