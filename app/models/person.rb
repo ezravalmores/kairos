@@ -2,7 +2,7 @@ class Person < ActiveRecord::Base
   has_many :person_times
   belongs_to :role
   belongs_to :department
-  has_many :leaves
+  has_many :user_livs
   has_many :total_hours
   
   # Validations
