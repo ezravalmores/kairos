@@ -21,5 +21,20 @@ class Kairos1Mailer < ActionMailer::Base
         @person = person
         mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Tasks Approvals")
     #end    
-  end   
+  end 
+  
+  def submit_leaves(person,submitted_by,leaves)
+    @submitted_by = submitted_by
+    @leaves = leaves
+    
+    mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Leave(s) Approvals") 
+  end
+  
+  def send_mails(person,leaves,current_user)
+    @current_user = current_user
+    @leaves = leaves
+    @person = person
+    
+    mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Leave(s) Approved") 
+  end      
 end
