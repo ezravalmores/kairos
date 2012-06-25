@@ -126,7 +126,7 @@ class PersonTimesController < ApplicationController
     else      
       activities = params[:activities]
       PersonTime.approve_activities(current_user.id,activities)
-      redirect_to(approval_url)
+      redirect_to :back
       flash[:notice] = "Approvals Successfully made!"
     end
   end
