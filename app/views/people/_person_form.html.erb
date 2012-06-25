@@ -54,19 +54,41 @@
    <br/><br/>   
 
    <div class='control-group'>
-      <%= f.label :first_name, :class => 'control-label' %>
+      <%= f.label :department, :class => 'control-label' %>
       <div class ="controls">	
 	   <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :class => 'text_field') %>
       </div>
    </div>
 
+   <div class='control-group'>
+     <%= f.label :remaining_sick_leave, :class => 'control-label' %>
+     <div class ="controls">	
+	   <%= f.text_field :remaining_sick_leave,:class => 'text_field' %>
+     </div>
+   </div>
+
+   <div class='control-group'>
+      <%= f.label :remaining_vacation_leave, :class => 'control-label' %>
+      <div class ="controls">	
+        <%= f.text_field :remaining_vacation_leave,:class => 'text_field' %>
+      </div>
+   </div>
+
     <br/><br/>   
 
-   <span><em><label style="font-weight:bold;margin-left:60px">Check if user can approve tasks or leaves submitted by the user</label></em></span><br/>
+   <span><em><label style="font-weight:bold;margin-left:60px">Check if user can approve tasks or leaves submitted by the user, You don't have to check this if the user is an admin.'</label></em></span><br/>
    <div class='control-group'>
       <%= f.label :can_approve, "Can approve", :class => 'control-label' %>
       <div class ="controls">	
 	    <%= f.check_box(:can_approve, :class => 'text_field') %>
+      </div> 
+   </div>
+   
+   <span><em><label style="font-weight:bold;margin-left:60px">Check if user can receive emails like leaves, etc.</label></em></span><br/>
+   <div class='control-group'>
+      <%= f.label :can_receive_mails, "Emails", :class => 'control-label' %>
+      <div class ="controls">	
+	    <%= f.check_box(:can_receive_mails, :class => 'text_field') %>
       </div> 
    </div>
 
