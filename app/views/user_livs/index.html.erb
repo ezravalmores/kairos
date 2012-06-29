@@ -1,0 +1,240 @@
+<script>
+  $(document).ready(function() {
+    $('#date_field_1,#date_field_2').datepicker({
+	  showOn: "both", 
+	  buttonImage: "<%= asset_path('calendar.gif') %>", 
+	  buttonImageOnly: true,
+	  changeMonth: true,
+	  changeYear: true,
+	  hideIfNoPrevNext: true,
+	  currentText: 'today',
+	  dateFormat: 'yy-mm-dd',
+	  onSelect: function(dateText, inst) {
+        $('#search_activities_form').submit();						
+      }
+	});
+  });
+</script>	
+	<style type="text/css">
+	
+	.leave_form{
+	  border: solid 1px #C1C1C1;
+	  height: 130px;	
+	  margin-bottom: 5px;
+	  padding: 10px;
+	  border-radius: 10px;
+	  width: 900px;
+	}
+	.containers{
+	 padding: 3px;
+	 margin-top: 5px;
+	 height: 20px;
+	}
+	.label_div{
+	 width: 100px;
+	 float:left;	
+	}
+	.space{
+	 width: 50px;
+	 float:left;	
+	}
+	.label_div label{
+	  font-weight: bold;	
+	}
+	.field_div{
+	 margin-left:5px;
+	 width: 150px;
+	 float: left;	
+	}
+	.field_div input{
+	 width: 110px;	
+	 height: 10px;
+	}
+	.field_div_2 {
+	  margin-left:5px;
+	  width: 170px;
+	  float: left;	
+	}
+	.field_div_2{
+	 width: 400px;	
+	 height: 50px;
+	}
+	.small_select{
+	 width: 140px;
+	 height: 20px;	
+	}
+	.not_active{
+	  background-color: #B8B8B8;	
+	}	
+	</style>
+<div class='container'>    
+  <div class='row'>
+    <div class='span13'>
+  	  <h4><%= current_user.name + " " + "Leaves"%></h4><br/>
+	  <h1>Leave Information</h4>
+      <span><em>Fill out all information to create a request for leave</em></span><br/><br/>
+      
+	  <div style="float:left;margin-top:-70px;margin-left:330px;font-size:15px;font-weight:bold;padding:5px;border-radius:5px">
+	     
+	  	  <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
+		  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
+		  <span class="label label-success">wp</span> - With Pay &nbsp;&nbsp; 
+	
+	  </div>
+
+      <div style="float:right;margin-top:-70px;margin-right:10px;font-size:15px;font-weight:bold;border: solid 1px #C1C1C1;padding:5px;border-radius:5px">
+	    remaining sick leave: <%= current_user.remaining_sick_leave %><br/>
+	    remaining vacation leave: <%= current_user.remaining_vacation_leave %>  
+	  </div>
+      
+	  <%= form_tag create_leave_user_livs_url, :method => :post do %>
+	   <div class ="leave_form"> 
+	     <div class ="containers">	
+	       <div class ="label_div">
+			 <label>Date Today</label>
+		   </div>
+		   <div class = "field_div">
+			 <%= Date.today.strftime("%B %d, %Y") %>
+		   </div>
+	      
+		   <div class ="space">
+			 &nbsp;&nbsp;
+		   </div>
+	
+		   <div class ="label_div">
+		     <label>Employee</label>
+		   </div>
+		   <div class = "field_div">
+		     <%= current_user.name %>
+		   </div>
+		
+		   <div class ="label_div">
+		     <label>With Pay</label>
+		   </div>
+		   <div class = "field_div">
+		     <%= check_box_tag :with_pay %>
+		   </div>	
+	     </div>	
+	
+	     <div class= "containers">
+		   <div class ="label_div">
+		     <label>from Date</label>
+		   </div>
+		   <div class = "field_div">
+		     <%= text_field_tag :from_date, "", :id => "date_field_1" %>
+		   </div>
+		  
+		   <div class ="space">
+			 &nbsp;&nbsp;
+		   </div>	
+		
+		   <div class ="label_div">
+		     <label>to Date</label>
+		   </div>
+		   <div class = "field_div">
+		     <%= text_field_tag :to_date, "", :id => "date_field_2" %>
+		   </div>
+		 </div>
+		 <div class= "containers">
+		   <div class ="label_div">
+		     <label>Leave Type</label>
+		   </div>
+		   <div class = "field_div">
+			 <%= select_tag('leave_type_id',options_from_collection_for_select(LeaveType.all.collect, :id, :name, params[:leave_type_id]),:include_blank => true, :class => 'small_select') %>
+		   </div>
+			
+		   <div class ="space">
+		     &nbsp;&nbsp;
+		   </div>
+			
+		   <div class ="label_div">
+		     <label>Reason</label>
+		   </div>
+		   <div class = "field_div">
+		     <%= text_area_tag :reason,"",:class => "field_div_2" %>
+		   </div>
+		  </div>
+		
+			<div style="float: left;margin-left:-560px;margin-top:10px">
+			  <%= submit_tag "Save Leave", :class => 'btn' %>
+			</div>	
+		</div>		
+		<% end %>
+			
+		
+	    <%= form_tag submit_leaves_user_livs_url,:method => :put do %>
+
+
+		<div id="special-gifts" class="report">
+		  <table>
+		    <tr>
+			  <th><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></th>
+		      <th>Date Created</th>
+			  <th>Leave Type</th>
+		      <th>Reason</th>
+		  	  <th>Date of Leave</th>
+			  <th>With Pay</th>
+			  <th>Planned</th>
+		      <th></th>        
+		    </tr>
+
+			<% for leave in @leaves %> 
+		      <% if leave.is_active == false %>
+			    <tr class="not_active">
+			  <% elsif leave.is_active == false && leave.is_canceled == true && leave.is_approved == true %>
+				<tr class="is_canceled">
+			  <% else %>
+				<tr class="<%= cycle('odd','even') %>"> 
+			  <% end %>
+			      <td style="padding: 5px; height: 3px"><%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
+				
+				<% if leave.is_submitted == true && leave.is_approved == false %>
+				  <span class="label label-success">s</span></td>	
+		        <% elsif leave.is_submitted == true && leave.is_approved == true %>
+			      <span class="label label-info">a</span></td>	
+		        <% end %>
+		        
+		
+		  		  <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
+		          <td><%= leave.leave_type.name %></td>
+		          <td><%= leave.reason %></td>
+		          <td><%= leave.date.strftime("%B %d, %Y") %></td>
+			      <td>
+				    <% if leave.with_pay == true %>
+				      <span class="label label-success">wp</span>
+				    <% end %>
+			      </td>
+			      <td>
+				    <% if leave.planned == true %>
+				      yes
+				    <% else %>
+				      no
+				    <% end %>
+			      </td>	
+		 	 
+			      <td>
+				    <% unless leave.is_active == false %>
+			          <div class='handle'>
+		                <%=link_to image_tag('trash.gif',:class => 'trash'), user_liv_path(leave), :confirm => 'Are you sure you want to delete this user?', :method => :delete if leave.is_submitted == false %>&nbsp;<%= link_to "Edit",edit_user_liv_url(leave) if leave.is_submitted == false %>&nbsp;<%= link_to "Cancel",cancel_leave_url(leave) if leave.is_submitted == true && leave.is_canceled == false %>
+		 		      </div>
+				    <% end %>
+		          </td>
+		        <% end %>
+			  </tr>
+		    </table>
+          </div>
+		  <div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px">	
+		  <div style="width:400px">	
+		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select All</span><br/>
+		  <% for person in @persons_can_approved %>
+		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
+		  <% end %>  
+		  </div>
+		  <div style="float:right;margin-top:-40px;margin-right:60px">
+		  <%= submit_tag "Submit Leaves", :class => 'btn' %>
+		  </div>	
+		  </div>	
+	   <% end %>
+	</div>
+  </div>
+</div>
