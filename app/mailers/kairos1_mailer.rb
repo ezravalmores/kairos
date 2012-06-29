@@ -36,5 +36,13 @@ class Kairos1Mailer < ActionMailer::Base
     @person = person
     
     mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Leave(s) Approved") 
-  end      
+  end 
+  
+  def send_cancel_leave(person,leave,current_user)
+    @current_user = current_user
+    @leave = leave
+    @person = person
+    
+    mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Canceled Leave") 
+  end        
 end
