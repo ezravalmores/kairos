@@ -268,6 +268,21 @@ background-color: #d4dae8;
 #leave_initial:hover{
 background-color: #d4dae8;
 }
+
+#leave_initial_2{
+
+ margin-right: 10px;
+ height: 40px;
+ padding-top: 15px;
+ margin-bottom: 15px;
+ padding-left: 10px;
+ background-color: #eceff6;
+ border-bottom: solid 1px #d4dae8;
+}
+
+#leave_initial_2:hover{
+background-color: #d4dae8;
+}
 #leave_container{
  
  margin-left: 10px;
@@ -280,6 +295,9 @@ background-color: #d4dae8;
 
 
 #leave_initial label{
+ font-size: 20px;
+}
+#leave_initial_2 label{
  font-size: 20px;
 }
 
@@ -807,4 +825,11 @@ div#admin-dropdown {
 .text-area{
  width: 300px;
  height: 70px;	
+}
+#leave_2{
+ display:none;	
+}
+.is_canceled{
+ background-color: #FF0000;
+ color: #ffffff;	
 }
