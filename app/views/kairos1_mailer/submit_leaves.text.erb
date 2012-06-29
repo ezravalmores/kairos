@@ -1,0 +1,9 @@
+Hi,
+
+<%= @submitted_by.name %> has sent his request for leaves
+
+<% for leave in @leaves %>
+  <%= leave.date.strftime("%B %d, %Y") %> - <%= leave.leave_type.name %>
+<% end %>
+
+Go To: <%= leaves_approval_url(:host => "10.7.203.241") %>
