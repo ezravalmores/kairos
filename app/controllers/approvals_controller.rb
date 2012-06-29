@@ -19,12 +19,16 @@ class ApprovalsController < ApplicationController
   
   def leaves_approval
      @people_can_receive_emails = Person.where(:can_receive_mails => true)
+     leaves = UserLiv.is_submitted.is_not_approved.is_active.is_not_canceled
+     canceled_leaves = UserLiv.is_active.is_canceled
+     @persons = Person.collect_people_in_my_department(current_user.department_id)
+     
      if current_user.is_supervisor?
-        @persons = Person.collect_people_in_my_department(current_user.department_id)
-        @leaves = PersonTime.collect_each_person_activities(@persons,'approval',Date.today,Date.today)
-      elsif current_user.is_admin?
-        @persons = Person.all
-        @leaves = UserLiv.is_submitted.is_not_approved
-      end
+        @leaves = leaves.where(:person_id => @persons.map{|l| l.id})
+        @canceled_leaves = leaves.where(:person_id => @persons.map{|l| l.id})
+     elsif current_user.is_admin?
+        @leaves = leaves
+        @canceled_leaves = canceled_leaves
+    end
   end   
 end
