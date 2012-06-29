@@ -5,8 +5,10 @@ gem 'rails', '3.1.3'
 gem 'ekuseru'
 gem 'spreadsheet'
 gem 'rubyzip'
+gem 'rufus-scheduler'
 gem 'mysql2'
 gem "time_diff", "~> 0.2.2"
+#gem 'whenever', :require => false
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
