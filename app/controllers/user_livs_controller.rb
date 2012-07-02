@@ -118,6 +118,9 @@ class UserLivsController < ApplicationController
         Kairos1Mailer.send_mails(person,@leaves,current_user).deliver
       end
       
+      for leave in @leaves
+        Kairos1Mailer.send_mail_approvals_to_employee(leave.person.email_address,leave,current_user,leave.person).deliver
+      end  
       
       redirect_to :back
       flash[:notice] = "Approvals Successfully made and it has sent email the human resource department"
