@@ -5,8 +5,8 @@ class CreatePersonLeaves < ActiveRecord::Migration
        t.integer :person_id
        t.datetime :date
        t.string :reason
-       t.boolean :is_approved
-       t.integer :approved_by 
+       t.boolean :is_approved, :default => false
+       t.integer :approved_by
        t.timestamps
     end
   end
