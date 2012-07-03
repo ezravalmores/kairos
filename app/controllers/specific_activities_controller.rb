@@ -53,7 +53,7 @@ class SpecificActivitiesController < ApplicationController
 
     respond_to do |format|
       if @specific_activity.update_attributes(params[:specific_activity])
-        flash[:notice] = 'Activity was successfully updated.'
+        flash[:notice] = 'Specific Activity was successfully updated.'
         format.html { redirect_to specific_activities_url }
         format.xml  { head :ok }
       else
