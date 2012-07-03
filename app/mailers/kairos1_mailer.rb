@@ -38,6 +38,14 @@ class Kairos1Mailer < ActionMailer::Base
     mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Leave(s) Approved") 
   end 
   
+  def send_mails_canceled(person,leaves,current_user)
+    @current_user = current_user
+    @leaves = leaves
+    @person = person
+    
+    mail(:to => person.email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Leave(s) Canceled") 
+  end
+  
   def send_cancel_leave(person,leave,current_user)
     @current_user = current_user
     @leave = leave
@@ -52,5 +60,13 @@ class Kairos1Mailer < ActionMailer::Base
      @person = person
      
      mail(:to => email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Approved Leave") 
+  end
+  
+  def send_mail_canceled_approvals_to_employee(email_address,leave,current_user,person)
+     @current_user = current_user
+     @leave = leave
+     @person = person
+     
+     mail(:to => email_address, :from => "Kairos <no-reply@ncm.org>", :subject => "Canceled Leave") 
   end   
 end
