@@ -1,0 +1,7 @@
+Hi <%= @person.name %>,
+
+These leaves were now canceled and approved by <%= @current_user.name %>.
+
+<% for leave in @leaves %>
+  <%= leave.date.strftime("%B %d, %Y") %> - <%= leave.leave_type.name %> - <%= leave.reason %>
+<% end %>
