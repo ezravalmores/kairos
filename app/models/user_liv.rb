@@ -48,7 +48,11 @@ class UserLiv < ActiveRecord::Base
   
   def approve_leave(approved_by)
      update_attributes({:is_approved => true, :approved_by => approved_by })
-   end
+  end
+  
+  def approve_canceled_leave(approved_by)
+     update_attributes({:is_approved => true, :approved_by => approved_by, :is_active => false })
+  end
 
    def self.approve_leaves(approved_by,leaveset)
      leaves = find(leaveset)
@@ -59,4 +63,14 @@ class UserLiv < ActiveRecord::Base
        end
      end
    end
+   
+   def self.approve_canceled_leaves(approved_by,leaveset)
+      leaves = find(leaveset)
+
+      transaction do
+        leaves.each do |leave|
+          submitted = leave.approve_canceled_leave(approved_by)
+        end
+      end
+    end
 end  
