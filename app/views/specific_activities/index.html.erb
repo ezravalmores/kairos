@@ -13,7 +13,7 @@
 		  <th></th>
 		  <th></th>
 		  <th>Under</th>
-          
+          <th></th>
         </tr>
 		<% for specific_activity in @specific_activities %>
 		  <tr class="<%= cycle('odd','even') %>">
@@ -21,8 +21,8 @@
 		    <td><%= specific_activity.description %>
 			<td></td>
 			<td></td> 
-		    <td><%= specific_activity.activity.name %>
-		
+		    <td><%= specific_activity.activity.name %></td>
+			<td>
 			  <div class='handle'>
 			   
 			   <%=link_to image_tag('trash.gif',:class => 'trash'), activity_path(specific_activity), :confirm => 'Are you sure you want to delete this activity?', :method => :delete %>
