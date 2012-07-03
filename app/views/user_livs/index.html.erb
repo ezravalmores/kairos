@@ -175,6 +175,7 @@
 		  	  <th>Date of Leave</th>
 			  <th>With Pay</th>
 			  <th>Planned</th>
+			  <th>Approved by</th>
 		      <th></th>        
 		    </tr>
 
@@ -211,7 +212,12 @@
 				      no
 				    <% end %>
 			      </td>	
-		 	 
+			      <% if !leave.approved_by.nil? %>
+			        <% @approved_by = Person.find(leave.approved_by) %>
+		 	        <td><%= @approved_by.name %></td>
+				  <% else %>
+				    <td></td>	
+				  <% end %>
 			      <td>
 				    <% unless leave.is_active == false %>
 			          <div class='handle'>
