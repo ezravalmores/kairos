@@ -833,3 +833,145 @@ div#admin-dropdown {
  background-color: #FF0000;
  color: #ffffff;	
 }
+
+/****For Calendar*********/
+
+#calendar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td,
+#calendar th {
+  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+#calendar .notmonth {
+  color: #CCC;
+}
+
+#calendar #month {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: right;
+}
+
+#calendar #month a, #calendar #month a:hover {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+
+#calendar .today {
+  background-color: #D7F2FF;
+}
+
+#calendar ul {
+  margin: 0;
+  margin-top: 1px;
+  padding: 0;
+  list-style: none;
+}
+
+#calendar li {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  text-align: center;
+}
+
+#blue{
+  font-size: 10px;
+  color: #0000FF;	
+}
+#normal{
+  font-size: 10px;	
+}
+
+#show_form{
+ float:right;
+ margin-top:-75px;
+ margin-right:200px;	
+}
+#show_form_button{
+ padding:5px;
+ border:1px solid;
+ width:65px;
+ height:15px;
+ background:#DDD;
+ border-radius:5px;	
+}
+#show_form_button:hover{
+ background: #FFFFFF;
+ cursor:pointer;
+}
+
+.leave_form{
+  border: solid 1px #C1C1C1;
+  height: 130px;	
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 900px;
+}
+.containers{
+ padding: 3px;
+ margin-top: 5px;
+ height: 20px;
+}
+.label_div{
+ width: 100px;
+ float:left;	
+}
+.space{
+ width: 50px;
+ float:left;	
+}
+.label_div label{
+  font-weight: bold;	
+}
+.field_div{
+ margin-left:5px;
+ width: 150px;
+ float: left;	
+}
+.field_div input{
+ width: 110px;	
+ height: 10px;
+}
+.field_div_2 {
+  margin-left:5px;
+  width: 170px;
+  float: left;	
+}
+.field_div_2{
+ width: 400px;	
+ height: 50px;
+}
+.small_select{
+ width: 140px;
+ height: 20px;	
+}
+.not_active{
+  background-color: #B8B8B8;	
+}
