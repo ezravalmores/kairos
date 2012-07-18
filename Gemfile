@@ -8,6 +8,7 @@ gem 'rubyzip'
 gem 'rufus-scheduler'
 gem 'mysql2'
 gem "time_diff", "~> 0.2.2"
+gem "watu_table_builder", :require => "table_builder"
 #gem 'whenever', :require => false
 
 # Bundle edge Rails instead:
