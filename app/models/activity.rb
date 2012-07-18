@@ -4,4 +4,6 @@ class Activity < ActiveRecord::Base
   belongs_to :department
   
   validates_presence_of :name
+  
+  scope :active, where(:is_active => true)
 end
