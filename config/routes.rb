@@ -74,6 +74,12 @@ Ncm1Kairos::Application.routes.draw do
   match 'profile/update_specific_activity_select/:id', :controller=>'profile', :action => 'update_specific_activity_select'
   match "user_livs/:id/cancel_leave", :to => "user_livs#cancel_leave",:as => :cancel_leave ,:via => [:get]
   match "dynamic_specific_tasks/:id" => "profile#dynamic_specific_tasks", :via => [:post]
+  match "activities/:id/deactivate", :to => 'activities#deactivate', :as => :deactivate_activity ,:via => [:get]
+  match "specific_activities/:id/deactivate", :to => 'specific_activities#deactivate', :as => :deactivate_specific_activity ,:via => [:get]
+  
+  match "activities/:id/activate", :to => 'activities#activate', :as => :activate_activity ,:via => [:get]
+  match "specific_activities/:id/activate", :to => 'specific_activities#activate', :as => :activate_specific_activity ,:via => [:get]
+  
   
   #resources :approvals do
   #  collection do
@@ -88,10 +94,6 @@ Ncm1Kairos::Application.routes.draw do
       put :approve_leaves 
       put :approve_canceled_leaves
     end    
-    
-   # member do
-  #    put :cancel_leave
-  #  end  
   end
   
     resources :people, :except => [:show] do
@@ -100,6 +102,7 @@ Ncm1Kairos::Application.routes.draw do
       end
     end
   resources :activities
+  resources :calendars
   resources :specific_activities
   resources :person_times do
     collection do
