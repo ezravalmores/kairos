@@ -114,7 +114,7 @@
   <%= t.day(:day_method => :date) do |day,items| %>
     <%= day.day %>
     <% items.each do |leave| %>
-      <label id="blue"> <%= "(" + leave.name+ ")"  %>&nbsp;<%=  leave.person.name %>  </label>
+      <label id="blue"> <%= "(" + leave.leave_type.name+ ")"  %>&nbsp;<%=  leave.person.name %>  </label>
     <% end %>
   <% end %>
 
