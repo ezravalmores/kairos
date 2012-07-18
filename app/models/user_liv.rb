@@ -13,7 +13,7 @@ class UserLiv < ActiveRecord::Base
   #class methods
   def self.deduct_leaves #(vacation_leave,sick_leave)
     leaves = []
-    leaves = where(["user_livs.is_active >=? AND user_livs.date <=? AND user_livs.is_approved =?",1,Date.today.end_of_day,1])
+    leaves = where(["user_livs.is_active >=? AND user_livs.date <=? AND user_livs.is_approved =?",true,Date.today.end_of_day,true])
     
     for leave in leaves
       if leave.leave_type_id == 1
@@ -26,8 +26,8 @@ class UserLiv < ActiveRecord::Base
         leave.person.remaining_vacation_leave = leave.person.remaining_sick_leave.to_f - dec
       end
       leave.is_active = false
-      leave.save  
-      leave.person.save
+      leave.save!  
+      leave.person.save!
     end  
   end  
   
