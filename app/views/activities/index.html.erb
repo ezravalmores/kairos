@@ -22,7 +22,7 @@
 		<% for activity in @activities %>
 		  <tr class="<%= cycle('odd','even') %>">
 		    <td>
-			  <% if activity.is_active == 1 %>
+			  <% if activity.is_active == true %>
 			    <span class="label label-success">a</span>
 			  <% else %>
 			    <span class="label label-inverse">na</span>
@@ -40,9 +40,9 @@
 		    <td>
 			  <div class='handle'>
 			   
-			   <%=link_to image_tag('trash.gif',:class => 'trash'), deactivate_activity_url(activity), :confirm => 'Are you sure you want to deactivate this activity?' if activity.is_active == 1 %>
+			   <%=link_to image_tag('trash.gif',:class => 'trash'), deactivate_activity_url(activity), :confirm => 'Are you sure you want to deactivate this activity?' if activity.is_active == true %>
 			   <%= link_to 'edit', edit_activity_url(activity), :class => "edit" %>
-			   <%= link_to 'activate', activate_activity_url(activity), :confirm => 'Are you sure you want to activate this activity?' if activity.is_active == 0 %>
+			   <%= link_to 'activate', activate_activity_url(activity), :confirm => 'Are you sure you want to activate this activity?' if activity.is_active == false %>
 			   
 			 </div>	
 		 	</td>
