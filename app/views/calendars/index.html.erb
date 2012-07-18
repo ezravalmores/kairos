@@ -109,7 +109,7 @@
 
 <% @items = @leaves %>
 <%= calendar_for(@items,:year => @date.year, :month => @date.month) do |t| %>
-  <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
+  <%= t.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
 
   <%= t.day(:day_method => :date) do |day,items| %>
     <%= day.day %>
