@@ -2,12 +2,17 @@
   <div class='row'>
 	  <div class='span13'>
     <h4>List of Specifc Activities</h4>	
+  	 <div style='margin-left: 10px;margin-top: 20px;margin-bottom:20px;float:left'>
+	    <span class="label label-inverse">na</span> - not active &nbsp;&nbsp;	
+	    <span class="label label-success">a</span> - active &nbsp;&nbsp;
+	  </div>
      <div style='margin-left: 750px;margin-top: 20px;margin-bottom:20px'>
 	  <%= link_to 'Add New Specific Activity',new_specific_activity_path, :class => 'btn btn-primary' %>
 	  </div>
     <div id="special-gifts" class="report">
       <table>
         <tr>
+	      <th></th>
           <th>Specific Activity Name</th>
 		  <th>Description</th>
 		  <th></th>
@@ -17,6 +22,13 @@
         </tr>
 		<% for specific_activity in @specific_activities %>
 		  <tr class="<%= cycle('odd','even') %>">
+			  <td>
+				  <% if specific_activity.is_active == true %>
+				    <span class="label label-success">a</span>
+				  <% else %>
+				    <span class="label label-inverse">na</span>
+				  <% end %> 
+				</td> 
 		    <td><%= specific_activity.name %></td>
 		    <td><%= specific_activity.description %>
 			<td></td>
@@ -25,8 +37,9 @@
 			<td>
 			  <div class='handle'>
 			   
-			   <%=link_to image_tag('trash.gif',:class => 'trash'), activity_path(specific_activity), :confirm => 'Are you sure you want to delete this activity?', :method => :delete %>
+			   <%=link_to image_tag('trash.gif',:class => 'trash'), deactivate_specific_activity_url(specific_activity), :confirm => 'Are you sure you want to deactivate this specific activity?' if specific_activity.is_active == true %>
 			   <%= link_to 'edit', edit_specific_activity_url(specific_activity), :class => "edit" %>
+			   <%= link_to 'activate', activate_specific_activity_url(specific_activity), :confirm => 'Are you sure you want to activate this specific activity?'  if specific_activity.is_active == false %>
 			 </div>	
 		 	</td>
 		  </tr>
