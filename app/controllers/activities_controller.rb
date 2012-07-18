@@ -72,4 +72,26 @@ class ActivitiesController < ApplicationController
      flash[:notice] = 'The activity has been deleted'
      redirect_to(activities_url)
    end    
+   
+   def deactivate
+    activity = Activity.find(params[:id])
+    activity.is_active = false
+    SpecificActivity.deactivate_specific_activities(activity.specific_activities)
+    
+    activity.save!
+    
+    flash[:notice] = 'The activity has been deactivated'
+    redirect_to(activities_url)
+   end
+   
+   def activate
+     activity = Activity.find(params[:id])
+     activity.is_active = true
+     SpecificActivity.activate_specific_activities(activity.specific_activities)
+
+     activity.save!
+
+     flash[:notice] = 'The activity has been activated'
+     redirect_to(activities_url)   
+   end   
 end
