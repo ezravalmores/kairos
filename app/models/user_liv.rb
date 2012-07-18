@@ -20,10 +20,14 @@ class UserLiv < ActiveRecord::Base
         leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_i - 1
       elsif leave.leave_type_id == 2
         leave.person.remaining_sick_leave = leave.person.remaining_sick_leave.to_i - 1
-      else
+      elsif leave.leave_type_id == 3
         dec = ".5"
         dec = dec.to_f
         leave.person.remaining_vacation_leave = leave.person.remaining_sick_leave.to_f - dec
+      else
+        dec = ".5"
+        dec = dec.to_f
+        leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_f - dec
       end
       leave.is_active = false
       leave.save!  
