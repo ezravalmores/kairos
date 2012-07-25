@@ -1,0 +1,61 @@
+<script>
+  $(document).ready(function() {
+    $('#date_field_1,#date_field_2').datepicker({
+	  showOn: "both", 
+	  buttonImage: "<%= asset_path('calendar.gif') %>", 
+	  buttonImageOnly: true,
+	  changeMonth: true,
+	  changeYear: true,
+	  hideIfNoPrevNext: true,
+	  currentText: 'today',
+	  dateFormat: 'yy-mm-dd',
+	});
+  });
+</script>
+<div class='container'>    
+  <div class='row'>
+    <div class='span13'>
+ <h4>Edit Leave Request</h4></br>  
+	
+<%= form_for (@leave), :html => {:class => 'form-horizontal'} do |f| %>
+  <fieldset>
+  <div class='control-group'>
+    <%= f.label :leave_type_id, :class => 'control-label' %>
+    <div class ="controls" >
+        <%= f.select(:leave_type_id, LeaveType.all.collect{|l| [l.name, l.id] }, :class => 'text_field') %>
+	  
+	  </div>
+  </div>
+	<div class='control-group'>
+	<%= f.label :length, :class => 'control-label' %>
+    <div class ="controls" >
+     	   <%= f.select('length',options_for_select(['Half Day','Whole Day'], @leave.length),:include_blank => true, :class => 'small_select') %>
+	
+	  </div>
+	</div>
+	
+	<div class='control-group'>
+    <%= f.label :reason, :class => 'control-label' %>
+    <div class ="controls" >
+      <%= f.text_area :reason, :class => 'text_field' %>
+	  </div>
+	</div>
+  
+  <div class='control-group'>
+    <%= f.label :date, :class => 'control-label' %>
+    <div class ="controls" >
+         <%= f.text_field :date ,:value => @leave.date.strftime('%y-%m-%d') , :id => "date_field_2" %>
+	   
+	  </div>
+	</div>
+	
+	<div class ="form_layout">
+	  <div style ="margin-top:20px;">	
+		  <%= f.submit "Save my Changes",:class => "btn btn-primary" %>       
+		</div>	
+	  </div>
+	</fieldset>
+<% end %>
+</div>
+</div>
+</div>
