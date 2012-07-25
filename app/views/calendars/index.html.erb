@@ -29,7 +29,7 @@
     <div style="background-color:#0000FF;width:15px;height:15px"></div> 
        <div style="float:left;margin-left:20px;margin-top:-15px">- Activities in this color is active</div>
 	<div style="background-color:#FF0000;width:15px;height:15px;margin-top:5px"></div> 
-       <div style="float:left;margin-left:20px;margin-top:-15px">- Activities in this color is in-active</div>
+       <div style="float:left;margin-left:20px;margin-top:-15px">- Activities in this color is in-active or canceled</div>
 
   </div>
   
@@ -46,7 +46,7 @@
     </div>
 </div>	  
 
-<%= form_tag create_leave_user_livs_url, :method => :post do %>
+<%= form_tag create_activity_ncmm_activities_url, :method => :post do %>
    <div class ="leave_form" style="display:none"> 	
      <div class='containers'>
        <label style="font-weight:bold">Fill out form to create activity</label>
@@ -54,12 +54,10 @@
  
      <div class= "containers">
 	   <div class ="label_div">
-	     <label>from Date</label>
+	     <label>from </label>
 	   </div>
 	   <div class = "field_div">
 	     <%= text_field_tag :from_date, "", :id => "date_field_1" %>
-	     <%= hidden_field_tag :name, "leave" %>
-	     
 	   </div>
 	  
 	   <div class ="space">
@@ -67,17 +65,17 @@
 	   </div>	
 	
 	   <div class ="label_div">
-	     <label>to Date</label>
+	     <label>to </label>
 	   </div>
 	   <div class = "field_div">
 	     <%= text_field_tag :to_date, "", :id => "date_field_2" %>
 	   </div>
 	   
 	   <div class ="label_div">
-	     <label>Charge to</label>
+	     <label>In Charge</label>
 	   </div>
 	   <div class = "field_div">
-<%= select_tag('leave_type_id',options_from_collection_for_select(Person.all.collect, :id, :name, params[:leave_type_id]),:include_blank => true, :class => 'small_select') %>
+<%= select_tag('person_id',options_from_collection_for_select(Person.all.collect, :id, :name, params[:leave_type_id]),:include_blank => true, :class => 'small_select') %>
 	   </div>
 	 </div>
 	 <div class= "containers">
@@ -85,7 +83,7 @@
 	     <label>Activity Type</label>
 	   </div>
 	   <div class = "field_div">
-		 <%= select_tag('leave_type_id',options_for_select(["Team Bonding"]),:include_blank => true, :class => 'small_select') %>
+		 <%= select_tag('activity',options_for_select(["Team Bonding", "Team Meeting","One On One Coaching","Christmas Party", "Devotion"]),:include_blank => true, :class => 'small_select') %>
 	   </div>
 		
 	   <div class ="space">
@@ -96,12 +94,12 @@
 	     <label>Description</label>
 	   </div>
 	   <div class = "field_div">
-	     <%= text_area_tag :reason,"",:class => "field_div_2" %>
+	     <%= text_area_tag :description,"",:class => "field_div_2" %>
 	   </div>
 	  </div>
 	
 		<div style="float: left;margin-left:-560px;margin-top:10px">
-		  <%= submit_tag "Save Leave", :class => 'btn' %>
+		  <%= submit_tag "Save Activity", :class => 'btn' %>
 		</div>	
 	</div>		
 	<% end %>
@@ -113,14 +111,29 @@
 
   <%= t.day(:day_method => :date) do |day,items| %>
     <%= day.day %>
-    <% items.each do |leave| %>
-      <label id="blue"> <%= "(" + leave.leave_type.name+ ")"  %>&nbsp;<%=  leave.person.name %>  </label>
-    <% end %>
+    <% items.each do |item| %>
+      <% if item.activity_log_type_type == "UserLiv" %>
+        <% item.activity_log_type.tap do |activity| %> 
+          <% if !activity.is_approved == false %>
+           	<% if activity.is_active == true %>
+	            <label id="blue"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+	          <% elsif activity.is_active == false && activity.is_canceled == true %>
+	            <label class="not_active"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label> 
+	          <% end %>  
+	         <% end %>
+	      <% end %>
+       <% else %>
+        <% item.activity_log_type.tap do |activity| %> 
+          <% if activity.is_active == true %>
+            <label id="blue"> <%= "(" + activity.activity + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+          <% else %>
+            <label class="not_active"> <%= "(" + activity.activity  + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+          <% end %>
+        <% end %>
+      <% end %>
   <% end %>
-
-
 <% end %>
-
+<% end %>
 </div>
 </div>
 </div>
