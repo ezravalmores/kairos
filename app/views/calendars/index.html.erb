@@ -115,11 +115,13 @@
       <% if item.activity_log_type_type == "UserLiv" %>
         <% item.activity_log_type.tap do |activity| %> 
           <% if !activity.is_approved == false %>
-           	<% if activity.is_active == true %>
+           	<% if activity.is_active == true && activity.is_approved == true %>
 	            <label id="blue"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label>
 	          <% elsif activity.is_active == false && activity.is_canceled == true %>
-	            <label class="not_active"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label> 
-	          <% end %>  
+	            <label class="calendar_not_active"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label> 
+	          <% elsif activity.is_active == false && activity.is_approved == true %>
+	            <label class="calendar_not_active"> <%= "(" + "Leave" + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+	         <% end %>  
 	         <% end %>
 	      <% end %>
        <% else %>
@@ -127,7 +129,7 @@
           <% if activity.is_active == true %>
             <label id="blue"> <%= "(" + activity.activity + ")" %>&nbsp;<%= activity.person.name  %>  </label>
           <% else %>
-            <label class="not_active"> <%= "(" + activity.activity  + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+            <label class="calendar_not_active"> <%= "(" + activity.activity  + ")" %>&nbsp;<%= activity.person.name  %>  </label>
           <% end %>
         <% end %>
       <% end %>
