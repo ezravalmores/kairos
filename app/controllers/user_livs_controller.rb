@@ -17,11 +17,23 @@ class UserLivsController < ApplicationController
   end
   
   def edit
-    @leave = params[:id]
+    @leave = UserLiv.find(params[:id])
   end  
   
   def update
-    
+    @leave = UserLiv.find(params[:id])
+
+    respond_to do |format|
+      if @leave.update_attributes(params[:user_liv])
+        flash[:notice] = 'Leave was successfully updated.'
+        format.html { redirect_to user_livs_url }
+        format.xml  { head :ok }
+      else
+        flash[:warning] = 'Please check every information that you are entering and fill the required fields.'
+        format.html { render :edit }
+        format.xml  { render :xml => @leave.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
   def destroy
@@ -62,9 +74,12 @@ class UserLivsController < ApplicationController
         end
           
         days.to_i.times do
-          UserLiv.create!(:name => params[:name],:date => day,:leave_type_id => params[:leave_type_id],:reason => params[:reason],:with_pay => params[:with_pay],:planned => planned ,:person_id => current_user.id, :length => params[:length])
+          leave = UserLiv.create!(:date => day,:leave_type_id => params[:leave_type_id],:reason => params[:reason],:with_pay => params[:with_pay],:planned => planned ,:person_id => current_user.id, :length => params[:length])
           day = day + 1.day 
+          ActivityLog.create!(:person_id => leave.person_id, :date => leave.date, :activity_log_type_type => "UserLiv", :activity_log_type_id => leave.id)
         end  
+        
+        
         flash[:notice] = "Request for leave successfully created"
       else
         flash[:warning] = "Sorry, end of leave can't be less than the start of leave"
