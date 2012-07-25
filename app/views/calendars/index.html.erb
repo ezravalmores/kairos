@@ -127,7 +127,7 @@
        <% else %>
         <% item.activity_log_type.tap do |activity| %> 
           <% if activity.is_active == true %>
-            <label id="blue"> <%= "(" + activity.activity + ")" %>&nbsp;<%= activity.person.name  %>  </label>
+            <label id="blue"> <%= "(" + activity.activity + ")" %>&nbsp;<%= "in charge of" %>&nbsp;<%= "(" + activity.person.name + ")"  %>&nbsp;-<%= activity.description %>  </label>
           <% else %>
             <label class="calendar_not_active"> <%= "(" + activity.activity  + ")" %>&nbsp;<%= activity.person.name  %>  </label>
           <% end %>
