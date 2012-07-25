@@ -2,7 +2,7 @@ class CalendarsController < ApplicationController
   
   def index
     respond_to do |format|
-      @leaves = UserLiv.find(:all)
+      @leaves = ActivityLog.find(:all)
       #@samples = Sample.find(:all)
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
     
