@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   belongs_to :department
   has_many :user_livs
   has_many :total_hours
+  has_many :ncmm_activity
   
   # Validations
   validates_presence_of :first_name, :last_name, :email_address, :password, :username
