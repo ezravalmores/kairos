@@ -15,58 +15,6 @@
 	});
   });
 </script>	
-	<style type="text/css">
-	
-	.leave_form{
-	  border: solid 1px #C1C1C1;
-	  height: 130px;	
-	  margin-bottom: 5px;
-	  padding: 10px;
-	  border-radius: 10px;
-	  width: 900px;
-	}
-	.containers{
-	 padding: 3px;
-	 margin-top: 5px;
-	 height: 20px;
-	}
-	.label_div{
-	 width: 100px;
-	 float:left;	
-	}
-	.space{
-	 width: 50px;
-	 float:left;	
-	}
-	.label_div label{
-	  font-weight: bold;	
-	}
-	.field_div{
-	 margin-left:5px;
-	 width: 150px;
-	 float: left;	
-	}
-	.field_div input{
-	 width: 110px;	
-	 height: 10px;
-	}
-	.field_div_2 {
-	  margin-left:5px;
-	  width: 170px;
-	  float: left;	
-	}
-	.field_div_2{
-	 width: 400px;	
-	 height: 50px;
-	}
-	.small_select{
-	 width: 140px;
-	 height: 20px;	
-	}
-	.not_active{
-	  background-color: #B8B8B8;	
-	}	
-	</style>
 <div class='container'>    
   <div class='row'>
     <div class='span13'>
@@ -78,7 +26,7 @@
 	     
 	  	  <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
 		  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
-		  <span class="label label-success">wp</span> - With Pay &nbsp;&nbsp; 
+		  <!--<span class="label label-success">wp</span> - With Pay &nbsp;&nbsp; -->
 	
 	  </div>
 
@@ -107,13 +55,6 @@
 		   <div class = "field_div">
 		     <%= current_user.name %>
 		   </div>
-		
-		   <div class ="label_div">
-		     <label>With Pay</label>
-		   </div>
-		   <div class = "field_div">
-		     <%= check_box_tag :with_pay %>
-		   </div>	
 	     </div>	
 	
 	     <div class= "containers">
@@ -122,6 +63,8 @@
 		   </div>
 		   <div class = "field_div">
 		     <%= text_field_tag :from_date, "", :id => "date_field_1" %>
+		     <%= hidden_field_tag :name, "leave" %>
+		     
 		   </div>
 		  
 		   <div class ="space">
@@ -134,6 +77,13 @@
 		   <div class = "field_div">
 		     <%= text_field_tag :to_date, "", :id => "date_field_2" %>
 		   </div>
+		   
+		   	   <div class ="label_div">
+			     <label>Length</label>
+			   </div>
+			   <div class = "field_div">
+				 <%= select_tag('length',options_for_select(['Half Day','Whole Day']),:include_blank => true, :class => 'small_select') %>
+			   </div>
 		 </div>
 		 <div class= "containers">
 		   <div class ="label_div">
@@ -173,7 +123,7 @@
 			  <th>Leave Type</th>
 		      <th>Reason</th>
 		  	  <th>Date of Leave</th>
-			  <th>With Pay</th>
+			  <th>Length</th>
 			  <th>Planned</th>
 			  <th>Approved by</th>
 		      <th></th>        
@@ -187,8 +137,9 @@
 			  <% else %>
 				<tr class="<%= cycle('odd','even') %>"> 
 			  <% end %>
-			      <td style="padding: 5px; height: 3px"><%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
-				
+			      <td style="padding: 5px; height: 3px">
+			      <%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
+					
 				<% if leave.is_submitted == true && leave.is_approved == false %>
 				  <span class="label label-success">s</span></td>	
 		        <% elsif leave.is_submitted == true && leave.is_approved == true %>
@@ -196,14 +147,14 @@
 		        <% end %>
 		        
 		
-		  		  <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
+		  		  <td>	<!--<% if leave.with_pay == true %>
+					      <span class="label label-success">wp</span>&nbsp;
+					    <% end %>--><%= leave.created_at.strftime("%B %d, %Y") %></td>
 		          <td><%= leave.leave_type.name %></td>
 		          <td><%= leave.reason %></td>
 		          <td><%= leave.date.strftime("%B %d, %Y") %></td>
 			      <td>
-				    <% if leave.with_pay == true %>
-				      <span class="label label-success">wp</span>
-				    <% end %>
+				    <%= leave.length %>
 			      </td>
 			      <td>
 				    <% if leave.planned == true %>
