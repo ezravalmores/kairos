@@ -17,7 +17,7 @@ class UserLivsController < ApplicationController
   end
   
   def edit
-    
+    @leave = params[:id]
   end  
   
   def update
@@ -49,7 +49,7 @@ class UserLivsController < ApplicationController
   end  
   
   def create_leave
-  unless params[:from_date].blank? || params[:to_date].blank? || params[:leave_type_id].blank? || params[:reason].blank?
+  unless params[:from_date].blank? || params[:to_date].blank? || params[:leave_type_id].blank? || params[:reason].blank? || params[:length].blank?
     unless params[:from_date].to_date.year > Date.today.year || params[:to_date].to_date.year > Date.today.year
       unless params[:to_date].to_date < params[:from_date].to_date
         days = params[:to_date].to_date - params[:from_date].to_date + 1
@@ -59,9 +59,10 @@ class UserLivsController < ApplicationController
           planned = true
         else
           planned = false  
-        end  
+        end
+          
         days.to_i.times do
-          UserLiv.create!(:date => day,:leave_type_id => params[:leave_type_id],:reason => params[:reason],:with_pay => params[:with_pay],:planned => planned ,:person_id => current_user.id)
+          UserLiv.create!(:name => params[:name],:date => day,:leave_type_id => params[:leave_type_id],:reason => params[:reason],:with_pay => params[:with_pay],:planned => planned ,:person_id => current_user.id, :length => params[:length])
           day = day + 1.day 
         end  
         flash[:notice] = "Request for leave successfully created"
