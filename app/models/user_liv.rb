@@ -17,17 +17,37 @@ class UserLiv < ActiveRecord::Base
     
     for leave in leaves
       if leave.leave_type_id == 1
-        leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_i - 1
+        if leave.length == "Whole Day"
+          leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_i - 1
+        else
+          dec = ".5"
+          dec = dec.to_f
+          leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_f - dec
+        end    
       elsif leave.leave_type_id == 2
-        leave.person.remaining_sick_leave = leave.person.remaining_sick_leave.to_i - 1
+        if leave.length == "Whole Day"
+          leave.person.remaining_sick_leave = leave.person.remaining_sick_leave.to_i - 1
+        else
+          dec = ".5"
+          dec = dec.to_f
+          leave.person.remaining_vacation_leave = leave.person.remaining_sick_leave.to_f - dec
+        end    
       elsif leave.leave_type_id == 3
-        dec = ".5"
-        dec = dec.to_f
-        leave.person.remaining_vacation_leave = leave.person.remaining_sick_leave.to_f - dec
+         if leave.length == "Whole Day"
+           leave.person.remaining_sick_leave = leave.person.remaining_sick_leave.to_i - 1
+         else
+           dec = ".5"
+           dec = dec.to_f
+           leave.person.remaining_vacation_leave = leave.person.remaining_sick_leave.to_f - dec
+         end   
       else
-        dec = ".5"
-        dec = dec.to_f
-        leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_f - dec
+         if leave.length == "Whole Day"
+           leave.person.remaining_sick_leave = leave.person.remaining_vacation_leave.to_i - 1
+         else 
+          dec = ".5"
+          dec = dec.to_f
+          leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_f - dec
+         end  
       end
       leave.is_active = false
       leave.save!  
@@ -35,6 +55,15 @@ class UserLiv < ActiveRecord::Base
     end  
   end  
   
+  def deductions(leave)
+    if leave.length == "Whole Day"
+      leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_i - 1
+    else
+      dec = ".5"
+      dec = dec.to_f
+      leave.person.remaining_vacation_leave = leave.person.remaining_vacation_leave.to_f - dec
+    end
+  end  
   
   def submit_leave
     update_attributes({:is_submitted => true})
