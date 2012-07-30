@@ -345,7 +345,8 @@ div.tbl_layout table {
 }     
 div.tbl_layout td {
   font-size:.85em !important;
-  height:30px !important;  
+  height:30px !important;
+
   padding:10px;
   text-align:left; 
 }
@@ -580,18 +581,21 @@ div#special-gifts table {
   border-spacing:0 0;
   font-size:.9em !important;
   width:100%;
-  padding:bottom :100px;
+
+    padding:100px;
 }
 div#special-gifts tr {
-  position:relative;
+
   vertical-align:top;
+   padding-left:20px;
 }
 div#special-gifts td {
   border-bottom:1px solid #eee !important;
   line-height:19px;
   padding:2px;
   padding-top: 8px;
-  position:relative;
+  padding-left:40px;
+  margin-left:10px;
 
 }
 /* Shows the handle when the mouse is over the row */
@@ -623,11 +627,14 @@ div.report table {
   font-size:.85em !important;
   height:100%;
   width:100%;
+  padding:20px;
 }     
 div.report td {
   font-size:1em !important;
   height:20px !important;  
   padding:5px;
+  overflow: hidden;
+  width: 400px;
   text-align:center; 
 }
 div.report *.letters {
@@ -637,11 +644,13 @@ div.report th {
   background: #3b5998;
   color:#FFFFFF;
   font-weight:bold;
-  padding:5px;
+  padding-top:5px;
+  padding-left: 40px;
   text-align:center;
 }     
 div.report tr.even {
   background-color:#eceff6;
+  padding-left:20px;
 }
 div.report tr.odd {
   background-color:#fff;
