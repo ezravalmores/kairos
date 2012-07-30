@@ -12,6 +12,12 @@
    <%= yield(:head) %>
 
    <script>
+     $(document).ready(function() {
+	   $('#noti_Container').click(function(){
+		 alert('ezra');
+	  });
+	 });    
+ 
      !function( $ ){
 
 	  "use strict"
@@ -84,6 +90,31 @@
 	  })
 
 	}( window.jQuery );
+	 
+	(function ($) {
+	  $.fn.fixedMenu = function () {
+	    return this.each(function () {
+	      var menu = $(this);
+	      var ctr = 0;
+	      menu.find('ul li > label').bind('click', function () {
+	        //check whether the particular link has a dropdown
+	      if(ctr == 0){
+	            //displaying the drop down menu
+	            $('.active').show();
+	            ctr = 1;
+	      }   
+	      else{
+		     $('.active').hide();
+		     ctr = 0;
+	      }
+	    
+	      });
+	    });
+	  }
+	})(jQuery);
+	   $('document').ready(function(){
+            $('.menu').fixedMenu();
+       });
    </script>
 </head>
 <body>
@@ -91,10 +122,11 @@
 	<%= render :partial => 'layouts/flash_message' %>	
 	<header>
 	  	<div style="float:left;margin-left: 10px;margin-bottom: 15px">
-		  <%= image_tag('nazcompassion_logo.gif', :size => "80x90") %>
-		  	
-		</div>	
+		  <%= image_tag('nazcompassion_logo.gif', :size => "80x90") %>  	
+		</div>
+	   
 	  <%= render :partial => 'layouts/nav' if current_user %>
+
 	</header>	
     <%= render :partial => 'layouts/links'%>
    </div>
