@@ -1,5 +1,5 @@
 <tr id ='activity_<%=activity.id %>' class="<%= cycle('odd','even') %>">
-  <td>
+  <td style="width: 700px">
 	<div style="margin-left:-30px">
 	<% if !activity.is_submitted? && !activity.is_approved? %>
       <span class="label label-warning">ns</span>
@@ -19,9 +19,9 @@
   </td>
 
   <td><%= activity.end_time.strftime('%l:%M:%S %p').downcase if !activity.end_time.nil? %></td>
-  <td><%= activity.activity.name if !activity.activity_id.nil? %></td> 
+  <td style="width: 1000px"><%= activity.activity.name if !activity.activity_id.nil? %></td> 
 
-  <td><%= activity.specific_activity.name if !activity.specific_activity_id.nil? %></td> 
+  <td style="width: 1000px"><%= activity.specific_activity.name if !activity.specific_activity_id.nil? %></td> 
   <td>
 
   <% if !activity.total_time.nil? %>	
