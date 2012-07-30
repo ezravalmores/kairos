@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   #before_filter :stylize
   
   def index
+    
      if current_user
+       
         time_url
       else
         redirect_to login_url
@@ -41,12 +43,16 @@ class ApplicationController < ActionController::Base
             redirect_to :back
             flash[:warning] = "You are not authorize!"
           end
-        end
+       end
        
     def current_user
       @current_user ||= fetch_user
     end
-     helper_method :current_user
+    helper_method :current_user
+    def notifications
+      @notifications = Notification.unread_notifications(current_user) + Notification.read_notifications(current_user)
+    end  
+    helper_method :notifications
      
     def fetch_user
       Person.find(session[:user_id]) unless session[:user_id].nil?
