@@ -1,7 +1,8 @@
 class UserLiv < ActiveRecord::Base
   belongs_to :leave_type
   belongs_to :person
-  has_one :activity_log, :as => :activity_log_type, :dependent => :destroy
+  has_one :activity_log, :as => :notification_log_type, :dependent => :destroy
+  has_one :notification, :as => :notification_log_type, :dependent => :destroy
   
   #scopes
   scope :is_submitted, where(:is_submitted => true)
