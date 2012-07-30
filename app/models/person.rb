@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
   
   #scope :people_in_my_department,  lambda { |date| where(["(people.department_id =?",date]) }
   scope :can_approve, where(:can_approve => true)
+  scope :can_see_notifications, where(:system_notifications => true)
   
   def self.persons_can_approve(dep_id)
     where(['people.department_id =? AND people.can_approve =?',dep_id,1])  
