@@ -92,6 +92,14 @@
       </div> 
    </div>
 
+   <span><em><label style="font-weight:bold;margin-left:60px">Check if user can see notifications in the system</label></em></span><br/>
+   <div class='control-group'>
+      <%= f.label :system_notifications, "System Notifications", :class => 'control-label' %>
+      <div class ="controls">	
+	    <%= f.check_box(:system_notifications, :class => 'text_field') %>
+      </div> 
+   </div>
+
    <% end %>
    <br/><br/>	
 <% if current_user.is_admin? || current_user.is_supervisor? %> 
