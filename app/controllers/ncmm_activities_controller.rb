@@ -14,17 +14,18 @@ class NcmmActivitiesController < ApplicationController
   end
   
   def create_activity
-    unless params[:from_date].blank? || params[:to_date].blank? || params[:activity].blank? || params[:description].blank? || params[:person_id].blank?
+    unless params[:from_date].blank? || params[:to_date].blank? || params[:activity].blank? || params[:description].blank? || params[:person_id].blank? || params[:people].blank?
       unless params[:from_date].to_date.year > Date.today.year || params[:to_date].to_date.year > Date.today.year
         unless params[:to_date].to_date < params[:from_date].to_date
           days = params[:to_date].to_date - params[:from_date].to_date + 1
           day = params[:from_date].to_date
           week = params[:from_date].to_date - 7.days
-
+          people = Person.find(params[:people])
+          
           days.to_i.times do
             activity = NcmmActivity.create!(:date => day,:activity=> params[:activity],:description => params[:description],:person_id => params[:person_id])
             day = day + 1.day 
-            ActivityLog.create!(:person_id => activity.person_id, :date => activity.date, :activity_log_type_type => "NcmmActivity", :activity_log_type_id => activity.id)
+            ActivityLog.create!(:person_id => activity.person_id, :date => activity.date, :activity_log_type_type => "NcmmActivity", :activity_log_type_id => activity.id, :people_involved => people.map {|p| p.id}.join(","))
           end  
 
 
