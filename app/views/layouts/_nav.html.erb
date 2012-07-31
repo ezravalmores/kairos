@@ -22,7 +22,7 @@
        <% notifications.each do |notification| %>
          <% notification.notification_log_type.tap do |noti|%>
            <div class='ezra'>
-	        <div class='not_bold'>scheduled on <font style ="font-weight:bold"><%= noti.date.strftime('%y-%m-%d') %></font><div class='content'><% if notification.notification_log_type_type == "NcmmActivity" %><%= noti.description %><% else %><%= noti.reason %><% end %></div></div>
+	        <div class='not_bold'>scheduled on <font style ="font-weight:bold"><%= noti.date.strftime('%y-%m-%d') %></font><div class='content'> <font style ="font-weight:bold">person in charge:</font> <%= noti.person.name %><br/> <% if notification.notification_log_type_type == "NcmmActivity" %><%= noti.description %><% else %><%= noti.reason %><% end %></div></div>
 	          <div class='clear_noti'><%= link_to "CLEAR","#"  %></div>
 	       </div> 
 	     <% end %>
