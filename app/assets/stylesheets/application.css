@@ -105,7 +105,7 @@ background: #cccccc;
 #left{
 
  float:left;
- width: 100px;	
+ width: 105px;	
  margin: 5px;
  border-top-right-radius: 5px;
  border-bottom-right-radius: 5px;
@@ -160,7 +160,7 @@ background: #cccccc;
 #left_red{
  background-color: #dd3c10;	
  float:left;
- width: 100px;	
+ width: 105px;	
  margin: 5px;
  border-radius: 5px;
 
@@ -172,7 +172,7 @@ background: #cccccc;
 #left_green{
  background-color: #00FF00;	
  float:left;
- width: 95px;	
+ width: 105px;	
  margin: 5px;
  padding-left: 5px;
  border-radius: 5px;
@@ -1029,7 +1029,7 @@ font:13px/27px Arial,sans-serif;
 color:#3366cc;
 height:20px;
 width:30px;
-margin-left:850px;
+margin-left:110px;
 
 }
 
@@ -1183,7 +1183,6 @@ font-size:0;
  margin-left: 5px;
 }
 .content{
-
  word-wrap: break-word;
  width: 100%px;
  margin-right:10px;
