@@ -678,7 +678,6 @@ header h1 {
 nav {
   float:right;
   overflow:visible;
-
 }
 nav a, nav a:visited {
   color:#fff;
@@ -995,21 +994,19 @@ div#admin-dropdown {
     margin-top:20px;
 }
 .noti_bubble {
-    position:absolute;
-    top: -6px;
-    
-    padding-bottom: 5px;
+
     padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 20px;
     background-color:red;
     color:white;
+    margin-top:-5px;
     font-weight:bold;
     font-size:.8em;
-    height: 10px;
-    width: 10px;
-    margin-top:10px;
-    
+    float:right;
     border-radius:1px;
     box-shadow:1px 1px 1px gray;
+    position:absolute;
 }​
 #notifications{
   
@@ -1020,16 +1017,14 @@ div#admin-dropdown {
 /*---For menu ----*/
 
 .menu{
-position:fixed;
 top:0;
 left:0;
-
-
+float:left;
 font:13px/27px Arial,sans-serif;
 color:#3366cc;
 height:20px;
 width:30px;
-margin-left:110px;
+margin-right: 650px;
 
 }
 
@@ -1197,4 +1192,5 @@ font-size:0;
  color:#ffffff;	
  background-color:#3b5998;	
  width:200px;
+ border-radius: 5px;
 }
