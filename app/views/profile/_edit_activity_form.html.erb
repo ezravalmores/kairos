@@ -2,7 +2,7 @@
   <% if @activities.count != 0 && @unfinished_activity.nil? %>
     <div id ="inside-left">
 	  <div style ="margin-top:-8px">
-	   <label style="font-weight:bold">Select People who will receive notification </label>
+	    <label style="font-weight:bold">Select People who will receive notification </label>
 	  </div>	
       <div id='right'>
 	    <%= form_tag submit_activities_person_times_url,:method => :put do %>
@@ -11,8 +11,8 @@
 		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
 			<% end %><br/><br/>
    		    <% for activity in @activities %>
-		    <%= hidden_field_tag("activities[]",activity.id) %>
-		  <% end %>
+		      <%= hidden_field_tag("activities[]",activity.id) %>
+		    <% end %>
 		  <%= submit_tag "Submit activities today" ,:class => 'btn' %>		
 	    <% end %>	
 	  </div>
