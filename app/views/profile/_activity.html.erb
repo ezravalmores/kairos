@@ -1,19 +1,19 @@
 <tr id ='activity_<%=activity.id %>' class="<%= cycle('odd','even') %>">
   <td style="width: 1000px">
 	<div style="margin-left:-30px">
-	<% if !activity.is_submitted? && !activity.is_approved? %>
-      <span class="label label-warning">ns</span>
-    <% elsif activity.is_submitted? && activity.is_approved == nil %>
-      <span class="label label-success">Submitted</span>
-    <% elsif activity.is_approved? %>
-      <span class="label label-info">Approved</span>
-    <% end %>
+	  <% if !activity.is_submitted? && !activity.is_approved? %>
+        <span class="label label-warning">ns</span>
+      <% elsif activity.is_submitted? && activity.is_approved == nil %>
+        <span class="label label-success">Submitted</span>
+      <% elsif activity.is_approved? %>
+        <span class="label label-info">Approved</span>
+      <% end %>
       
-    <% if activity.is_overtime == 1 %>
+      <% if activity.is_overtime == 1 %>
 	    <span class="label label-important">Overtime</span>
-	<% else %>
+	  <% else %>
 	    <span class="label label-inverse">st</span>
-	<% end %>
+	  <% end %>
     &nbsp;&nbsp;<%= activity.start_time.strftime('%l:%M:%S %p').downcase if !activity.start_time.nil? %>
 	</div>
   </td>
