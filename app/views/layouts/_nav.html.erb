@@ -4,7 +4,7 @@
 		<ul>
 		  <li><!-- Do not add any class for links with dropdown -->
 			
-			<label><%= image_tag('alert.png', :size => "30x30") %><% if notifications.count != 0 %><span class="noti_bubble"><%= notifications.count  %></span><% end %></label>
+			<label><% if notifications.count != 0 %><span class="noti_bubble"><%= notifications.count  %></span><% end %><%= image_tag('noti_alert.png', :size => "30x30") %></label>
 	        
 	         <!-- Drop Down menu Items -->
 	 <div class='active'>
@@ -22,8 +22,8 @@
        <% notifications.each do |notification| %>
          <% notification.notification_log_type.tap do |noti|%>
            <div class='ezra'>
-	        <div class='not_bold'>scheduled on <font style ="font-weight:bold"><%= noti.date %></font><div class='content'><%=noti.description %></div></div>
-	          <div class='clear_noti'><%= link_to "DONE","#"  %></div>
+	        <div class='not_bold'>scheduled on <font style ="font-weight:bold"><%= noti.date.strftime('%y-%m-%d') %></font><div class='content'><% if notification.notification_log_type_type == "NcmmActivity" %><%= noti.description %><% else %><%= noti.reason %><% end %></div></div>
+	          <div class='clear_noti'><%= link_to "CLEAR","#"  %></div>
 	       </div> 
 	     <% end %>
 	   <% end %>
