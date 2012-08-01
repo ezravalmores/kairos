@@ -7,7 +7,7 @@ class UserLivsController < ApplicationController
     @leaves = @person.user_livs
     @leave = UserLiv.new
     @persons_can_approved = Person.persons_can_approve(current_user.department_id) + Person.get_admins
-    
+    @people = Person.can_see_notifications
     respond_to do |format|
       #@activities_submitted = PersonTime.submitted.not_yet_approved
     
@@ -61,7 +61,7 @@ class UserLivsController < ApplicationController
   end  
   
   def create_leave
-  unless params[:from_date].blank? || params[:to_date].blank? || params[:leave_type_id].blank? || params[:reason].blank? || params[:length].blank?
+  unless params[:from_date].blank? || params[:to_date].blank? || params[:leave_type_id].blank? || params[:reason].blank? || params[:length].blank? || params[:people_involved].blank?
     unless params[:from_date].to_date.year > Date.today.year || params[:to_date].to_date.year > Date.today.year
       unless params[:to_date].to_date < params[:from_date].to_date
         days = params[:to_date].to_date - params[:from_date].to_date + 1
@@ -72,14 +72,12 @@ class UserLivsController < ApplicationController
         else
           planned = false  
         end
-          
+        people = Person.find(params[:people_involved])  
         days.to_i.times do
           leave = UserLiv.create!(:date => day,:leave_type_id => params[:leave_type_id],:reason => params[:reason],:with_pay => params[:with_pay],:planned => planned ,:person_id => current_user.id, :length => params[:length])
           day = day + 1.day 
-          ActivityLog.create!(:person_id => leave.person_id, :date => leave.date, :activity_log_type_type => "UserLiv", :activity_log_type_id => leave.id)
+          ActivityLog.create!(:person_id => leave.person_id, :date => leave.date, :activity_log_type_type => "UserLiv", :activity_log_type_id => leave.id,:people_involved => people.map {|p| p.id}.join(","))
         end  
-        
-        
         flash[:notice] = "Request for leave successfully created"
       else
         flash[:warning] = "Sorry, end of leave can't be less than the start of leave"
