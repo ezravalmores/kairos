@@ -581,11 +581,9 @@ div#special-gifts table {
   border-spacing:0 0;
   font-size:.9em !important;
   width:100%;
-
-    padding:100px;
+   padding:100px;
 }
 div#special-gifts tr {
-
   vertical-align:top;
    padding-left:20px;
 }
@@ -596,7 +594,6 @@ div#special-gifts td {
   padding-top: 8px;
   padding-left:50px;
   margin-left:10px;
-
 }
 /* Shows the handle when the mouse is over the row */
 div#special-gifts tr:hover div.handle {
@@ -939,6 +936,15 @@ div#admin-dropdown {
   border-radius: 10px;
   width: 900px;
 }
+.user_liv_form{
+  border: solid 1px #C1C1C1;
+  height: 140px;	
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 900px;
+}
+
 .containers{
  padding: 3px;
  margin-top: 5px;
