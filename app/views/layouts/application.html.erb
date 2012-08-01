@@ -118,8 +118,10 @@
    </script>
 </head>
 <body>
+
 	<div class="navbar navbar-fixed-top">
 	<%= render :partial => 'layouts/flash_message' %>	
+	<% if current_user %>
 	<header>
 	  	<div style="float:left;margin-left: 10px;margin-bottom: 15px">
 		  <%= image_tag('nazcompassion_logo.gif', :size => "80x90") %>  	
@@ -127,10 +129,12 @@
 	   
 	  <%= render :partial => 'layouts/nav' if current_user %>
 
-	</header>	
-    <%= render :partial => 'layouts/links'%>
+	</header>
+
+    <%= render :partial => 'layouts/links' %>
+    <% end %> 	
    </div>
-	
+   	
    <br/>
 	<%= yield %>
 	</div>
