@@ -105,9 +105,20 @@
 		     <%= text_area_tag :reason,"",:class => "field_div_2" %>
 		   </div>
 		  </div>
+		    
+		 <div style="float: left;margin-left:-560px;margin-top:20px">
+		  <label>Select People who will be notified</label>
+		</div>	
+		  <div style="width:400px">	
+
+		 <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')" }) %><span style="font-weight:bold"> Select All</span><br/>
+		  <% for person in @people %>
+		    &nbsp;<%= check_box_tag("people_involved[]",person.id,false,{ :class => "people_involved", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
+		  <% end %>  
+		  </div>
 		
-			<div style="float: left;margin-left:-560px;margin-top:10px">
-			  <%= submit_tag "Save Leave", :class => 'btn btn-primary' %>
+		 <div style="float: right;margin-right:0px;margin-top:-30px">
+			  <%= submit_tag "Create Leave(s)", :class => 'btn btn-primary' %>
 			</div>	
 		</div>		
 		<% end %>
@@ -183,7 +194,7 @@
 		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
 		  <% end %>  
 		  </div>
-		  <div style="float:right;margin-top:-40px;margin-right:60px">
+		  <div style="float:right;margin-top:-40px;margin-right:0px">
 		  <%= submit_tag "Submit Selected Leaves", :class => 'btn btn-primary' %>
 		  </div>	
 		  </div>	
