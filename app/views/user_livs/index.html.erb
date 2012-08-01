@@ -37,7 +37,7 @@
 	  </div>
       
 	  <%= form_tag create_leave_user_livs_url, :method => :post do %>
-	   <div class ="leave_form"> 
+	   <div class ="user_liv_form"> 
 	     <div class ="containers">	
 	       <div class ="label_div">
 			 <label>Date Today</label>
@@ -107,7 +107,7 @@
 		  </div>
 		
 			<div style="float: left;margin-left:-560px;margin-top:10px">
-			  <%= submit_tag "Save Leave", :class => 'btn' %>
+			  <%= submit_tag "Save Leave", :class => 'btn btn-primary' %>
 			</div>	
 		</div>		
 		<% end %>
@@ -184,7 +184,7 @@
 		  <% end %>  
 		  </div>
 		  <div style="float:right;margin-top:-40px;margin-right:60px">
-		  <%= submit_tag "Submit Leaves", :class => 'btn' %>
+		  <%= submit_tag "Submit Selected Leaves", :class => 'btn btn-primary' %>
 		  </div>	
 		  </div>	
 	   <% end %>
