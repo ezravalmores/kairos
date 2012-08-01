@@ -18,27 +18,13 @@
 <div class='container'>    
   <div class='row'>
     <div class='span13'>
-  	  <h4><%= current_user.name + " " + "Leaves"%></h4><br/>
+  	  <h4><%= current_user.name + " " + "Leaves"%> &nbsp;&nbsp;SL: <%= current_user.remaining_sick_leave %>&nbsp;&nbsp;VL: <%= current_user.remaining_vacation_leave %>  </h4><br/>
 	  <h1>Leave Information</h4>
       <span><em>Fill out all information to create a request for leave</em></span><br/><br/>
       
-	  <div style="float:left;margin-top:-70px;margin-left:330px;font-size:15px;font-weight:bold;padding:5px;border-radius:5px">
-	     
-	  	  <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
-		  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
-		  <span class="label label-inverse">p</span> - Planned
-		  <!--<span class="label label-success">wp</span> - With Pay &nbsp;&nbsp; -->
-	
-	  </div>
-
-      <div style="float:right;margin-top:-70px;margin-right:10px;font-size:15px;font-weight:bold;border: solid 1px #C1C1C1;padding:5px;border-radius:5px">
-	    remaining sick leave: <%= current_user.remaining_sick_leave %><br/>
-	    remaining vacation leave: <%= current_user.remaining_vacation_leave %>  
-	  </div>
-      
 	  <%= form_tag create_leave_user_livs_url, :method => :post do %>
 	   <div class ="user_liv_form"> 
-	     <div class ="containers">	
+	     <div class ="containers_1">	
 	       <div class ="label_div">
 			 <label>Date Today</label>
 		   </div>
@@ -58,7 +44,7 @@
 		   </div>
 	     </div>	
 	
-	     <div class= "containers">
+	     <div class= "containers_2">
 		   <div class ="label_div">
 		     <label>from Date</label>
 		   </div>
@@ -86,7 +72,7 @@
 				 <%= select_tag('length',options_for_select(['Half Day','Whole Day']),:include_blank => true, :class => 'small_select') %>
 			   </div>
 		 </div>
-		 <div class= "containers">
+		 <div class= "containers_3">
 		   <div class ="label_div">
 		     <label>Leave Type</label>
 		   </div>
@@ -104,17 +90,29 @@
 		   <div class = "field_div">
 		     <%= text_area_tag :reason,"",:class => "field_div_2" %>
 		   </div>
+		 
 		  </div>
-		    
-		 <div style="float: left;margin-left:-560px;margin-top:20px">
-		  <label>Select People who will be notified</label>
-		</div>	
-		  <div style="width:400px">	
-
-		 <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')" }) %><span style="font-weight:bold"> Select All</span><br/>
+	    	    
+	     <br/>
+		  <div style="width:900px;height: 1%; overflow: hidden;padding:5px;border-radius: 5px;floar:left">	
+		    <div style='float:left;width:550px'><label style='font-weight:bold'>Select People who will be notified</label>
+			  <label class='grey'>The people you select will get an email when you're leave.<br/>
+			  It will show up in the notifications.</label><br/>
+			</div>
+			  <div style='width: 300px;float:left;padding-left:50px'>
+				 <label style='font-weight:bold'>These are the statuses of the created leaves</label>
+				 <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
+				  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
+				  <span class="label label-inverse">p</span> - Planned
+			  </div>
+		   <div style='float:left;width:500px'>	
+		     <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')" }) %><span style="font-weight:bold"> All of NCMM</span><br/></br>
+		  	
 		  <% for person in @people %>
-		    &nbsp;<%= check_box_tag("people_involved[]",person.id,false,{ :class => "people_involved", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
+		    &nbsp;<div class='involved'><%= check_box_tag("people_involved[]",person.id,false,{ :class => "people_involved", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<%= person.name %></div>&nbsp;     
 		  <% end %>  
+		  </div>
+		  	
 		  </div>
 		
 		 <div style="float: right;margin-right:0px;margin-top:-30px">
@@ -123,7 +121,6 @@
 		</div>		
 		<% end %>
 			
-		
 	    <%= form_tag submit_leaves_user_livs_url,:method => :put do %>
 
 
@@ -188,10 +185,10 @@
 		    </table>
           </div>
 		  <div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px">	
-		  <div style="width:400px">	
-		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select All</span><br/>
+		  <div style="width:500px">	
+		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select People</span><br/><br/>
 		  <% for person in @persons_can_approved %>
-		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
+		   &nbsp;<div class='involved'><%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<%= person.name %></div>&nbsp; 
 		  <% end %>  
 		  </div>
 		  <div style="float:right;margin-top:-40px;margin-right:0px">
