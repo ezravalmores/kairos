@@ -938,18 +938,55 @@ div#admin-dropdown {
 }
 .user_liv_form{
   border: solid 1px #C1C1C1;
-	
   margin-bottom: 5px;
   padding: 10px;
   border-radius: 10px;
   width: 900px;
 }
 
-.containers{
- padding: 3px;
- margin-top: 5px;
+.containers_1{
+ padding: 5px;
+ border-top: 1px solid #cccccc;
+ border-left: 1px solid #cccccc;
+ border-right: 1px solid #cccccc;
+ border-top-left-radius:5px;
+ border-top-right-radius:5px;
  height: 20px;
+ background-color:#f7f7f7;
 }
+.containers_2{
+ padding: 5px;
+ border-left: 1px solid #cccccc;
+ border-right: 1px solid #cccccc;
+ height: 20px;
+ background-color:#f7f7f7;
+}
+.containers_3{
+ padding: 5px;
+ border-bottom-left-radius:5px;
+ border-bottom-right-radius:5px;
+ height: 70px;
+ background-color:#f7f7f7;
+ border-bottom: 1px solid #cccccc;
+ border-left: 1px solid #cccccc;
+ border-right: 1px solid #cccccc;
+}
+
+.containers_1 label{
+ color: #666666;	
+}
+.containers_2 label{
+ color: #666666;	
+}
+.containers_3 label{
+ color: #666666;	
+}
+
+
+.grey{
+ color: #999999;	
+}
+
 .label_div{
  width: 100px;
  float:left;	
@@ -1199,4 +1236,11 @@ font-size:0;
  background-color:#3b5998;	
  width:200px;
  border-radius: 5px;
+}
+.involved{
+ width: 150px;
+ font-size: 12px;
+ margin-left: 5px;	
+ float:left;
+ margin-top:-10px;
 }
