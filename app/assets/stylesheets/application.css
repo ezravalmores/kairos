@@ -693,16 +693,25 @@ div#login-wrap {
   background:#fff;
   border-radius: 8px;
   color:#468;
-  margin:100px auto auto auto;
-  padding:5px 25px 5px 15px;
+  margin:50px auto auto auto;
+  padding-top:10px;
+  padding-left:-10px;
   position:relative;
-  width:300px;
-  height:220px;
+  width:250px;
+  height:240px;
 
-  -moz-box-shadow: 3px 3px 6px #888;
-  -webkit-box-shadow: 3px 3px 6px #888;
-  box-shadow: 3px 3px 6px #888;
+  -moz-box-shadow: 3px 3px 30px #888;
+  -webkit-box-shadow: 3px 3px 30px #888;
+  box-shadow: 3px 3px 30px #888;
 }
+.log_in_image{
+ float:left;
+ margin-left: -20px;
+ margin-bottom: 15px;
+ margin-top:120px;
+
+}
+
 #login h2 {
   margin-top: 10px;
   margin-bottom:15px;
@@ -712,9 +721,9 @@ div#login-wrap {
   font-size:1.1em !important;
   padding:4px;
   height: 27px;
-  width:250px;
+  width:200px;
   margin-top: 5px;
-  margin-left:20px;
+  margin-left:13px;
 }
 #login form{
   margin-left: 1px;
@@ -1246,4 +1255,10 @@ font-size:0;
  margin-left: 5px;	
  float:left;
  margin-top:-10px;
+}
+.log_in_header{
+ text-align:center;
+ color:#000000;	
+ margin-top:20px;
+ font-size: 17px;
 }
