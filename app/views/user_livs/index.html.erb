@@ -26,6 +26,7 @@
 	     
 	  	  <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
 		  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
+		  <span class="label label-inverse">p</span> - Planned
 		  <!--<span class="label label-success">wp</span> - With Pay &nbsp;&nbsp; -->
 	
 	  </div>
@@ -119,12 +120,11 @@
 		  <table>
 		    <tr>
 			  <th><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></th>
-		      <th>Date Created</th>
+		      <th>Made on</th>
 			  <th>Leave Type</th>
 		      <th>Reason</th>
-		  	  <th>Date of Leave</th>
+		  	  <th style='width: 1000px'>Date of Leave</th>
 			  <th>Length</th>
-			  <th>Planned</th>
 			  <th>Approved by</th>
 		      <th></th>        
 		    </tr>
@@ -145,24 +145,20 @@
 		        <% elsif leave.is_submitted == true && leave.is_approved == true %>
 			      <span class="label label-info">a</span></td>	
 		        <% end %>
-		        
+		        <% if leave.planned == true %>
+		          <span class="label label-inverse">p</span>
+		        <% end %>
 		
 		  		  <td>	<!--<% if leave.with_pay == true %>
 					      <span class="label label-success">wp</span>&nbsp;
 					    <% end %>--><%= leave.created_at.strftime("%B %d, %Y") %></td>
 		          <td><%= leave.leave_type.name %></td>
-		          <td><%= leave.reason %></td>
+		          <td style='width:1300px'><%= leave.reason %></td>
 		          <td><%= leave.date.strftime("%B %d, %Y") %></td>
 			      <td>
 				    <%= leave.length %>
 			      </td>
-			      <td>
-				    <% if leave.planned == true %>
-				      yes
-				    <% else %>
-				      no
-				    <% end %>
-			      </td>	
+
 			      <% if !leave.approved_by.nil? %>
 			        <% @approved_by = Person.find(leave.approved_by) %>
 		 	        <td><%= @approved_by.name %></td>
