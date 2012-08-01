@@ -945,7 +945,8 @@ div#admin-dropdown {
 }
 
 .containers_1{
- padding: 5px;
+ padding-top: 15px;
+ padding-left: 10px;
  border-top: 1px solid #cccccc;
  border-left: 1px solid #cccccc;
  border-right: 1px solid #cccccc;
@@ -955,14 +956,16 @@ div#admin-dropdown {
  background-color:#f7f7f7;
 }
 .containers_2{
- padding: 5px;
+ padding-left: 10px;
+ padding-top: 5px;
  border-left: 1px solid #cccccc;
  border-right: 1px solid #cccccc;
  height: 20px;
  background-color:#f7f7f7;
 }
 .containers_3{
- padding: 5px;
+ padding-left: 10px;
+ padding-top: 5px;
  border-bottom-left-radius:5px;
  border-bottom-right-radius:5px;
  height: 70px;
@@ -1040,7 +1043,7 @@ div#admin-dropdown {
 
     padding-left: 5px;
     padding-right: 5px;
-    margin-left: 20px;
+    margin-right: 30px;
     background-color:red;
     color:white;
     margin-top:-5px;
