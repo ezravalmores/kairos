@@ -99,12 +99,7 @@
 			  <label class='grey'>The people you select will be notified inside kairos when you're leave.<br/>
 			  It will show up in the notifications.</label><br/>
 			</div>
-			  <div style='width: 300px;float:left;padding-left:50px'>
-				 <label style='font-weight:bold'>These are the statuses of the created leaves</label>
-				 <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
-				  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
-				  <span class="label label-inverse">p</span> - Planned
-			  </div>
+			  
 		   <div style='float:left;width:500px'>	
 		     <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')" }) %><span style="font-weight:bold"> All of NCMM</span><br/></br>
 		  	
@@ -189,6 +184,12 @@
 				  <label class='grey'>The people you select will get an email about your request for leave(s).<br/>
 		
 				</div>  
+				<div style='width: 300px;float:left;padding-left:50px'>
+					 <label style='font-weight:bold'>These are the statuses of the created leaves</label>
+					 <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
+					  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
+					  <span class="label label-inverse">p</span> - Planned
+				  </div>
 		 <div style="width:500px">	
 		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select People</span><br/><br/>
 		  <% for person in @persons_can_approved %>
