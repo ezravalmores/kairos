@@ -96,7 +96,7 @@
 	     <br/>
 		  <div style="width:900px;height: 1%; overflow: hidden;padding:5px;border-radius: 5px;floar:left">	
 		    <div style='float:left;width:550px'><label style='font-weight:bold'>Select People who will be notified</label>
-			  <label class='grey'>The people you select will get an email when you're leave.<br/>
+			  <label class='grey'>The people you select will be notified inside kairos when you're leave.<br/>
 			  It will show up in the notifications.</label><br/>
 			</div>
 			  <div style='width: 300px;float:left;padding-left:50px'>
@@ -115,14 +115,14 @@
 		  	
 		  </div>
 		
-		 <div style="float: right;margin-right:0px;margin-top:-30px">
-			  <%= submit_tag "Create Leave(s)", :class => 'btn btn-primary' %>
+		 <div style="float: float;margin-left:500px;margin-top:-40px">
+			  <%= submit_tag "Save Leave(s)", :class => 'btn btn-primary' %>
 			</div>	
 		</div>		
 		<% end %>
-			
+		  <h1>List of Leave(s)</h4>
+	      <span><em>note: you need to select leave(s) and people to submit leave(s)</em></span><br/><br/>	
 	    <%= form_tag submit_leaves_user_livs_url,:method => :put do %>
-
 
 		<div id="special-gifts" class="report">
 		  <table>
@@ -185,7 +185,11 @@
 		    </table>
           </div>
 		  <div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px">	
-		  <div style="width:500px">	
+		 	  <div style='float:left;width:550px'><label style='font-weight:bold'>Select People who will approve your leave request</label>
+				  <label class='grey'>The people you select will get an email about your request for leave(s).<br/>
+		
+				</div>  
+		 <div style="width:500px">	
 		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select People</span><br/><br/>
 		  <% for person in @persons_can_approved %>
 		   &nbsp;<div class='involved'><%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<%= person.name %></div>&nbsp; 
