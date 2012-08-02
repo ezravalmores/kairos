@@ -149,14 +149,14 @@
 			      <%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
 					
 				<% if leave.is_submitted == true && leave.is_approved == false %>
-				  <span class="label label-success">s</span></td>	
+				  <span class="label label-success">s</span>	
 		        <% elsif leave.is_submitted == true && leave.is_approved == true %>
-			      <span class="label label-info">a</span></td>	
+			      <span class="label label-info">a</span>	
 		        <% end %>
 		        <% if leave.planned == true %>
 		          <span class="label label-inverse">p</span>
 		        <% end %>
-		
+				</td>
 		  		  <td>	<!--<% if leave.with_pay == true %>
 					      <span class="label label-success">wp</span>&nbsp;
 					    <% end %>--><%= leave.created_at.strftime("%B %d, %Y") %></td>
