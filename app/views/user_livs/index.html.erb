@@ -99,7 +99,11 @@
 			  <label class='grey'>The people you select will be notified inside kairos when you're leave.<br/>
 			  It will show up in the notifications.</label><br/>
 			</div>
-			  
+			  	<div style='width: 300px;float:left;padding-left:50px'>
+					 <label style='font-weight:bold'>Remaining Leave(s)</label>
+					 Sick Leave: <%= current_user.remaining_sick_leave %>&nbsp;&nbsp;Vacation Leave: <%= current_user.remaining_vacation_leave %>  &nbsp;&nbsp;
+					 
+				  </div>
 		   <div style='float:left;width:500px'>	
 		     <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')" }) %><span style="font-weight:bold"> All of NCMM</span><br/></br>
 		  	
