@@ -86,7 +86,7 @@ class UserLivsController < ApplicationController
       flash[:warning] = "Sorry, You can't create a leave greater than this year"
     end    
   else
-    flash[:warning] = "Sorry, You must fill out all required fields"
+    flash[:warning] = "Sorry, You must fill out all required fields and Select people who will be notified inside kairos."
   end  
   
     
@@ -110,7 +110,7 @@ class UserLivsController < ApplicationController
       flash[:notice] = "Request submitted successfully."
       
     else
-      flash[:warning] = "Sorry, you need to select either people or the leaves in order to submit the leaves"  
+      flash[:warning] = "Sorry, you need to select leaves in the list to submit and Select People who will approve your leave request."  
     end  
     
     respond_to do |format|
