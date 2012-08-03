@@ -3,5 +3,5 @@ Hi <%= @person.name %>,
 These leaves were now approved by <%= @current_user.name %>.
 
 <% for leave in @leaves %>
-  <%= leave.date.strftime("%B %d, %Y") %> - <%= leave.leave_type.name %> - <%= leave.reason %>
+  <%= leave.person.name %>(<%= leave.person.email_address %>) - is on leave - <%= leave.date.strftime("%B %d, %Y") %> - <%= leave.leave_type.name %> - <%= leave.reason %>
 <% end %> 
