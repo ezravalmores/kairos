@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   has_many :person_times
   belongs_to :role
   belongs_to :department
+  belongs_to :organization
   has_many :user_livs
   has_many :total_hours
   has_many :ncmm_activity
@@ -43,7 +44,7 @@ class Person < ActiveRecord::Base
   
   def is_admin?
     (!role.nil? && role.name == 'Administrator')
-   end
+  end
 
   def is_supervisor?
     (!role.nil? && role.name == 'Supervisor')
@@ -55,6 +56,5 @@ class Person < ActiveRecord::Base
   
   def name
     first_name + " " + last_name
-  end  
-  
+  end   
 end
