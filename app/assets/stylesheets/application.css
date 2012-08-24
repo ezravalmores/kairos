@@ -706,10 +706,9 @@ div#login-wrap {
 }
 .log_in_image{
  float:left;
- margin-left: -10px;
+ margin-left: -25px;
  margin-bottom: 15px;
  margin-top:120px;
-
 }
 
 #login h2 {
@@ -723,7 +722,7 @@ div#login-wrap {
   height: 27px;
   width:200px;
   margin-top: 5px;
-  margin-left:5px;
+  margin-left:15px;
 }
 #login form{
   margin-left: 1px;
@@ -1261,4 +1260,16 @@ font-size:0;
  color:#000000;	
  margin-top:20px;
  font-size: 17px;
+}
+.log_in_upper{
+ background-color: #3b5998;
+ height: 50%;	
+}
+.people_left{
+ float:left;
+ width:50%;	
+}
+.people_right{
+ float:left;
+ width:50%;	
 }
