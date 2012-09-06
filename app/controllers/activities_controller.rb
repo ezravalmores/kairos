@@ -2,8 +2,13 @@ class ActivitiesController < ApplicationController
   before_filter :is_sup_add
   
   def index
-    @activities = Activity.all
-
+    org = current_user.organization.departments.all
+    ids = org.map {|d| d.id}
+    @activities = []
+    org.each do |dep|
+      dep = dep.activities
+      @activities += dep
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @activities }
@@ -19,6 +24,7 @@ class ActivitiesController < ApplicationController
   end
   
   def new  
+    @departments = current_user.organization.departments.all
     @activity = Activity.new
     
     respond_to do |format|
