@@ -18,7 +18,7 @@
     <div class='control-group'>
       <%= f.label :activity,"Under", :class => 'control-label' %>
       <div class ="controls" >
-         <%= f.select(:activity_id, Activity.all.collect{|a| [a.name, a.id] }, :include_blank => true, :class => 'text_field') %>
+         <%= f.select(:activity_id, @activities.map {|a| [a.name, a.id] }, :include_blank => true, :class => 'text_field') %>
 	  </div>
 	</div>
 	
