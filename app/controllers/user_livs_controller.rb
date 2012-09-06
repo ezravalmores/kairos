@@ -7,7 +7,7 @@ class UserLivsController < ApplicationController
     @leaves = @person.user_livs
     @leave = UserLiv.new
     @persons_can_approved = Person.persons_can_approve(current_user.department_id) + Person.get_admins
-    @people = Person.can_see_notifications
+    @people = Person.can_see_leaves_notifications(@person.department_id)
     respond_to do |format|
       #@activities_submitted = PersonTime.submitted.not_yet_approved
     
