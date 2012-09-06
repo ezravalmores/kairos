@@ -18,7 +18,7 @@
 	   <div id='control-group'>
 	     <%= f.label :department_id , :class => 'control-label' %>
 	     <div class='controls'>  
-	     <%= f.select(:department_id, Department.all.collect{|d| [d.name, d.id] }, :include_blank => true) %>
+	     <%= f.select(:department_id, @departments.map {|d| [d.name, d.id] }, :include_blank => true) %>
 	     </div>
 	   </div>
 	<div class ="form_layout">
