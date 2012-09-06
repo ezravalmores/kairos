@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   before_filter :authorize
   
   def index
-    @people = Person.all
+    @people = Person.where(:organization_id => current_user.organization_id)
 
     respond_to do |format|
       format.html # index.html.erb
