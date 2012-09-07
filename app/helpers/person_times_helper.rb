@@ -6,8 +6,9 @@ module PersonTimesHelper
   end
   
   def options_for_activity(id)
-    activities = Activity.where(['activities.department_id =? OR activities.department_id IS NULL',id]).order("name ASC")
-    container = activities.active
+    activities = Activity.where(['activities.department_id =?',id]).order("name ASC")
+    view_all = Activity.view_all.active
+    container = activities.active + view_all
     
   end
   
