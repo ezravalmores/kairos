@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   #scope :can_see_notifications, where(:system_notifications => true)
   
   def self.can_see_leaves_notifications(dep_id)
-    where(['people.department_id=? AND people.role_id =?',dep_id,2])
+    where(['people.department_id=?',dep_id])
   end  
   
   def self.persons_can_approve(dep_id)
