@@ -8,12 +8,15 @@
 	    <%= form_tag submit_activities_person_times_url,:method => :put do %>
 	      <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select All</span><br/><br/>
 			<% for person in @persons_can_approved %>
-		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
-			<% end %><br/><br/>
+		    <div style='width:400px;margin-top:-10px'>
+			<div class='involved_two'>&nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span><%= person.name %></span></div></div>     
+			<% end %><br/><br/><br/>
    		    <% for activity in @activities %>
 		      <%= hidden_field_tag("activities[]",activity.id) %>
 		    <% end %>
+		  <div style='margin-top:10px'>	
 		  <%= submit_tag "Submit activities today" ,:class => 'btn' %>		
+		  </div>	
 	    <% end %>	
 	  </div>
 	 </div>
