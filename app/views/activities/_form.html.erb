@@ -14,11 +14,18 @@
 	           <%= f.text_field :description, :class => 'text_field' %>
 		     </div>
 	   </div>
+	   
+	   <div id='control-group'>
+	     <%= f.label :can_view_to_all_org , "Show all Org" ,:class => 'control-label' %>
+	     <div class='controls'>  
+	     <%= f.check_box(:can_view_to_all_org) %>
+	     </div>
+	   </div>		
 		
 	   <div id='control-group'>
 	     <%= f.label :department_id , :class => 'control-label' %>
 	     <div class='controls'>  
-	     <%= f.select(:department_id, @departments.map {|d| [d.name, d.id] }, :include_blank => true) %>
+	     <%= f.select(:department_id, @departments.map {|d| [d.name, d.id] }, :class => 'text_field',:include_blank => true) %>
 	     </div>
 	   </div>
 	<div class ="form_layout">
