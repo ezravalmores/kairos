@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
       dep = dep.activities
       @activities += dep
     end
+    @activities = @activities + Activity.where(['activities.department_id IS NULL'])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @activities }
@@ -17,7 +18,7 @@ class ActivitiesController < ApplicationController
   
   def edit
     @activity = Activity.find(params[:id])
-    
+    @departments = Department.all
     respond_to do |format|
       format.html { } # edit.html.erb
     end
