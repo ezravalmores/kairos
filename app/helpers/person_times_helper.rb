@@ -6,10 +6,11 @@ module PersonTimesHelper
   end
   
   def options_for_activity(id)
+    container = []
     activities = Activity.where(['activities.department_id =?',id]).order("name ASC")
-    view_all = Activity.view_all.active
-    container = activities.active + view_all
-    
+    view_all = Activity.view_all.active.order("name ASC") 
+    container = activities.active + view_all 
+    container = container.sort_by(&:name)
   end
   
   def options_for_specific_activities(id)
