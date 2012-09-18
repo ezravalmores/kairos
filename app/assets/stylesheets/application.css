@@ -638,7 +638,7 @@ div.report *.letters {
   text-align:center;
 }
 div.report th {
-  background: #3b5998;
+  background: #787878 ;
   color:#FFFFFF;
   font-weight:bold;
   padding-top:5px;
@@ -658,7 +658,7 @@ header, section, aside {
 }
 
 header {
-  background-color:  #3b5998;
+  background-color: #000000;
   color:#fff;
   font-size:.9em;
   height:40px;
