@@ -3,6 +3,12 @@ class UserLivsController < ApplicationController
   before_filter :authorize
   
   def index
+     session[:leaves] = 'active'
+      session[:time] = 'none'
+      session[:calendar] = 'none'
+      session[:approvals] = 'none'
+      session[:reports] = 'none'
+      session[:admin] = 'none'
     @person = current_user
     @leaves = @person.user_livs
     @leave = UserLiv.new
@@ -17,6 +23,7 @@ class UserLivsController < ApplicationController
   end
   
   def edit
+    session[:leaves] = 'active'
     @leave = UserLiv.find(params[:id])
   end  
   
