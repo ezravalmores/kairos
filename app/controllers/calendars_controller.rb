@@ -1,6 +1,12 @@
 class CalendarsController < ApplicationController
   
   def index
+     session[:leaves] = 'none'
+      session[:time] = 'none'
+      session[:calendar] = 'active'
+      session[:approvals] = 'none'
+      session[:reports] = 'none'
+      session[:admin] = 'none'
     respond_to do |format|
       @leaves = ActivityLog.find(:all)
       #@samples = Sample.find(:all)
