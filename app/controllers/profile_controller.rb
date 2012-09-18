@@ -4,6 +4,12 @@ class ProfileController < ApplicationController
   # GET /profile
   def time
     @person = current_user
+      session[:leaves] = 'none'
+      session[:time] = 'active'
+      session[:calendar] = 'none'
+      session[:approvals] = 'none'
+      session[:reports] = 'none'
+      session[:admin] = 'none'
      
      if !params[:date].nil?
        @activities = @person.person_times.search_by_date(params[:date].to_time).order('created_at DESC')
