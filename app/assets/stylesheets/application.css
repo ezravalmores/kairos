@@ -396,6 +396,7 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
  float: left;
  width: 340px;	
  margin: 5px;
+ padding-top:3px;
  background-color: #eceff6;
  border-radius: 5px ;
  border: 1px solid #d4dae8;
@@ -409,6 +410,7 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
  float: left;
  width: 310px;	
  margin: 5px;
+ padding-top:3px;
  background-color: #eceff6;
  border-radius: 5px;
  border: 1px solid #d4dae8;
@@ -426,7 +428,6 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
 
 
 #right_with_bg_right label{
-	
  margin-left: 10px;
 }
 
