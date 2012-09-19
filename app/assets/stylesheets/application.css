@@ -158,15 +158,9 @@ background: #cccccc;
 }
 
 #left_red{
- background-color: #dd3c10;	
  float:left;
  width: 105px;	
  margin: 5px;
- border-radius: 5px;
-
- 
- moz-border-radius: 5px;
- webkit-border-radius: 5px;
 }
 
 #left_green{
