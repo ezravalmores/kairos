@@ -11,7 +11,7 @@
       	<div id="navWrap">
 		<ul id="gnav">
 
-        <li><div id='image_div'><%= image_tag("time.png", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Time Keeping", time_url, :class => session[:time] %></div></li>
+        <li><div id='image_div'><%= image_tag("tasks.png", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Tasks Tracking", time_url, :class => session[:time] %></div></li>
         <li><div id='image_div'><%= image_tag("leaves.png", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Leaves", user_livs_url, :class => session[:leaves] %></div></li>
         <li><div id='image_div'><%= image_tag("calendar.png", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'> <%= link_to "NCMM Calendar", calendars_url,:class => session[:calendar] %></div></li>
 		<% if current_user.can_approve == true || current_user.is_admin? %>
