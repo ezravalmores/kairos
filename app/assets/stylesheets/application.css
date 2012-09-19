@@ -438,7 +438,7 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
   color:#4a4;
   height: 30px;
   font-size: 14px;
-  padding-top: 10px;
+  padding-top: 4px;
   padding-left: 10px;	
   border-bottom:1px solid #aedda7;
   border-top:1px solid #aedda7;
@@ -447,7 +447,7 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
 
 #flash_notice h3 {
   background: url('tick.png')  2px no-repeat;
-  padding:0px 10px 10px 40px;
+  padding:0px 5px 5px 40px;
   font-size: 14px;
 }	
 
@@ -465,8 +465,8 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
 
 #flash_warning h3 {
   background: url('error.png') 10px 10px no-repeat;
-  padding:0px 10px 10px 40px;
-    font-size: 14px;
+  padding:0px 5px 5px 40px;
+  font-size: 14px;
 }
 
 #hide{
