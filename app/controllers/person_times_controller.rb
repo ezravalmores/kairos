@@ -54,7 +54,7 @@ class PersonTimesController < ApplicationController
   end  
   
   def update_activity
-    if !params[:activity_id].nil?
+    unless params[:activity_id] == 'Select Activity'
       @activity = Activity.find(params[:activity_id])
       
       person_time = PersonTime.find(params[:person_time_id])
@@ -69,7 +69,7 @@ class PersonTimesController < ApplicationController
       updated = person_time.update_attributes(:total_time => total_time)
       
       if params[:end_shift].to_i != 1
-        new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) 
+        new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time,:created_at => Time.now.to_s(:db)) 
       end
       
       flash[:notice] = "Your activity was successfully ended!"  
