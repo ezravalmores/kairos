@@ -26,5 +26,11 @@ module ApplicationHelper
   def trash_can
     image_tag('trash.gif', :class => 'trash')
   end  
+  
+  def kairos_end_switch
+    switch = '<div id="kairos_end_switch"></div>'.html_safe
+    switch += hidden_field_tag('end_shift')
+    content_tag(:div,switch)
+  end
 end
 
