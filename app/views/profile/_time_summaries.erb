@@ -24,10 +24,10 @@
 	  </div>
 	
 	  <% if compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f < 90  %>
-	  <div id='left_red'><%= label :utilization_rate, "Utilization Rate"%></div>
+	  <div id='left_red'> <span class="label label-important">Utilization Rate</span></div>
 	  
 	  <% elsif compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f >= 90 %>
-	  <div id='left_green'><%= label :utilization_rate, "Utilization Rate"%></div>
+	  <div id='left_red'><span class="label label-success">Utilization Rate</span></div>
 	
 	  <% end %>
 	  <div id="right_with_bg_right">
