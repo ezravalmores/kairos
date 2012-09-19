@@ -22,16 +22,41 @@
         <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %> minutes :
         <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"seconds") %> seconds </label>
 	  </div>
-	
-	  <% if compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f < 90  %>
+	  <% @hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours") %>
+	  <% @minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %>  
+	  <% @rate = compute_utilization_rate(@hours,@minutes).to_f %>  
+		
+	  <% if @rate <= 50  %>
 	  <div id='left_red'> <span class="label label-important">Utilization Rate</span></div>
 	  
-	  <% elsif compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")).to_f >= 90 %>
+	  <% elsif @rate > 50 && @rate < 100  %>
+	  <div id='left_red'><span class="label label-warning">Utilization Rate</span></div>
+	
+	  <% elsif @rate >= 100 %>
 	  <div id='left_red'><span class="label label-success">Utilization Rate</span></div>
 	
 	  <% end %>
-	  <div id="right_with_bg_right">
-      <label><%= compute_utilization_rate(PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours"),PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes")) %>&nbsp; percent</label>
+	  <div id="right_progress">
+		  <% if @rate <= 50  %>
+		  <div class="progress progress-danger progress-striped active">
+		    <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
+		  </div>
+		
+		  <% elsif @rate > 50 && @rate < 100 %>
+		  <div class="progress progress-warning progress-striped active">
+		   <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
+	      </div>	
+			
+		  <% elsif @rate >= 100 %>
+		  <div class="progress progress-success progress-striped active">
+		   <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
+	      </div>
+
+		  <% end %>
+    	  	
 	  </div>
+	  <div id='percentage'>
+		<%= @rate.to_s + "%" %>
+	  </div>	  
 	  </div>
 	  </div>
