@@ -410,10 +410,20 @@ div#table_layout tr.even:hover,div#table_layout tbody tr.odd:hover {
  width: 310px;	
  margin: 5px;
  background-color: #eceff6;
- border-radius: 5px ;
+ border-radius: 5px;
  border: 1px solid #d4dae8;
-
 }
+
+#right_progress{
+ float: left;
+ width: 310px;	
+ margin: 5px;
+ height: 18px;
+ background-color: #eceff6;
+ border-radius: 5px;
+ border: 1px solid #d4dae8;
+}
+
 
 #right_with_bg_right label{
 	
@@ -1384,4 +1394,9 @@ font-size:0;
 
 #image_div:hover{
 	
+}
+#percentage{
+ margin-left:250px;	 
+ float:left;
+ font-weight: bold;
 }
