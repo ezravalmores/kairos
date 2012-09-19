@@ -2,7 +2,7 @@
   <% if @activities.count != 0 && @unfinished_activity.nil? %>
     <div id ="inside-left">
 	  <div style ="margin-top:-8px">
-	    <label style="font-weight:bold">Select People who will receive notification </label>
+	    <label style="font-weight:bold">select people who will receive notification </label>
 	  </div>	
       <div id='right'>
 	    <%= form_tag submit_activities_person_times_url,:method => :put do %>
@@ -15,7 +15,14 @@
 		      <%= hidden_field_tag("activities[]",activity.id) %>
 		    <% end %>
 		  <div style='margin-top:10px'>	
-		  <%= submit_tag "Submit activities today" ,:class => 'btn' %>		
+		  <%= submit_tag "Submit Activities Today" ,:class => 'btn' %>&nbsp;&nbsp;&nbsp; 
+			<% if !activity.is_submitted? && !activity.is_approved? %>
+		        <span class="label label-warning">Not Submitted</span>
+		      <% elsif activity.is_submitted? && activity.is_approved == nil %>
+		        <span class="label label-success">Submitted</span>
+		      <% elsif activity.is_approved? %>
+		        <span class="label label-info">Approved</span>
+		      <% end %>		
 		  </div>	
 	    <% end %>	
 	  </div>
