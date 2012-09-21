@@ -69,7 +69,7 @@ class PersonTimesController < ApplicationController
       updated = person_time.update_attributes(:total_time => total_time)
       
       if params[:end_shift].to_i != 1
-        new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time,:created_at => Time.now.to_s(:db)) 
+        new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => person_time.end_time) 
       end
       
       flash[:notice] = "Your activity was successfully ended!"  
