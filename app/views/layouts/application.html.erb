@@ -123,8 +123,9 @@
 	<% if current_user %>
 	 
 	<header>  
-	 
+	 <%= render :partial => 'layouts/nav' %>
 	</header>
+    <%= render :partial => 'layouts/links',:locals => { :notifications => notifications } %>
     <% end %> 	
    </div>  	
    <br/>
