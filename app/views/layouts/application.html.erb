@@ -109,18 +109,23 @@
 	   $('document').ready(function(){
             $('.menu').fixedMenu();
        });
+	  });
    </script>
 </head>
 <body>
 
 	<div class="navbar navbar-fixed-top">
+	<div id="for_flash" style='display:none'>	
+		
+	</div>	
 	<%= render :partial => 'layouts/flash_message' %>	
+
 	<% if current_user %>
-	<header>
-	 
-	  <%= render :partial => 'layouts/nav' if current_user %>
+	   <%= render :partial => 'layouts/notifications',:locals => { :notifications => notifications } %>
+	<header>  
+	  <%= render :partial => 'layouts/nav' %>
 	</header>
-    <%= render :partial => 'layouts/links' %>
+    <%= render :partial => 'layouts/links',:locals => { :notifications => notifications } %>
     <% end %> 	
    </div>  	
    <br/>
