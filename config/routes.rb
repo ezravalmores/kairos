@@ -61,7 +61,7 @@ Ncm1Kairos::Application.routes.draw do
   match "/" => "application#index", :as => :application
   match "/login" => "login#login", :as => :login
   match "/logout" => "login#logout", :as => :logout
-  match "/profile" => "profile#time", :as => :time
+  #match "/profile" => "profile#time", :as => :time
   #match "/user_liv" => "user_liv#create_leave", :as => :create_leave, :via => [:post]
   match "/approvals/tasks_approval" => "approvals#tasks_approval", :as => :tasks_approval
   match "/approvals/leaves_approval" => "approvals#leaves_approval", :as => :leaves_approval
