@@ -73,7 +73,7 @@ Ncm1Kairos::Application.routes.draw do
   match "/reports/generate_spreadsheets" => "reports#generate_spreadsheets", :as => :generate_spreadsheets
   match 'profile/update_specific_activity_select/:id', :controller=>'profile', :action => 'update_specific_activity_select'
   match "user_livs/:id/cancel_leave", :to => "user_livs#cancel_leave",:as => :cancel_leave ,:via => [:get]
-  match "dynamic_specific_tasks/:id" => "profile#dynamic_specific_tasks", :via => [:post]
+  match "dynamic_specific_tasks/:id" => "person_times#dynamic_specific_tasks", :via => [:post]
   match "activities/:id/deactivate", :to => 'activities#deactivate', :as => :deactivate_activity ,:via => [:get]
   match "specific_activities/:id/deactivate", :to => 'specific_activities#deactivate', :as => :deactivate_specific_activity ,:via => [:get]
   
