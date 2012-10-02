@@ -1,7 +1,22 @@
+<script>
+$('document').ready(function() {
+
+   $('#show_noti').click(function() {
+       $('#notifications_con').slideToggle();
+     });
+});
+</script>
 <div class="navbar-inner">
   <div class="container">
   
-   <a class="brand" href="#">KAIROS - <%= current_user.organization.name %> - <%= current_user.name %> </a>	
+   <a class="brand" href="#">KAIROS - <%= current_user.organization.name %> - <%= current_user.name %></a>
+   <div style='margin-top:-40px;margin-left:285px'>
+   <% if notifications.count > 0 %>	
+   <%= image_tag("slide_red.png", :size => "35x30", :alt => "Edit Entry", :id =>'show_noti') %>
+   <% else %>
+    <%= image_tag("slide.png", :size => "35x30", :alt => "Edit Entry",:id =>'show_notis') %>
+   <% end %>
+   </div><br/>
   	 	
    <% if current_user %>
    
@@ -11,7 +26,7 @@
       	<div id="navWrap">
 		<ul id="gnav">
 
-        <li><div id='image_div'><%= image_tag("tasks_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Tasks Tracking", time_url, :class => session[:time] %></div></li>
+        <li><div id='image_div'><%= image_tag("tasks_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Tasks Tracking", person_times_url, :class => session[:time] %></div></li>
         <li><div id='image_div'><%= image_tag("leaves_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'><%= link_to "Leaves", user_livs_url, :class => session[:leaves] %></div></li>
         <li><div id='image_div'><%= image_tag("calendar_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><div style='float:left'> <%= link_to "NCMM Calendar", calendars_url,:class => session[:calendar] %></div></li>
 		<% if current_user.can_approve == true || current_user.is_admin? %>
