@@ -96,11 +96,9 @@ class PersonTimesController < ApplicationController
   
   def update
     @person_time = PersonTime.find(params[:id])
-   
-      if params[:from] == 'not from edit'
     #if params[:activity_id] == "Select Activity"
       @person_time.update_attributes(params[:person_time])
-      @person_time.end_time = Time.now.to_s(:db)
+      @person_time.end_time = Time.now
       @person_time.save
 
       difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
@@ -110,7 +108,7 @@ class PersonTimesController < ApplicationController
       @person_time.save 
 
       if params[:end_shift].to_i != 1
-         new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => @person_time.end_time,:created_at => Time.now.to_s(:db)) 
+         new_activity = PersonTime.create!(:person_id => current_user.id,:start_time => @person_time.end_time,:created_at => Time.now) 
       end
       @activities = current_user.person_times.user_activities_today.order("created_at DESC") 
       @persons_can_approved = Person.persons_can_approve(current_user.department_id) + Person.get_admins
@@ -125,20 +123,7 @@ class PersonTimesController < ApplicationController
       format.js
       flash[:notice] = "Your activity was successfully ended!" 
      end
-    else 
-    @person_time.update_attributes(params[:person_time])  
-    if !@person_time.end_time.nil?
-      difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
-      total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
 
-      @person_time.total_time = total_time
-      @person_time.save
-    end
-    respond_to do |format|   
-      format.html {redirect_to tasks_report_url}
-      flash[:notice] = "Your activity was successfully updated!"  
-    end   
-    end
   end    
    
   def submit_activities
