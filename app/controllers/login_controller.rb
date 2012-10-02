@@ -4,11 +4,12 @@ class LoginController < ApplicationController
     if request.post?
       @user = Person.authenticate(params[:username],params[:password])
       if @user
+        #Time.zone = "Hong Kong"
         if Time.now.strftime('%H:%M:%S') >= @user.start_time.strftime('%H:%M:%S')
           session[:user_id] = @user.id
           activities_today = @user.person_times.user_activities_today
-          session[:start] = PersonTime.create!(:person_id => current_user.id, :start_time => Time.now.to_s(:db), :created_at => Time.now, :updated_at => Time.now) if activities_today.length == 0
-          redirect_to time_url
+          session[:start] = PersonTime.create!(:person_id => current_user.id, :start_time => Time.now.to_s(:db), :created_at => Time.now.to_s(:db), :updated_at => Time.now.to_s(:db)) if activities_today.length == 0
+          redirect_to person_times_url
         else
           reset_session
           redirect_to :action => :login
@@ -24,6 +25,4 @@ class LoginController < ApplicationController
       reset_session
       redirect_to :action => :login
   end
-  
-
 end
