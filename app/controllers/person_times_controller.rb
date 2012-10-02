@@ -96,7 +96,7 @@ class PersonTimesController < ApplicationController
   
   def update
     @person_time = PersonTime.find(params[:id])
-    #if params[:activity_id] == "Select Activity"
+    if params[:from] == "not from edit"
       if @person_time.update_attributes(params[:person_time])
       @person_time.end_time = Time.now.to_s(:db)
       @person_time.save
@@ -123,7 +123,21 @@ class PersonTimesController < ApplicationController
       format.js
       flash[:notice] = "Your activity was successfully ended!" 
      end
-   end
+     end
+   else
+     @person_time.update_attributes(params[:person_time])  
+     if !@person_time.end_time.nil?
+       difference = Time.diff(Time.parse(@person_time.start_time.strftime('%H:%M:%S')), Time.parse(@person_time.end_time.strftime('%H:%M:%S')), '%h:%m:%s')
+       total_time = difference[:hour].to_s + ":" + difference[:minute].to_s + ":" + difference[:second].to_s
+
+       @person_time.total_time = total_time
+       @person_time.save
+     end
+     respond_to do |format|   
+       format.html {redirect_to tasks_report_url}
+       flash[:notice] = "Your activity was successfully updated!"  
+     end   
+   end      
   end    
    
   def submit_activities
