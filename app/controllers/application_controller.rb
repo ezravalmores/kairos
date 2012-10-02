@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     
      if current_user
        
-        time_url
+        person_times_url
       else
         redirect_to login_url
       end
