@@ -121,11 +121,11 @@
 		
 
 	<% if current_user %>
-	   <%= render :partial => 'layouts/notifications',:locals => { :notifications => notifications } %>
+	 
 	<header>  
-	  <%= render :partial => 'layouts/nav' %>
+	  <%= render :partial => 'nav' %>
 	</header>
-    <%= render :partial => 'layouts/links',:locals => { :notifications => notifications } %>
+    <%= render :partial => 'links',:locals => { :notifications => notifications } %>
     <% end %> 	
    </div>  	
    <br/>
