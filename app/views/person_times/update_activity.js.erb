@@ -1,2 +1,3 @@
-$j("#activity_<%= escape_javascript("#{@activity.id}") %>").replaceWith("<%= escape_javascript(render(:partial => "sprout/shared/note", :object => @note)) %>");
-$j("#activity_<%= escape_javascript("#{@activity.id}") %>").effect("highlight", {}, 3000);
+$j("#activities").prepend("<%= escape_javascript(render(:partial => "activity", :locals => {:activity => @person_time})) %>");
+$j("#activity_<%= @activity.id.id %>").effect("highlight", {}, 3000);
+

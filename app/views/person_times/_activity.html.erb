@@ -1,0 +1,36 @@
+<tr id='hey' style='display:none'><tr>
+<tr id ='activity_<%=activity.id %>' class="<%= cycle('odd','even') %>">
+  <td style="width: 1000px">
+	<div style="margin-left:-30px">
+	  
+    <%= activity.start_time.strftime('%l:%M:%S %p').downcase if !activity.start_time.blank? %>
+	</div>
+  </td>
+
+  <td style="width: 1000px"><%= activity.end_time.strftime('%l:%M:%S %p').downcase if !activity.end_time.nil? %></td>
+  <td style="width: 1000px"><%= activity.activity.name if !activity.activity_id.blank? %></td> 
+
+  <td style="width: 1000px"><%= activity.specific_activity.name if !activity.specific_activity_id.blank? %></td> 
+  <td>
+
+  <% if !activity.total_time.nil? %>	
+    <%= activity.total_time.strftime("%H:%M:%S") %></td>
+  <% else %>
+    <td><span>&nbsp;</span></td>
+  <% end %>
+
+  <% if activity.is_overtime == 1 %>
+     <td><div class='handle'>
+	  <span class="label label-inverse">
+	  <%= link_to 'ST', update_is_not_overtime_url(activity) %>
+	  </span>
+	</div></td>
+  <% elsif !activity.end_time.nil?   %>
+     <td><div class='handle'>
+	   <span class="label label-important">
+	   <%= link_to 'OT', update_is_overtime_url(activity) %>
+	   </span>
+	</div></td>
+  <% end %>  
+  </td>
+  </tr>

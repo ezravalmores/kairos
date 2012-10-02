@@ -1,1 +1,7 @@
-$("#special-gifts").html("<%= escape_javascript(render(partial: 'profile/activities')) %>");
+$("#activity_<%= @person_time.id %>").replaceWith("<%= escape_javascript(render(:partial => "activity", :locals => {:activity => @person_time})) %>");
+$("#activity_<%= @person_time.id %>").addClass('<%= cycle('odd','even') %>')
+$("#activity_<%= @person_time.id %>").effect("highlight",{}, 10000);
+$("#hey").replaceWith("<%= escape_javascript(render(:partial => "act", :locals => {:activity => @activities.first})) %>");
+$("#form_time_div").replaceWith("<%= escape_javascript(render(:partial => "edit_activity_form")) %>");
+
+<%= flash_notice(flash.first[1], flash.first[0]) unless flash.blank? %>

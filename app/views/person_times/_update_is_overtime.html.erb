@@ -1,0 +1,9 @@
+<span><small><%='Overtime' %></small></span>
+<div class="handle">
+    <%= form_for(activity,:url => update_is_overtime_person_times_url(activity),:html => { :method => :put }, :remote => true) do |f| %>
+      <div>
+          <%= f.check_box :is_overtime, :class => 'submittable' %>
+          <%= f.label :is_overtime, "Overtime" %>
+      </div>
+  <% end %>
+</div>

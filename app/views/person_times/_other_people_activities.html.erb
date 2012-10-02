@@ -1,0 +1,8 @@
+<div id="other_people_activities">
+<label><%= "0 Activities" if @other_people_activities.count == 0 %>
+</div>
+<% for activity in @other_people_activities %>
+<div id="other_people_activities">
+  <label class="label_bold"><%= activity.person.first_name %></label>&nbsp; <label>has ended working on <label class="activity_color"><%= activity.activity.name %></label> from <%= activity.start_time.strftime('%H:%M:%S') %> to <%= activity.end_time.strftime('%H:%M:%S') %> </label>
+</div>
+<% end %>	
