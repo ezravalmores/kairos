@@ -1356,7 +1356,6 @@ font-size:0;
 }
 #gnav a.active{
 	color:#ffffff;
-	padding:6px 8px 8px 8px; 
 	font-weight:bold;
 	/*border-top:2px solid #dd4b39;*/
 }
@@ -1385,24 +1384,21 @@ font-size:0;
 #gnav li:hover a, #gnav a:focus,  
 #gnav a:active {  
     color:#fff;   
-
     text-decoration:none;   
 }  
   
 #gnav li ul, #gnav ul li  {  
     width: 10em;  
-
 }  
   
 /*--drop down menu styling is different from main nav, strict rule--*/  
 #gnav ul li a  {  
     color: #B8B8B8 !important;  
 	line-height:1.3em;
-    border-right: 0;  
+    border-right: 0;
 }  
 #gnav ul li a:hover  {  
-    color:#3333FF !important;  
-   
+    color:#3333FF !important;
     border-right: 0;  
 }  
   
@@ -1430,7 +1426,6 @@ font-size:0;
 }  
   
 #gnav ul a:hover {  
-  
     color: #FFFFFF !important;  
 }  
   
