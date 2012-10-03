@@ -1331,16 +1331,17 @@ font-size:0;
 }
 
 #gnavWrap{
-	margin:0;
-	background-color:#2d2d2d;
+    margin-bottom:-2px;
+	margin-left:-45px;
 	overflow:hidden;
 }
 #gnav{
 	font-family:Arial, sans-serif;
 	font-size:12px;
 	list-style:none;
-	margin:0;
-	padding-left:60px;
+	margin-bottom:-1px;
+
+
 }
 #gnav a{
 	color:#cccccc;
@@ -1351,12 +1352,32 @@ font-size:0;
 #gnav li{
 	float:left;
 }
+.calendar{
+ width:150px;	
+}
+.approvals{
+ width:110px;	
+}
+.reports{
+ width:100px;	
+}
+.admin{
+ width:100px;	
+}
+.tasks{
+ width:150px;	
+}
+.leaves{
+ width:100px;	
+}
 #gnav li:hover a{
 
 }
 #gnav a.active{
 	color:#ffffff;
+	background-color: #9D3F3A;
 	font-weight:bold;
+	border-radius:5px;	
 	/*border-top:2px solid #dd4b39;*/
 }
 #gnav a.dmenu {  
@@ -1364,17 +1385,15 @@ font-size:0;
 }  
   
 #gnav a.dmenu:hover {  
-    color:#3333FF !important;  
-    background-color: #fff !important;  
+    color:#ffffFF !important;  
 }
 #gnav li ul {  
     position: absolute;  
     display: none;  
     margin-left:-1px; 
-    margin-top: 35px; 
+    margin-top: -3px; 
     padding-bottom:10px;  
     background-color: #2d2d2d;  
-    
     border-top:none;  
     line-height:1.3em;
     /*--make it top of all the elements on page, so that it can be visible--*/  
@@ -1447,7 +1466,8 @@ font-size:0;
 #image_div{
  float:left;
  margin-top:5px;
- margin-left:20px;	
+ margin-left:10px;	
+ margin-right:5px;
 }
 
 #image_div:hover{
