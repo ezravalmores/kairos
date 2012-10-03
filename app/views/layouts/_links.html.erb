@@ -10,13 +10,7 @@ $('document').ready(function() {
   <div class="container">
   
    <a class="brand" href="#">KAIROS - <%= current_user.organization.name %> - <%= current_user.name %></a>
-   <div style='margin-top:-40px;margin-left:285px'>
-   <% if notifications.count > 0 %>	
-   <%= image_tag("slide_red.png", :size => "35x30", :alt => "Edit Entry", :id =>'show_noti') %>
-   <% else %>
-    <%= image_tag("slide.png", :size => "35x30", :alt => "Edit Entry",:id =>'show_notis') %>
-   <% end %>
-   </div><br/>
+
   	 	
    <% if current_user %>
    
