@@ -1384,7 +1384,6 @@ font-size:0;
 }
 #gnav li:hover a, #gnav a:focus,  
 #gnav a:active {  
-    padding:7px 7px 7px 7px;          
     color:#fff;   
 
     text-decoration:none;   
@@ -1418,7 +1417,7 @@ font-size:0;
 }  
   
 #gnav a.current:hover{  
-    padding-bottom:5px; /*--removing 2px border from 7px padding--*/  
+   padding-bottom:5px; /*--removing 2px border from 7px padding--*/  
 }  
   
 #gnav li:hover ul {  
