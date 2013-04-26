@@ -1,12 +1,7 @@
-<nav>
-   
-   	<div class="menu">
-		<ul>
-		  <li><!-- Do not add any class for links with dropdown -->	        
-	         <!-- Drop Down menu Items -->
-	 
-	</div>
-    <%= current_user.email_address %> 
-    <%= raw(" | " + link_to('My Profile',edit_person_url(current_user))) %>
-    <%= raw(" | " + link_to('Sign out', logout_url,{ :confirm => "Are you sure you want to sign out?"})) %>
-</nav>
+
+    <%= link_to('Sign out', logout_url,:class => 'right') %> 
+    <%= link_to('My Profile |',edit_person_url(current_user), :class => 'right') %>
+    <div class='right' style='margin-right: 3px'>
+      <%= current_user.name + " " + "|" %> 
+    </div>
+
