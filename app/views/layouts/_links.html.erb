@@ -1,65 +1,44 @@
-<script>
-$('document').ready(function() {
-
-   $('#show_noti').click(function() {
-       $('#notifications_con').slideToggle();
-     });
-});
-</script>
-<div class="navbar-inner">
-  <div class="container">
+ <h1><%= current_user.department.name %></h1>
+ <div id="tabs">
   
-   <a class="brand" href="#">KAIROS - <%= current_user.organization.name %> - <%= current_user.name %></a>
-
-  	 	
-   <% if current_user %>
-      	<div id="gnavWrap">
-		<ul id="gnav">
-
-        <li class='tasks'><div><div id='image_div'><%= image_tag("tasks_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><%= link_to "Tasks Tracking", person_times_url, :class => session[:time] %></div></li>
-        <li class='leaves'><div><div id='image_div'><%= image_tag("leaves_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><%= link_to "Leaves", user_livs_url, :class => session[:leaves] %></div></li>
-        <li class='calendar'><div><div id='image_div'><%= image_tag("calendar_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><%= link_to "NCMM Calendar", calendars_url,:class => session[:calendar] %></div></li>
-		<% if current_user.can_approve == true || current_user.is_admin? %>
-		<li class='approvals'><div><div id='image_div'><%= image_tag("approvals_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><a class="dmenu" href="#">Approvals <span class="arrowdown">▼</span></a></div>  
-		            <ul>  
-		                <li><%= link_to "Tasks Approvals", tasks_approval_url  %></li>
-				        <li><%= link_to "Leave Approvals", leaves_approval_url  %></li>
-		            </ul>  
-
-		</li>
-		<% end %>
-		
-		<% if current_user.is_admin? || current_user.is_supervisor? %>
-		<li class='reports'><div ><div id='image_div'><%= image_tag("reports_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><a class="dmenu" href="#">Reports <span class="arrowdown">▼</span></a></div>  
-			  <ul> 
-			  <li> <%= link_to "Tasks Report", tasks_report_url %></li>
-			  <li> <%= link_to "Utilization Rate Report", utilization_rate_report_url %></li>	
-		      <li class="divider"></li>
-		      <li><%= link_to "Activities", activities_url if current_user.is_supervisor? %></li>
-		      <li><%= link_to "Specific Activities", specific_activities_url if current_user.is_supervisor? %></li>
-		      <li><%= link_to "People", people_url if current_user.is_supervisor? %></li>
-		    </ul>
-		</li>
-		 <% end %>
-		<% if current_user.is_admin? %>
-			<li class='admin'><div><div id='image_div'><%= image_tag("admin_2.gif", :size => "20x15", :alt => "Edit Entry") %></div><a class="dmenu" href="#">Admin<span class="arrowdown">▼</span></div></a>  
-				  <ul>
-			  <li><%= link_to "People", people_url %></li>
-			  <li class="divider"></li>
-			  <li><%= link_to "Activities", activities_url %></li>
-			  <li><%= link_to "Specific Activities", specific_activities_url %></li>	 
-		    </ul>
-		   </li>
-		 <% end %>
-		
-		</ul>
-		
-	
-	<% end %>
-	 </ul>	
-
- 
-    </div>
- 
+  <% if session[:time] == 'active' %>
+    <div class="active_link left" style="margin-left:2px">	
+	    <%= link_to "Manage Tasks", person_times_url %>
+	  </div>	
+  <% else %>	
+  <div class="tabnav left" style="margin-left:2px">	
+    <%= link_to "Manage Tasks", person_times_url %>
   </div>
+  <% end %>
+
+
+  <% if session[:leaves] == 'active' %>
+  <div class="active_link left" style="margin-left:2px">	
+    <%= link_to "leaves", user_livs_url %>
+  </div> 
+  <% else %>
+    <div class="tabnav left" style="margin-left:2px">	
+	   <%= link_to "leaves", user_livs_url %>
+	</div>
+  <% end %> 
+  <div class="tabnav left" style="margin-left:2px">	
+    <% link_to "Calendar", calendars_url %>
+  </div>
+
+<% if current_user.is_admin? %>	
+ <div class="tabnav right" style="margin-left:2px">	
+   <%= link_to "Leaves Approval", leaves_approval_url %>
+ </div>
+ <div class="tabnav right" style="margin-left:2px">	
+   <%= link_to "Activities", activities_url %>
+</div>
+<div class="tabnav right" style="margin-left:2px">	 
+   <%= link_to "Specific Activites", specific_activities_url %>	
+</div>
+<div class="tabnav right" style="margin-left:2px">	
+   <%= link_to "People", people_url %>
+</div>
+<% end %>
+
+ </div>
 </div>
