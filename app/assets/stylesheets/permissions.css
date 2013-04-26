@@ -1,0 +1,49 @@
+@import url('people.css');
+
+/*=======================
+  Permission tile
+========================*/
+
+li.person_tile.permission small {
+  display:block;
+  position:static;
+}
+
+/*=======================
+  Right side:add person
+========================*/
+
+div#right-side.add-person div.block {
+  border-top:1px solid #e0e0e0;
+  margin:20px 0;
+  padding:5px 0;
+}
+div#right-side.add-person div.field {
+  height:auto;
+  width:auto;
+}
+div#right-side.add-person div.field input {
+  float:none;
+}
+div#right-side.add-person div.field label {
+  display:block;
+  float:none;
+  font-size:.8em;
+  margin-bottom:2px;
+}
+div#right-side.add-person div.submit {
+  border:none;
+  clear:both;
+  float:left;
+  margin:10px 0 0 0;
+  padding:0 !important;
+}
+div#right-side.add-person form {
+  overflow:hidden;
+}
+div#right-side.add-person h2 {
+  font-size:1em;
+}
+div#right-side.add-person h3 {
+  font-size:.9em;
+}
