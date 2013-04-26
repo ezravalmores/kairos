@@ -1,0 +1,79 @@
+@import url('master.css');
+
+form.person {
+  margin-top:20px;
+}
+form.person div.field input  {
+  width:275px;
+}
+form.person div.field input#person_password  {
+  width:200px;
+}
+form.person div.field label  {
+  float:left;
+  padding-top:4px;
+  width:100px;
+}
+
+/*=======================
+  People tiles
+========================*/
+
+li.person_tile {
+  border:1px solid #ccc;
+  float:left;
+  margin:6px 0 6px 12px;
+  padding:5px;
+  position:relative;
+  width:228px;
+}
+li.person_tile a.red {
+  text-decoration:underline;
+}
+li.person_tile:hover {
+  background-color:#ffb;
+}
+li.person_tile:hover small {
+  display:block;
+}
+li.person_tile h4 {
+  margin:0;
+}
+li.person_tile img.trash {
+  padding:3px;
+  vertical-align:top;
+}
+li.person_tile small {
+  display:none;
+  position:absolute;
+    top:2px;
+    right:2px;
+}
+
+/*=======================
+  Right side
+========================*/
+
+div#right-side h5 {
+  border-bottom:1px solid #ddd;
+  margin:10px 0 5px 0;
+  padding:2px 0;
+  text-transform:uppercase;
+}
+
+form#campaign_access {
+  margin:10px;
+}
+form#campaign_access div.field {
+  margin:5px;
+}
+form#campaign_access div.field input  {
+  vertical-align:baseline;
+}
+form#campaign_access div.field label.check  {
+  font-weight:normal;
+  font-size:.8em;
+}
+form#campaign_access div.submit {
+  margin:10px 0;
+}
