@@ -25,10 +25,7 @@
     <% link_to "Calendar", calendars_url %>
   </div>
 
-<% if current_user.is_admin? %>	
- <div class="tabnav right" style="margin-left:2px">	
-   <%= link_to "Leaves Approval", leaves_approval_url %>
- </div>
+<% if current_user.is_admin? || current_user.is_supervisor? %>	
  <div class="tabnav right" style="margin-left:2px">	
    <%= link_to "Activities", activities_url %>
 </div>
