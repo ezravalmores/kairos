@@ -1,0 +1,64 @@
+<script>
+  $(document).ready(function() {
+    $('#date_field_1,#date_field_2').datepicker({
+	  showOn: "both", 
+	  buttonImage: "<%= asset_path('calendar.gif') %>", 
+	  buttonImageOnly: true,
+	  changeMonth: true,
+	  changeYear: true,
+	  hideIfNoPrevNext: true,
+	  currentText: 'today',
+	  dateFormat: 'yy-mm-dd',
+	  onSelect: function(dateText, inst) {
+        $('#search_activities_form').submit();						
+      }
+	});
+  });
+</script>
+<div id="left-side" class="matting">
+    <div class="h3">
+        <h3><%= "Create A leave" %></h3>
+	</div>
+    <div class='field'>Fill out all information to create a request for leave</div><br/>
+      
+	  <%= form_tag create_leave_user_livs_url, :html => {:method => :post, :class => 'person'} do %>
+	
+	  <div class='field'>
+	    <b>Date Created</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <%= Date.today.strftime("%B %d, %Y") %>
+	  </div>	
+		   
+	  <div class ="field">
+        <b>Employee</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= current_user.name %>
+      </div>
+		   
+	  <div class ="field">
+	    <b>Start Date</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= text_field_tag :from_date, "", :id => "date_field_1" %>
+		<%= hidden_field_tag :name, "leave" %> 
+      </div>
+		   
+	  <div class ="field">
+	    <b>End Date</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+		<%= text_field_tag :to_date, "", :id => "date_field_2" %>
+	  </div>
+	
+	  <div class ="field">     
+	    <b>Length</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <%= select_tag('length',options_for_select(['Half Day','Whole Day']),:include_blank => true, :class => 'small_select') %>
+	  </div>
+		  
+	  <div class='field'>
+	    <b>Leave Type</b>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <%= select_tag('leave_type_id',options_from_collection_for_select(LeaveType.all.collect, :id, :name, params[:leave_type_id]),:include_blank => true, :class => 'small_select') %>
+	  </div>
+	
+	  <div class ="field">		    <b>Reason</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <%= text_area_tag :reason,"",:class => "field_div_2",:size => "50x10" %>
+	  </div><br/>
+	  <div class='field'>
+	   <%= submit_tag "Save and create leave", :class => 'btn btn-primary' %>
+	  </div>
+	<% end %>
+</div>	
