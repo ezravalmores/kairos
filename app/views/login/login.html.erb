@@ -1,20 +1,18 @@
-<div id='login-wrap'>	
-	 	<div class='log_in_image'>
-		  <%= image_tag('kairos.png', :size => "130x140") %>  	
-		</div>
-<div id = "login">
-<div class='log_in_header'>
-  Sign in to<br/>
-  <font style='font-weight:bold'>KAIROS</font>	
-</div>	<br/>
-<%= form_tag :action => :login do %>
 
-        <%= text_field_tag :username,nil,:size => 15, :placeholder => "username", :class=> "input" %>
-  
-        <%= password_field_tag :password,nil,:size => 15, :class => "input", :placeholder => "password" %>
-    <div style="margin-left:15px;text-align:center;">
-        <%= submit_tag "SIGN IN", :class => "btn btn-primary" %>
+<div id="login">
+       <h2>Login to Kairos</h2>
+
+<%= form_tag :action => :login do %>
+		<p>
+		<label for="username">Username</label>	
+        <%= text_field_tag :username,nil,:size => 28 %>
+  		</p>
+		<p>
+		<label for="password">Password</label>	
+        <%= password_field_tag :password,nil,:size => 28 %>
+		</p>
+    <div style="margin-left:20px;margin-bottom:10px;text-align:center;">
+        <%= submit_tag "Login →" %>
     </div>
 <% end %>
-</div>
 </div>
