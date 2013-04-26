@@ -96,7 +96,7 @@ Ncm1Kairos::Application.routes.draw do
     collection do
       post :create_leave
       put :submit_leaves
-      put :approve_leaves 
+      put :approve_leaves
       put :approve_canceled_leaves
     end    
   end
