@@ -30,23 +30,28 @@
 	});
   });
 </script>
-<div id ="form_time_div">	
+<div id="right-side" class="details">	
   <% if @activities.count != 0 && @unfinished_activity.nil? %>
-    <div id ="inside-left">
-	  <div style ="margin-top:-8px">
-	    <label style="font-weight:bold">select people who will receive notification </label>
-	  </div>	
-      <div id='right'>
+	<div id='contacts'> 
+	<div id="progress">
+	    <%= render :partial => 'progress_bar', :locals => { :rate => @rate } %>
+	 </div>
+	<div id="current_contact">
+    <h2><%= "Submit Tasks" %></h2>
+	<p><%= "this will submit and notify people"  %></p>	
+	 <div class='widget' style="padding:10px">	
+	 select people who will receive notification
+
 	    <%= form_tag submit_activities_person_times_url,:method => :put do %>
-	      <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select All</span><br/><br/>
+	      <% check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %>
 			<% for person in @persons_can_approved %>
-		    <div style='width:400px;margin-top:-10px'>
-			<div class='involved_two'>&nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span><%= person.name %></span></div></div>     
-			<% end %><br/><br/><br/>
+
+		<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span><%= person.name %></span></br>
+			<% end %><br/>
    		    <% for activity in @activities %>
 		      <%= hidden_field_tag("activities[]",activity.id) %>
 		    <% end %>
-		  <div style='margin-top:10px'>	
+
 		  <%= submit_tag "Submit Activities Today" ,:class => 'btn' %>&nbsp;&nbsp;&nbsp; 
 			<% if !activity.is_submitted? && !activity.is_approved? %>
 		        <span class="label label-warning">Not Submitted</span>
@@ -55,39 +60,52 @@
 		      <% elsif activity.is_approved? %>
 		        <span class="label label-info">Approved</span>
 		    <% end %>		
-		  </div>	
+	
 	    <% end %>	
-	  </div>
-	 </div>
-	<%= render :partial => "time_summaries"%>
+	</div> 	
+		<%= render :partial => "time_summaries"%>
+	</div>
+	</div>
+
   <% elsif @activities.count != 0 && !@unfinished_activity.nil? %>  	
-    <div id ="inside-left">
-	  <%= form_for(@activities.first,:remote => true) do |f| %>     
-        <fieldset>
-	       <div style ='margin-left:-40px'> 
-	         <div id="label_text_holder">
-			   <div style='margin-left:10px;margin-bottom:5px;'>
-		         <em>end current activity</em>
-			   </div>
-			
-	           <div id ="left"><%= hidden_field_tag(:from,'not from edit')%><%= f.label :start_time, "Start Time" %></div>
-	           <div id="right_with_bg"><%= f.label :start_time, @unfinished_activity.start_time.strftime('%l:%M:%S %p') %></div>
-	           <div id="left"><%= f.label :activity_id, "Activity" %></div>
-               <div id="right"><%= f.select('activity_id', options_for_select(["Select Activity"]) +	options_from_collection_for_select(options_for_activity(current_user.department_id), :id, :name), :id => "act_id") %></div>
-			   <div style="margin-top:-100px">
-	           <div id="left"><%= f.label :specific_activity_id, "Specific Activity" %></div> 
-	           <div id="right"><%= f.select("specific_activity_id","", :include_blank => true) %> </div></div></div><br/>
-			   <div style="margin-left:40px;margin-bottom:-10px;float:left;margin-top:2px">
-				<%= f.submit :end, :value => "end activity", :class => 'btn' %><div style='margin-top:-28px;margin-left:230px'><%= kairos_end_switch %></div><div style='margin-top:-23px;margin-left:110px'><span class="label label-info">CONTINUE SHIFT?</span></div>
-			  </div>	
-	   <% end %>
-	 </div></div>
-	 <%= render :partial => "time_summaries" %>
+    <div id='contacts'>
+	  <div id="progress">
+	    <%= render :partial => 'progress_bar', :locals => { :rate => @rate } %>
+	  </div> 
+	 <div id="current_contact">
+	   <h2><%= "End Current Task" %></h2>
+       <p><%= "this will end and create new blank task"  %></p>
+     	
+	   <div class='widget'>	
+	     <%= form_for(@activities.first,:remote => true ) do |f| %>     
+          	 <ul>	
+             <%= label_tag :Continue,"Continue?" %>  
+             <%= kairos_end_switch %>
+		 	 </ul>
+			 <ul>	
+      		  <%= hidden_field_tag(:from,'not from edit')%>
+ 			 </ul>	
+	         <ul>
+	         <%= f.label :start_time, "Starting Time" %>
+	         <div style='margin-left:5px'><%= f.label :start_time, @unfinished_activity.start_time.strftime('%l:%M:%S %p') %></div>
+	         </ul>
+			 <ul>
+	         <div style='margin-left: -9px'><%= f.label :activity_id, "Task" %></div> 
+             <div style='margin-top:-27px;margin-left:83px'><%= f.select('activity_id', options_for_select(["Select Activity"]) +	options_from_collection_for_select(options_for_activity(current_user.department_id), :id, :name), :id => "act_id") %></div>
+			</ul>
+			<ul>
+            <%= f.label :specific_activity_id, "Specific Task" %>
+	        <div style='margin-top:10px;margin-left:83px'><%= f.select("specific_activity_id","", :include_blank => true) %></div>
+			</ul>
+			<ul>
+		      <div style='margin-bottom:5px;margin-left:-10px'><%= f.submit :end, :value => "End Task →" %> </div>
+			</ul>
+	   <% end %>	
+	   </div>	
+	   <%= render :partial => "time_summaries" %>
+	 </div>
+    </div>	 
 	<% else %>
-		<div id ="inside-left">
-		  <div id = "right">
-		    <%= label :message, "No Results found" %>
-		  </div>	
-		</div>	
+      <%= label :message, "No Results found" %>
 	<% end %>		
-</div></div>
+</div>
