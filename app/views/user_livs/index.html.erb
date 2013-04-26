@@ -1,147 +1,27 @@
-<script>
-  $(document).ready(function() {
-    $('#date_field_1,#date_field_2').datepicker({
-	  showOn: "both", 
-	  buttonImage: "<%= asset_path('calendar.gif') %>", 
-	  buttonImageOnly: true,
-	  changeMonth: true,
-	  changeYear: true,
-	  hideIfNoPrevNext: true,
-	  currentText: 'today',
-	  dateFormat: 'yy-mm-dd',
-	  onSelect: function(dateText, inst) {
-        $('#search_activities_form').submit();						
-      }
-	});
-  });
-</script>	
-<div class='container'>    
-  <div class='row'>
-    <div class='span13'>
-  	  <h4>  </h4><br/>
-	  <center><h1>Leave Information</h4>
-      <span><em>Fill out all information to create a request for leave</center></em></span><br/>
-      
-	  <%= form_tag create_leave_user_livs_url, :method => :post do %>
-	   <div class ="user_liv_form"> 
-	     <div class ="containers_1">	
-	       <div class ="label_div">
-			 <label>Date Today</label>
-		   </div>
-		   <div class = "field_div">
-			 <%= Date.today.strftime("%B %d, %Y") %>
-		   </div>
-	      
-		   <div class ="space">
-			 &nbsp;&nbsp;
-		   </div>
-	
-		   <div class ="label_div">
-		     <label>Employee</label>
-		   </div>
-		   <div class = "field_div">
-		     <%= current_user.name %>
-		   </div>
-	     </div>	
-	
-	     <div class= "containers_2">
-		   <div class ="label_div">
-		     <label>from Date</label>
-		   </div>
-		   <div class = "field_div">
-		     <%= text_field_tag :from_date, "", :id => "date_field_1" %>
-		     <%= hidden_field_tag :name, "leave" %>
-		     
-		   </div>
-		  
-		   <div class ="space">
-			 &nbsp;&nbsp;
-		   </div>	
-		
-		   <div class ="label_div">
-		     <label>to Date</label>
-		   </div>
-		   <div class = "field_div">
-		     <%= text_field_tag :to_date, "", :id => "date_field_2" %>
-		   </div>
-		   
-		   	   <div class ="label_div">
-			     <label>Length</label>
-			   </div>
-			   <div class = "field_div">
-				 <%= select_tag('length',options_for_select(['Half Day','Whole Day']),:include_blank => true, :class => 'small_select') %>
-			   </div>
-		 </div>
-		 <div class= "containers_3">
-		   <div class ="label_div">
-		     <label>Leave Type</label>
-		   </div>
-		   <div class = "field_div">
-			 <%= select_tag('leave_type_id',options_from_collection_for_select(LeaveType.all.collect, :id, :name, params[:leave_type_id]),:include_blank => true, :class => 'small_select') %>
-		   </div>
-			
-		   <div class ="space">
-		     &nbsp;&nbsp;
-		   </div>
-			
-		   <div class ="label_div">
-		     <label>Reason</label>
-		   </div>
-		   <div class = "field_div">
-		     <%= text_area_tag :reason,"",:class => "field_div_2" %>
-		   </div>
-		 
-		  </div>
-	    	    
-	     <br/>
-		  <div style="width:900px;height: 1%; overflow: hidden;padding:5px;border-radius: 5px;floar:left">	
-			<div style="width:400px;float:left">
-			  <% if current_user.is_supervisor? || current_user.is_admin? %>
-			    <%@disable == true %>
-			  <% else %>
-				<%@disable == false %>
-			  <% end %>		
-			  <%= check_box_tag("master",1,true,{ :id => "select_all", :onclick => "toggleItems(this,'people_involved')",:disabled => @disable  }) %><span style="font-weight:bold"> select all people who will be notified in the application</span><br/><br/>
-			  <% for person in @people %>
-			   &nbsp;<div class='involved'><%= check_box_tag("people_involved[]",person.id,true,{ :class => "people_involved", :onclick => "toggleMaster(this,'select_all')",:disabled => @disable }) %>&nbsp;<%= person.name %></div>&nbsp; 
-			  <% end %>  
-			  </div>
-		  </div>
-		
-		 <div style="margin-left:400px;margin-top:-50px;float:left">
-			  <%= submit_tag "Create Leave(s)", :class => 'btn btn-primary' %>
-		 </div>
-		 <div style="margin-left:600px;margin-top:-50px;float:left">
-		  Sick Leave: <%= current_user.remaining_sick_leave %>&nbsp;&nbsp;&nbsp;&nbsp;Vacation Leave: <%= current_user.remaining_vacation_leave %> 
-		 </div> 	
-		</div>		
-		<% end %>
-		  <center><font style='font-weight:bold'>List of Leave(s)</font>
-	      <span><em>note: you need to select leave(s) and people to submit leave(s)</center></em></span><br/>
-	    <%= form_tag submit_leaves_user_livs_url,:method => :put do %>
-
-		<div id="special-gifts" class="report">
-		  <table>
-		    <tr>
-			  <th><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></th>
-		      <th>Made on</th>
-			  <th>Leave Type</th>
-		      <th>Reason</th>
-		  	  <th style='width: 1000px'>Date of Leave</th>
-			  <th>Length</th>
-			  <th>Approved by</th>
-		      <th></th>        
+<%= form_tag submit_leaves_user_livs_url,:method => :put do %>
+<div id="left-side" class="matting">
+    <div class="h3">
+        <h3><%= current_user.name + " " +"Leave(s)" %></h3>
+	</div>	
+	<div id="contacts">
+      <table cellspacing="0">
+	    <thead>
+		<tr>
+			  <td><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></td>
+		      <td>Made on</td>
+			  <td>Leave Type</td>
+		      <td>Reason</td>
+		  	  <td>Date of Leave</td>
+			  <td>Length</td>
+			  <td>Approved by</td>
+		      <td></td>        
 		    </tr>
-
+		</thead>
+		<tbody>	
 			<% for leave in @leaves %> 
-		      <% if leave.is_active == false %>
-			    <tr class="not_active">
-			  <% elsif leave.is_active == false && leave.is_canceled == true && leave.is_approved == true %>
-				<tr class="is_canceled">
-			  <% else %>
-				<tr class="<%= cycle('odd','even') %>"> 
-			  <% end %>
-			      <td style="padding: 5px; height: 3px">
+		  
+				<tr> 
+			      <td>
 			      <%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
 					
 				<% if leave.is_submitted == true && leave.is_approved == false %>
@@ -155,14 +35,13 @@
 				</td>
 		  		  <td>	<!--<% if leave.with_pay == true %>
 					      <span class="label label-success">wp</span>&nbsp;
-					    <% end %>--><%= leave.created_at.strftime("%B %d, %Y") %></td>
+				   <% end %>--><%= leave.created_at.strftime("%B %d, %Y") %></td>
 		          <td><%= leave.leave_type.name %></td>
-		          <td style='width:1300px'><%= leave.reason %></td>
+		          <td><%= leave.reason %></td>
 		          <td><%= leave.date.strftime("%B %d, %Y") %></td>
 			      <td>
 				    <%= leave.length %>
 			      </td>
-
 			      <% if !leave.approved_by.nil? %>
 			        <% @approved_by = Person.find(leave.approved_by) %>
 		 	        <td><%= @approved_by.name %></td>
@@ -178,30 +57,30 @@
 		          </td>
 		        <% end %>
 			  </tr>
-		    </table>
-          </div>
-		  <div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px">	
-		 	  <div style='float:left;width:550px'><label style='font-weight:bold'>Select People who will approve your leave request</label>
-				  <label class='grey'>The people you select will get an email about your request for leave(s).<br/>
+		   <tbody>  
+		  </table>		
+ </div>		
+</div>
+<div id="right-side" class='details'>
+    <div id='contacts'>
+	 <div id="current_contact">
+	   <h2><%= "Submit Leave(s)" %></h2>
+       <p><%= "this will submit your selected leave(s)"  %></p>
 		
-				</div>  
-				<div style='width: 300px;float:left;padding-left:50px'>
-					 <label style='font-weight:bold'>These are the statuses of the created leaves</label>
-					 <span class="label label-success">s</span> - Submitted &nbsp;&nbsp;
-					  <span class="label label-info">a</span> - Approved &nbsp;&nbsp;
-					  <span class="label label-inverse">p</span> - Planned
-				  </div>
-		 <div style="width:500px">	
-		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select People</span><br/><br/>
-		  <% for person in @persons_can_approved %>
-		   &nbsp;<div class='involved'><%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<%= person.name %></div>&nbsp; 
-		  <% end %>  
-		  </div>
-		  <div style="float:right;margin-top:-40px;margin-right:0px">
-		  <%= submit_tag "Submit Selected Leaves", :class => 'btn btn-primary' %>
-		  </div>	
-		  </div>	
-	   <% end %>
+	   <div class='widget' style="padding:10px">	
+	     select people who will receive notification<br/></br>
+	     
+	     <% check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %>
+			  <% for person in @persons_can_approved %>
+			  <%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span><%= person.name %></span></br>
+			  <% end %> <br/> 
+			  <%= submit_tag "Submit Selected Leaves", :class => 'btn btn-primary' %>
+	   </div>	
+	 </div>
 	</div>
-  </div>
+</div>
+<% end %>
+<div id="right-side" class='details'>
+	<div id='contacts'>
+<%= button_to "Create a new leave", new_user_liv_url, :method => :get %></div>
 </div>
