@@ -16,7 +16,7 @@ class LoginController < ApplicationController
           flash[:warning] = "Sorry, you can't login at the moment, wait for your shift to start"
         end  
       else
-        flash[:warning] = "Could not log you in!"
+        flash[:warning] = "Username or Password incorrect!"
       end
     end
   end
