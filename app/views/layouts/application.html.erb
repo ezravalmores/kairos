@@ -21,7 +21,7 @@
 		
      <%= render :partial => 'layouts/flash_message' %> 
 	<% if current_user %>
-	  <% if current_user.is_admin? %>	
+	  <% if current_user.is_admin? || current_user.is_supervisor? %>	
 	    <div id="page-head-black">
 	      <div id="links">	
 	 	    <%= link_to "Tasks Report", tasks_report_url, :class => "left" %>
