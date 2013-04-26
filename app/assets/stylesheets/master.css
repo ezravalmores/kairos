@@ -1,0 +1,485 @@
+* {
+  outline:none;
+}
+
+*.borderless {
+  border:none !important;
+}
+*.hidden {
+  visibility:hidden;
+}
+*.left {
+  float:left;
+}
+*.right {
+  float:right;
+}
+*.red {
+  background-color:inherit;
+  color:#e00 !important;
+}
+
+a, a:hover, a:visited {
+  text-decoration:none;
+}
+a.red, a.red:visited {
+  color:#e00;
+}
+
+p, ul, td {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size:13px;
+  line-height:18px;
+}
+
+body {
+  background:#f5f5f5;
+  color:#222;
+  font:normal normal normal 12pt/normal Helvetica, Arial, sans-serif !important;
+}
+body,hr,img,li,ul {
+  padding:0;
+  margin:0;
+}
+
+div.field_2 {
+  margin:3px 0;
+}
+div.field_2 input {
+  font-size:1em !important;
+  margin:0pt;
+  padding:4px;
+  vertical-align:middle;
+}
+div.field_2 input[type=file] {
+  font-size:.9em !important;
+  margin:0 0 20px 20px;
+}
+
+div.field_2 label {
+  display:block;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+
+div.field {
+  margin:10px 0;
+}
+div.field input {
+  font-size:1em !important;
+  margin:0pt;
+  padding:4px;
+  vertical-align:middle;
+}
+div.field input[type=file] {
+  font-size:.9em !important;
+  margin:0 0 20px 20px;
+}
+
+div.field label {
+  display:block;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+div.submit a.red {
+  text-decoration:underline !important;
+}
+
+div.wide input {
+  height:auto;
+  width:550px;
+}
+div.wide textarea {
+  height:75px;
+  padding:4px;
+  width:552px;
+}
+
+div#progress-bar {
+  background-color:#fff;
+  border:1px solid #eee;
+  height:28px;
+  margin:5px;
+  padding:0 4px;
+  position:relative;
+  width:245px;
+  border-radius:4px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+}
+
+form.button_to input, input.button-to {
+  font-size:1.0em;
+  margin:15px 0;
+  padding:4px 8px 4px 8px;
+}
+
+hr {
+  clear:both;
+  height:1px;
+  visibility:hidden;
+}
+
+img, img:hover {
+  border:none;
+  background-color:#fff;
+}
+
+img.trash {
+  background-color:transparent !important;
+  vertical-align:middle;
+}
+
+li, ul {
+  list-style:none;
+}
+
+p.instructions {
+  margin:20px;
+}
+
+text[text-anchor=end] tspan {
+  display:none;
+}
+
+/*=======================
+  Page head
+ ========================*/
+
+div#page-head {
+  background-color:#1a7099;
+  color:#fff;
+  font-size:.75em !important;
+  min-width:980px;
+  overflow:hidden;
+}
+div#page-head div#links {
+  height:1.5em;
+  padding:10px 10px 0 10px;
+}
+div#page-head a.left, div#page-head a.right {
+  background-color:inherit;
+  color:#eee;
+  margin:0 4px 0 4px;
+}
+div#page-head h1 {
+  font-weight:normal;
+  margin:10px;
+}
+
+
+div#page-head-black {
+  background-color:#000000;
+  color:#fff;
+  font-size:.75em !important;
+  min-width:980px;
+  overflow:hidden;
+}
+div#page-head-black div#links {
+  height:1.5em;
+  padding:10px 10px 0 10px;
+}
+div#page-head-black a.left, div#page-head-black a.right {
+  background-color:inherit;
+  color:#A8A8A8;
+  margin:0 15px 0 4px;
+}
+
+div#page-head-black a:hover {
+  
+  color:#ffffff;
+  margin:0 15px 0 4px;
+}
+
+div#page-head-black h1 {
+  font-weight:normal;
+  margin:10px;
+}
+/*=======================
+  Tabbed navigation
+ ========================*/
+
+div#tabs {
+  overflow:hidden;
+  padding:0 10px;
+}
+
+div.tabnav a, div.tabnav a:visited {
+	background:#468;
+	color:#eee;
+    display:block;
+	margin:4px 0 0 0;
+	font-size:13px;
+	padding:3px 10px 2px 10px;
+	
+	-webkit-border-top-left-radius:4px;
+  -webkit-border-top-right-radius:4px;  
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+}
+div.tabnav a:hover {
+	color:#fff;
+	background:#ccc;
+}
+div.active_link{
+	background:#f5f5f5;
+	color:#446;
+	font-size:1.05em !important;
+	font-weight:bold;	
+	margin-top:0;
+	padding:6px 10px 3px 10px;
+	-webkit-border-top-left-radius:4px;
+  -webkit-border-top-right-radius:4px;  
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+}
+div.tabnav a.active, div.tabnav a.active:visited {
+	background:#f5f5f5;
+	color:#446;
+	font-size:1.05em !important;
+	font-weight:bold;	
+	margin-top:0;
+	padding:6px 10px 3px 10px;
+}
+div.tabnav a.active:hover {
+	background:#f5f5f5;
+	color:#468;
+}
+div.tabnav li {
+	float:left;
+	padding-right:3px;
+}
+
+/*=======================
+  Page wrap
+ ========================*/
+
+div#page-wrap {
+  float:left;
+  padding:20px 0;
+  min-width:1000px;
+}
+
+/*=======================
+  Left side
+ ========================*/
+
+div#left-side {
+  border:double #eee;
+  border-width:0 4px 4px 0;
+  float:left;
+  font-size:.85em !important;
+  height:auto;
+  min-height:500px;
+  margin:0 10px 20px 20px;
+  padding:0 0 10px 0;
+  width:700px;
+}
+div#left-side div.submit {
+  border-top:1px solid #ddd;
+  margin:20px 0;
+  padding:20px !important;
+}
+div#left-side h3 {
+  background:#e5eeef;
+  font-size:1.4em;
+  margin:0 0 10px 0;
+  padding:15px; 
+}
+
+/*=======================
+  Matting
+========================*/
+
+div.matting {
+  background:#fff;
+  border:1px solid #ddd !important;
+  margin:0 20px 20px 20px !important;
+  padding:0 0 20px 0 !important;
+  
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  border-radius:8px;
+  
+  -moz-box-shadow: 3px 3px 6px #ddd;
+  -webkit-box-shadow: 3px 3px 6px #ddd;
+  box-shadow: 3px 3px 6px #ddd;
+}
+div.matting div {
+  padding:5px 20px 0 20px;
+}
+div.matting form.button-to div {
+  padding:0;
+}
+div.matting h3 {
+  margin-top:0;
+  padding:10px;
+
+  -moz-border-radius-topleft:8px;
+  -moz-border-radius-topright:8px;
+  -webkit-border-top-left-radius:8px;
+  -webkit-border-top-right-radius:8px;  
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+div.matting h2 {
+  border-bottom:1px solid #999;
+  padding:2px;
+}
+
+/*=======================
+  Campaign list
+========================*/
+
+li.campaign {
+  color:#222;
+  border-bottom:1px solid #eee;
+  font-size:1.05em;
+}
+li.campaign a, li.campaign a:visited {
+  color:inherit;
+  display:block;
+  padding:8px 5px;
+}
+li.campaign a:hover {
+  background-color:#ffb;
+}
+
+ul.campaigns {
+  margin:20px;
+}
+
+/*=======================
+  Script
+========================*/
+
+div.script {
+  padding:30px 20px 0 20px !important;
+  width:650px !important;
+}
+
+div#script-body {
+  background-color:#f7fdeb;
+  color:#555;
+  float:left;
+  height:520px;
+  overflow:auto;
+  padding:0 20px 0 20px;
+  margin:0 15px 0 15px;
+  width:580px;
+}
+
+/*=======================
+  Right side
+========================*/
+
+div#right-side {
+  float:left;
+  min-width:250px;
+}
+
+/*=======================
+  Login form
+ ========================*/
+
+#login {
+  background:#fff;
+  border:5px solid #1a7099;
+  color:#468;
+  margin:200px auto auto auto;
+  padding:5px 25px 5px 25px;
+  position:relative;
+  width:350px;
+  border-radius: 5px;
+}
+#login h2 {
+  margin-bottom:25px;
+  text-align: center;
+}
+#login input {
+  font-size:1.1em !important;
+  padding:4px;
+}
+#login label {
+  display:block;
+  float:left;
+  margin-top:5px;
+  width:120px;
+}
+
+/*=======================
+  Flash message
+ ========================*/
+
+#notice {
+  position:absolute;
+    left:0;
+    top:0px;
+  text-align:center;
+  width:100%;
+}
+#notice h6 {
+  background-color:#ffd000;
+  color:#777;
+  display:inline;
+  font-size:.85em !important;
+  font-weight:normal !important;
+  margin:0 auto 0 auto;
+  padding:4px 10px 4px 10px;
+  position:relative;
+}
+
+/*=======================
+  Errors
+ ========================*/
+
+div.field_with_errors {
+  background-color:red;
+  float:none;
+  margin:-2px 0 0 -2px !important;
+  padding:2px !important;
+}
+
+h4.error {
+  background:#fba799 url('../images/error.png') 10px 50% no-repeat;
+  border:1px solid #900;
+  border-width:1px 0;
+  color:#900;
+  font-weight:normal;
+  margin:20px 0 !important;
+  padding:5px 43px !important;
+}
+
+#errorExplanation {
+  background-color:#f0f0f0;
+  border:2px solid red;
+  margin-bottom:20px;
+  padding:7px 7px 12px 7px;
+  width:250px;
+}
+
+#errorExplanation h2 {
+  background-color:#c00;
+  color:#fff;
+  font-size:12px;
+  font-weight:bold;
+  margin:-7px;
+  padding:5px 5px 5px 15px;
+  text-align:left;
+}
+
+#errorExplanation p {
+  color:#333;
+  margin-bottom:0;
+  padding:5px;
+}
+#errorExplanation li {
+  list-style:square;
+}
+#errorExplanation ul {
+  font-size:12px;
+  margin:0 !important;
+  padding:0 0 0 30px !important;
+}
