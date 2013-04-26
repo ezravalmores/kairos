@@ -1,0 +1,110 @@
+@import url('master.css');
+
+h2 {
+  margin-bottom:5px;
+}
+
+/*=======================
+  Campaign form
+========================*/
+
+form.campaign {
+  margin:20px;
+}
+
+input#campaign_name {
+  font-size:1.5em !important;
+}
+
+
+
+/*=======================
+  Contact form
+========================*/
+
+form.contact {
+  margin:20px;
+}
+form.contact div.field {
+  height:30px;
+  width:550px;
+}
+form.contact div.field input {
+  float:left;
+  font-size:1em !important;
+  padding:4px;
+  vertical-align:middle;
+  width:225px;
+}
+form.contact div.field label {
+  display:block;
+  float:left;
+  font-weight:bold;
+  padding-top:7px;
+  width:120px;
+}
+
+/*=======================
+  Script form
+========================*/
+
+#new_script, .edit_script {
+  font-size:1.25em;
+}
+#new_script input, .edit_script input {
+  font-size:1.1em;
+  margin-right:10px;
+  padding:4px;
+}
+#new_script input#script_title, .edit_script input#script_title {
+  float:none;
+  font-size:1.25em;
+  width:350px;
+}
+#new_script label, .edit_script label {
+  margin-right:25px;
+  padding-top:5px;
+  width:auto;
+}
+#new_script textarea, .edit_script textarea {
+  padding:4px;
+  margin:10px auto 20px auto;
+  width:640px;
+}
+
+/*=======================
+  New action form
+========================*/
+
+form#new_action div.field {
+  float:left;
+  overflow:hidden;
+  margin:auto;
+  height:auto;
+  width:auto;
+}
+form#new_action div.field input {
+  float:none;
+  font-size:inherit !important;
+  margin:auto;
+  padding:2px;
+  width:auto;
+}
+form#new_action div.field input[type=checkbox] {
+  margin-top:.4em;
+}
+form#new_action div.field label {
+  float:none;
+  padding:0 0 5px 0;
+  width:auto;
+}
+form#new_action div.field label.hint {
+  float:left;
+  padding:.4em 0;
+  width:auto;
+}
+form#new_action div.submit {
+  clear:both;
+  float:left;
+  margin:10px 0 0 0;
+}
