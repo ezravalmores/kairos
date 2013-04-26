@@ -1,0 +1,197 @@
+@import url('master.css');
+
+/*=======================
+  Left side
+ ========================*/
+
+#left-side {
+  background:#fff;
+  float:left;
+  margin:0 10px 20px 20px !important;
+  padding:0 10px 10px 10px;
+  width:670px;
+}
+  
+/*=======================
+  Right side
+ ========================*/
+
+#right-side {
+  width:230px;
+  padding:0 10px;
+}
+#right-side.details {
+  background:#f5f5f5;
+  border:none;
+  color:#777;
+  float:left;
+  margin-top:0 !important;
+  padding:5px;
+  width:265px;
+}
+#right-side a.extra, #right-side a.extra:visited {
+  color:#06f;
+  float:left;
+  font-size:.75em;
+  margin:10px 0;
+  text-decoration:underline;
+}
+#right-side h5 {
+  border-bottom:1px solid #ddd;
+  margin:10px 0 5px 0;
+  padding:2px 0;
+  text-transform:uppercase;
+}
+#right-side li {
+  border-bottom:1px dotted #ddd;
+  background-color:inherit;
+  color:#aaa;
+  font-size:.8em;
+  padding:4px;
+}
+#right-side ul {
+  border-top:1px solid #fff;
+}
+
+/*=======================
+  Progress
+ ========================*/
+
+#progress h4 {
+  margin:0 0 5px;
+}
+#progress h6 {
+  margin:0 5px;
+}
+
+/*=======================
+  Checkout
+ ========================*/
+
+#checkout {
+  margin-top:35px;
+}
+
+/*=======================
+  Current caller
+ ========================*/
+
+#current_contact {
+  border:1px solid #e6e6e6;
+  border-width:1px 0;
+  margin:16px 0 0;
+  padding:16px 0 0;
+}
+#current_contact a {
+  padding:3px 2px;
+  text-decoration:underline;
+}
+#current_contact a.red:hover {
+  background:#e00;
+  color:#fff !important;
+  text-decoration:none;
+}
+#current_contact address {
+  font-style:normal;
+}
+#current_contact div {
+  overflow:hidden;
+  padding:0 8px;
+}
+#current_contact div.field {
+  padding:0 0 10px;
+}
+#current_contact h2 {
+  margin:0;
+}
+#current_contact h4 {
+  margin:5px 0 10px;
+  background:none;
+  padding:0;
+}
+#current_contact h5 {
+  border:none !important;
+  margin:5px 0 0 0;
+  padding:0;
+  text-transform:none !important;
+}
+#current_contact form {
+  display:block;
+  margin-top:15px;
+  overflow:hidden;
+}
+#current_contact label {
+  color:#555;
+  display:block;
+  float:left;
+  font-size:.95em;
+  margin:3px 10px 8px 0;
+  width:auto;
+}
+#current_contact p {
+  font-style:oblique;
+  margin:0 0 10px;
+}
+#current_contact select {
+  width:150px;
+}
+#current_contact small {
+  font-size:.65em;
+}
+#current_contact textarea {
+  height:50px;
+  width:250px;
+}
+
+/*=======================
+  Organization
+ ========================*/
+
+#organization {
+  border-top:1px solid #e6e6e6;
+  font-size:.85em;
+  padding:0 !important;
+}
+#organization h3 {
+  margin-bottom:0;
+}
+
+/*=======================
+  Notes
+ ========================*/
+
+#notes {
+  margin-bottom:4px;
+}
+
+/*=======================
+  Actions
+ ========================*/
+
+#actions {
+  border-top:1px solid #e6e6e6;
+  font-size:.8em;
+  margin-top:20px;
+  padding:10px 0 0 0 !important;
+}
+#actions div.item {
+  height:2.2em !important;
+}
+#actions h3 {
+  margin-top:0;
+}
+#actions input {
+  float:right;
+  padding:1px 0 0 0;
+  text-align:center;
+  width:20px;
+}
+#actions input.check {
+  float:left;
+  margin:2px 5px 3px 0;
+  padding:0;
+  width:auto;
+}
+#actions span {
+  float:left;
+}
