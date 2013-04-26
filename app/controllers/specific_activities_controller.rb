@@ -1,5 +1,5 @@
 class SpecificActivitiesController < ApplicationController
-  before_filter :is_sup_add
+  before_filter :is_sup_add, :clear_sessions
   
   def index
     org = current_user.organization.departments.all

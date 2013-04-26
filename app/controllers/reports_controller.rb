@@ -43,27 +43,31 @@ class ReportsController < ApplicationController
     
   end  
   
-  def child_sponsorships_graph
+  #def child_sponsorships_graph
    
-    @persons = Person.collect_people_in_my_department(current_user.department_id)
+  #  @persons = Person.collect_people_in_my_department(current_user.department_id)
     
-    if params[:from_date].nil? && params[:to_date].nil?  
-      @activities = PersonTime.collect_each_person_activities(@persons,'activities',Date.today,Date.today)
-      @series = current_user.activity_series(@persons,'activities',Date.today,Date.today)
+  #  if params[:from_date].nil? && params[:to_date].nil?  
+  #    @activities = PersonTime.collect_each_person_activities(@persons,'activities',Date.today,Date.today)
+  #    @series = current_user.activity_series(@persons,'activities',Date.today,Date.today)
       
-    else
-    @activities = PersonTime.collect_each_person_activities(@persons,'activities',params[:from_date],params[:to_date])
-    @series = current_user.activity_series(@persons,'activities',params[:from_date],params[:to_date])
-    end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @people }
-    end        
-  end
+  #  else
+  #  @activities = PersonTime.collect_each_person_activities(@persons,'activities',params[:from_date],params[:to_date])
+  #  @series = current_user.activity_series(@persons,'activities',params[:from_date],params[:to_date])
+  #  end
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.xml  { render :xml => @people }
+  #  end        
+  #end
   
   def tasks_report
-    #if !params[:from_date].nil? || !params[:to_date].nil?
-    @tasks = PersonTime.search_task(params[:from_date],params[:to_date],params[:department_id],params[:person_id],params[:activity_id])  
+    if session[:from_date] && session[:to_date] && session[:department_id] && session[:person_id] && session[:activity_id]
+      @tasks = PersonTime.search_task(session[:from_date],session[:to_date],session[:department_id],session[:person_id],session[:activity_id])  
+    else
+      @tasks = PersonTime.search_task(params[:from_date],params[:to_date],params[:department_id],params[:person_id],params[:activity_id])  
+    end
+      
     session[:from_date] = params[:from_date]
     session[:to_date] = params[:to_date]
     session[:department_id] = params[:department_id]
@@ -103,4 +107,6 @@ class ReportsController < ApplicationController
       session[:what_report] = params[:what_report]
     end
   end    
+  
+  protected
 end

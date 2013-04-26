@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :clear_sessions
   
   def index
     @people = Person.where(:organization_id => current_user.organization_id)

@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :clear_sessions
   
   # GET /profile
   def index

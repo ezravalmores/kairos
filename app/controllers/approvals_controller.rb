@@ -1,5 +1,5 @@
 class ApprovalsController < ApplicationController
-  before_filter :is_sup_add
+  before_filter :is_sup_add, :clear_sessions
   
   def tasks_approval
     if current_user.is_supervisor?

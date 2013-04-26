@@ -27,7 +27,16 @@ class ApplicationController < ActionController::Base
           redirect_to login_url
           flash[:warning] = "You are not authorize!"
         end
-      end 
+      end
+      
+      def clear_sessions
+        session[:from_date] = nil
+        session[:to_date] = nil
+        session[:department_id] = nil
+        session[:person_id] = nil
+        session[:activity_id] = nil
+        session[:what_report] = nil
+      end   
       
       def is_administrator
          if current_user.is_admin?

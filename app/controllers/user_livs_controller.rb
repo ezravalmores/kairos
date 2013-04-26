@@ -1,6 +1,6 @@
 class UserLivsController < ApplicationController
   
-  before_filter :authorize
+  before_filter :authorize, :clear_sessions
   
   def index
     session[:leaves] = 'active'
