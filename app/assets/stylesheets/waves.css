@@ -1,0 +1,53 @@
+@import url('master.css');
+
+/*=======================
+  Edit wave form
+========================*/
+
+div.field label.check {
+  display:inline;
+  float:none;
+  font-weight:normal;
+  font-style:oblique;
+  width:auto;
+}
+
+/*=======================
+  Import wave form
+========================*/
+
+form#import_wave h4 {
+  margin:30px 0 0 20px;
+  padding:0;
+}
+
+/*=======================
+  Right side
+ ========================*/
+
+div#right-side {
+  width:250px;
+}
+
+div#right-side a, div#right-side a:visited {
+  color:#06f;
+  float:left;
+  font-size:.75em;
+  margin:10px 0;
+  text-decoration:underline;
+}
+
+div#right-side h5 {
+  border-bottom:1px solid #ddd;
+  margin:10px 0 5px 0;
+  padding:2px 0;
+  text-transform:uppercase;
+}
+
+/*=======================
+  Field list
+ ========================*/
+
+ul.fields {
+  font-family:monospace;
+}
