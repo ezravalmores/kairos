@@ -5,6 +5,10 @@
  *= require_self
  *= require_tree . 
 */
+table{
+ margin-left: 5px;	
+ margin-right: 5px;
+}
 #szlider{
     width:100%;
     height:15px;
