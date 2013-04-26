@@ -1,18 +1,18 @@
 <% if @activities.count != 0 %>
-<div id="special-gifts" class="report">
-    <table>
+
+    <table cellspacing="0">
+	  <thead>
         <tr>
-            <th>Start Time</th>
-			<th>End Time</th>
-            <th>Activity</th>
-			<th>Specific Activity</th>
-            <th>Total Time</th>
-            <th></th>
+            <td>Start Time</td>
+			<td>End Time</td>
+            <td>Activity</td>
+			<td>Specific Activity</td>
+            <td>Time</td>
                    
         </tr>
-		<div class='acts'>
-  		<%= render :partial => 'activity', :collection => @activities %>
-		</div>
+      </thead> 
+	  <tbody>
+  	    <%= render :partial => 'activity', :collection => @activities %>
+	  </div>
 </table>
-</div>
 <% end %>
