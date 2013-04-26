@@ -83,7 +83,7 @@ Ncm1Kairos::Application.routes.draw do
   
   #resources :approvals do
   #  collection do
-  #    put :approve_leaves  
+  #    put :approve_leaves
   #  end    
   #end  
   resources :ncmm_activities do
