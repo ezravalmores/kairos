@@ -1,0 +1,58 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+	function ProgressBar(idContainer, idFill, minValue, maxValue) {
+	    //case 1 from minus to plus
+	    //case 2 from minus to minus
+	    //case 3 from plus to plus 
+	    //case 1,2 are not treated here 
+
+	    this.maxValue = maxValue;
+	    this.minValue = minValue;
+	    this.idContainer = idContainer;
+	    this.width = $("#" + idContainer).width();
+	    this.fillElement = $("#" + idFill);
+
+	    this.GetWidth = function (currentValue) {
+	        ///
+	        ///		Calculate the progressBarFill width
+	        ///
+	        ///	
+
+	        //currentValue is smaller or equal to 0
+	        if (currentValue <= this.minValue) {
+	            return this.minValue * (this.width / 100); ;
+	        }
+
+	        //currentValue is smaller then maximum
+	        if (currentValue < this.maxValue) {
+	            return currentValue * (this.width / 100);
+	        } //currentValue is bigger then maximum
+	        else {
+	            return this.maxValue * (this.width / 100);
+	        }
+	    };
+	}
+	function setValue() {
+	            var progressBar = new ProgressBar("progresBarContainer", "progresBarFill", 0, 100);
+	            var currentValue = $("#rate").val();
+	            var progressWidth = progressBar.GetWidth(currentValue);
+	            progressBar.fillElement.animate({ width: progressWidth },500, "easeOutCubic", null).html( "&nbsp" + currentValue +"&nbsp;%");
+	 }
+	setValue();
+  });	
+</script>
+<% @hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours") %>
+<% @minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %>  
+<% @rate = compute_utilization_rate(@hours,@minutes).to_f %>
+<%= hidden_field_tag :rate, @rate, :id => 'rate' %>
+<h4>Utilization Rate</h4>
+<div id="progresBarContainer" class="progressBarContainerClass">
+        <% if @rate < 20 %>
+		  <div id="progresBarFill" class="progressBarClass_red"></div>
+		<% elsif @rate > 15 && @rate < 100 %>
+		  <div id="progresBarFill" class="progressBarClass_red_white"></div>
+		<% else %>
+		  <div id="progresBarFill" class="progressBarClass_green"></div>	  
+		<% end %>
+</div>
+<p>The goal is to reach 100 Percent</p>
