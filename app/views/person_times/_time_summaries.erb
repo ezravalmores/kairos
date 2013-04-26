@@ -1,62 +1,25 @@
-<div id="inside-right">
-  <div style ='margin-left:-40px'> 
-    <div id="label_text_holder">
-      <div id="left"><%= label :total, "Total"%></div>
-      <div id="right_with_bg_right">
+
+	<div id="waves" class="widget">
+	<ul>
+      <b><%= label :total, "Total:"%></b>
         <label><%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"hours") %> hours :
-        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"minutes") %> minutes :
-        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"seconds") %> seconds</label>
-	  </div>
-
-	
-	  <div id="left"><%= label :break, "Break"%></div>
-	  <div id="right_with_bg_right">
+        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"minutes") %> min :
+        <%= PersonTime.calculate_total_hours(@activities.map {|a| a.id},"seconds") %> sec</label>
+	  </ul>	
+	</div>
+	<div id="waves" class="widget">
+	 <ul>  
+	 <b><%= label :break, "Break:"%></b>
         <label><%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"hours") %> hours :
-        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"minutes") %> minutes :
-        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"seconds") %> seconds </label>
-	  </div>
-	
-	  <div id='left'><%= label :productive, "Productive"%></div>
-	  <div id="right_with_bg_right">
+        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"minutes") %> min :
+        <%= PersonTime.calculate_total_hours(@breaks.map {|a| a.id},"seconds") %> sec</label>
+	 </ul>	
+	</div>
+	<div id="waves" class="widget">
+	<ul>
+	<b><%= label :productive, "Productive:"%></b>
         <label><%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours") %> hours :
-        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %> minutes :
-        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"seconds") %> seconds </label>
-	  </div>
-	  <% @hours = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"hours") %>
-	  <% @minutes = PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %>  
-	  <% @rate = compute_utilization_rate(@hours,@minutes).to_f %>  
-		
-	  <% if @rate <= 50  %>
-	  <div id='left_red'> <span class="label label-important">Utilization Rate</span></div>
-	  
-	  <% elsif @rate > 50 && @rate < 100  %>
-	  <div id='left_red'><span class="label label-warning">Utilization Rate</span></div>
-	
-	  <% elsif @rate >= 100 %>
-	  <div id='left_red'><span class="label label-success">Utilization Rate</span></div>
-	
-	  <% end %>
-	  <div id="right_progress">
-		  <% if @rate <= 50  %>
-		  <div class="progress progress-danger progress-striped active">
-		    <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
-		  </div>
-		
-		  <% elsif @rate > 50 && @rate < 100 %>
-		  <div class="progress progress-warning progress-striped active">
-		   <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
-	      </div>	
-			
-		  <% elsif @rate >= 100 %>
-		  <div class="progress progress-success progress-striped active">
-		   <div class="bar" style="width: <%= @rate.to_s + "%" %> "></div>
-	      </div>
-
-		  <% end %>
-    	  	
-	  </div>
-	  <div id='percentage'>
-		<%= @rate.to_s + "%" %>
-	  </div>	  
-	  </div>
-	  </div>
+        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"minutes") %> min :
+        <%= PersonTime.calculate_total_hours(@productive_hours.map {|a| a.id},"seconds") %> sec</label>
+	</ul> 	
+	</div>
