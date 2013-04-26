@@ -2,6 +2,7 @@ $("#activity_<%= @person_time.id %>").replaceWith("<%= escape_javascript(render(
 $("#activity_<%= @person_time.id %>").addClass('<%= cycle('odd','even') %>')
 $("#activity_<%= @person_time.id %>").effect("highlight",{}, 10000);
 $("#hey").replaceWith("<%= escape_javascript(render(:partial => "act", :locals => {:activity => @activities.first})) %>");
-$("#form_time_div").replaceWith("<%= escape_javascript(render(:partial => "edit_activity_form")) %>");
+$(".details").replaceWith("<%= escape_javascript(render(:partial => "edit_activity_form")) %>");
+$("#progress").replaceWith("<%= escape_javascript(render(:partial => "progress_bar")) %>");
 
 <%= flash_notice(flash.first[1], flash.first[0]) unless flash.blank? %>
