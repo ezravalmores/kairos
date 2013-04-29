@@ -1,0 +1,53 @@
+<div id="left-side" class="matting">
+  <div class="h3">
+    <h3>Canceled Leaves</h3>
+  </div>
+      <%= form_tag approve_leaves_user_livs_url,:method => :put do%>
+        <div id="contacts">
+	   		<table cellspacing="0">
+			  <thead>
+		        <tr>
+		          <td width="3%"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></td>
+				  <td>Date Requested</td>
+				  <td>Name</td>
+		          <td>Leave Type</td>
+	              <td>Reason</td>
+				  <td>Date of Leave</td>       
+	        	</tr>
+			  </thead>
+			  <tbody>	
+	            <% for leave in @canceled_leaves %>
+		          <tr class="<%= cycle('odd','even') %>">
+			        <td style="padding: 5px; height: 3px"><%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) %></td>
+			        <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
+			        <td><%= leave.person.name %></td>   
+			        <td><%= leave.leave_type.name %></td>   
+			        <td><%= leave.reason %></td>   
+			        <td><%= leave.date.strftime("%B %d, %Y") %></td>
+			      </tr>
+			    <% end %>
+		    </table>
+	   </div>
+
+</div>
+<div id="right-side" class='details'>
+    <div id='contacts'>
+	 <div id="current_contact">
+	   <h2><%= "Approve Cancelled Leave(s)" %></h2>
+       <p><%= "this will approve your selected leave(s) and send notifications"  %></p>
+		   <div class='widget' style="padding:10px">	
+		  <% check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> 
+		  <% for person in @people_can_receive_emails %>
+		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span><br/>      
+		  <% end %>  
+		
+		   <br/>
+		    <%= submit_tag "Approve and Inform People", :class => 'btn' %>
+		  </div>	
+		  </div>	
+<% end %>
+</div>
+<div id="right-side" class='details'>
+	<div id='contacts'>
+<%= button_to "Submitted Leaves", leaves_approval_url, :method => :get %></div>
+</div>
