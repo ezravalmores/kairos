@@ -36,7 +36,19 @@ class ApplicationController < ActionController::Base
         session[:person_id] = nil
         session[:activity_id] = nil
         session[:what_report] = nil
+        
+         session[:leaves] = 'none'
+          session[:time] = 'none'
+          session[:calendar] = 'none'
+          session[:approvals] = 'none'
+          session[:reports] = 'none'
+          session[:admin] = 'none'
       end   
+      
+      def url
+        @url = request.env["HTTP_REFERER"]
+      end  
+      helper_method :url
       
       def is_administrator
          if current_user.is_admin?
