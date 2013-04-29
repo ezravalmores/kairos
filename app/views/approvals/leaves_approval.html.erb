@@ -1,14 +1,3 @@
-<script>
-  $(document).ready(function() {
-   	$("#leave_initial").click(function () {
-	    $("#leave_1").slideToggle("slow");
-    });
-    $("#leave_initial_2").click(function () {
-	    $("#leave_2").slideToggle("slow");
-    });
-});
-</script>
-
 <div id="left-side" class="matting">
   <div class="h3">
     <h3>Submitted Leaves</h3>
@@ -56,5 +45,10 @@
 		    <%= submit_tag "Approve and Inform People", :class => 'btn' %>
 	
 		  </div>
-
-<% end %>	
+		</div>
+<% end %>
+</div>	
+<div id="right-side" class='details'>
+	<div id='contacts'>
+<%= button_to "Canceled Leaves", canceled_leaves_approval_url, :method => :get %></div>
+</div>
