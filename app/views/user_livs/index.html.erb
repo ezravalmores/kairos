@@ -14,14 +14,19 @@
 		  	  <td>Date of Leave</td>
 			  <td>Length</td>
 			  <td>Approved by</td>
-		      <td></td>        
+		            
 		    </tr>
 		</thead>
 		<tbody>	
 			<% for leave in @leaves %> 
-		  
 				<tr> 
-			      <td>
+			      <td>	
+					    <% unless leave.is_active == false %>
+				          <div class='handle'>
+			                <%=link_to image_tag('trash.gif',:class => 'trash'), user_liv_path(leave), :confirm => 'Are you sure you want to delete this user?', :method => :delete if leave.is_submitted == false %>&nbsp;<%= link_to "Edit",edit_user_liv_url(leave), :class => 'edit' if leave.is_submitted == false %>&nbsp;<%= link_to "Cancel",cancel_leave_url(leave) if leave.is_submitted == true && leave.is_canceled == false %>
+			 		      </div>
+					    <% end %>
+	
 			      <%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) if leave.is_active == true && leave.is_submitted == false %>&nbsp;&nbsp;
 					
 				<% if leave.is_submitted == true && leave.is_approved == false %>
@@ -48,13 +53,7 @@
 				  <% else %>
 				    <td></td>	
 				  <% end %>
-			      <td>
-				    <% unless leave.is_active == false %>
-			          <div class='handle'>
-		                <%=link_to image_tag('trash.gif',:class => 'trash'), user_liv_path(leave), :confirm => 'Are you sure you want to delete this user?', :method => :delete if leave.is_submitted == false %>&nbsp;<%= link_to "Edit",edit_user_liv_url(leave) if leave.is_submitted == false %>&nbsp;<%= link_to "Cancel",cancel_leave_url(leave) if leave.is_submitted == true && leave.is_canceled == false %>
-		 		      </div>
-				    <% end %>
-		          </td>
+			     
 		        <% end %>
 			  </tr>
 		   <tbody>  
