@@ -9,90 +9,52 @@
 });
 </script>
 
-<div class='container'>    
-  <div class='row'>
-	  <div class='span13'>
-<h4>List of requests for approval</h4><br/>
-<div id='leave_initial'>
-    <label>Submitted Requests for leaves - <%= @leaves.count %></label>
+<div id="left-side" class="matting">
+  <div class="h3">
+    <h3>Submitted Leaves</h3>
   </div>
-  <div id='leave_1'>
-   <%= form_tag approve_leaves_user_livs_url,:method => :put do%>
-    <div id="special-gifts" class="report">
-	    <table>
-	        <tr> 
-		        <th width="3%"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></th>
-				<th>Date Requested</th>
-				<th>Name</th>
-		        <th>Leave Type</th>
-	            <th>Reason</th>
-				<th>Date of Leave</th>       
-	        </tr>
-	        <% for leave in @leaves %>
-		      <tr class="<%= cycle('odd','even') %>">
-			    <td style="padding: 5px; height: 3px"><%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) %></td>
-			    <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
-			    <td><%= leave.person.name %></td>   
-			    <td><%= leave.leave_type.name %></td>   
-			    <td><%= leave.reason %></td>   
-			    <td><%= leave.date.strftime("%B %d, %Y") %></td>
-			  </tr>
-			<% end %>
-		</table>
-	</div>
-	<div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px;margin-bottom:10px">	
-	  <div style="width:400px">	
-	  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> Select All</span><br/>
-	  <% for person in @people_can_receive_emails %>
-	    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
-	  <% end %>  
-	  </div>
-	  <div style="float:right;margin-top:-40px;margin-right:20px">
-	    <%= submit_tag "Approve and Inform People", :class => 'btn' %>
-	  </div>	
-	  </div>
-      <% end %>
-	</div>
-    
-	<div id='leave_initial_2'>
-		<label>Show Canceled and Active Leaves to be approved - <%= @canceled_leaves.count %> </label></div>
-	<div id='leave_2'>	
-	    <%= form_tag approve_canceled_leaves_user_livs_url,:method => :put do%>
-	    <div id="special-gifts" class="report">
-		    <table>
-		        <tr> 
-			        <th width="3%"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'canceled_leaves')" }) %></th>
-					<th>Date Requested</th>
-					<th>Name</th>
-			        <th>Leave Type</th>
-		            <th>Reason</th>
-					<th>Date of Leave</th>       
-		        </tr>
-		        <% for leave in @canceled_leaves %>
-			      <tr class="<%= cycle('odd','even') %>">
-				    <td style="padding: 5px; height: 3px"><%= check_box_tag("canceled_leaves[]",leave.id,false,{ :class => "canceled_leaves", :onclick => "toggleMaster(this,'select_all')" }) %></td>
-				    <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
-				    <td><%= leave.person.name %></td>   
-				    <td><%= leave.leave_type.name %></td>   
-				    <td><%= leave.reason %></td>   
-				    <td><%= leave.date.strftime("%B %d, %Y") %></td>
-				  </tr>
-				<% end %>
-			</table>
-		</div>
-		<div style="border:solid 1px #C1C1C1;border-radius:10px;width:900px;padding:10px;margin-bottom:10px">	
-		  <div style="width:400px">	
-		  <%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'canceled_people')" }) %><span style="font-weight:bold"> Select All</span><br/>
+      <%= form_tag approve_leaves_user_livs_url,:method => :put do%>
+        <div id="contacts">
+	   		<table cellspacing="0">
+			  <thead>
+		        <tr>
+		          <td width="3%"><%= check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'leaves')" }) %></td>
+				  <td>Date Requested</td>
+				  <td>Name</td>
+		          <td>Leave Type</td>
+	              <td>Reason</td>
+				  <td>Date of Leave</td>       
+	        	</tr>
+			  </thead>
+			  <tbody>	
+	            <% for leave in @leaves %>
+		          <tr class="<%= cycle('odd','even') %>">
+			        <td style="padding: 5px; height: 3px"><%= check_box_tag("leaves[]",leave.id,false,{ :class => "leaves", :onclick => "toggleMaster(this,'select_all')" }) %></td>
+			        <td><%= leave.created_at.strftime("%B %d, %Y") %></td>
+			        <td><%= leave.person.name %></td>   
+			        <td><%= leave.leave_type.name %></td>   
+			        <td><%= leave.reason %></td>   
+			        <td><%= leave.date.strftime("%B %d, %Y") %></td>
+			      </tr>
+			    <% end %>
+		    </table>
+	   </div>
+
+</div>
+<div id="right-side" class='details'>
+    <div id='contacts'>
+	 <div id="current_contact">
+	   <h2><%= "Approve Leave(s)" %></h2>
+       <p><%= "this will approve your selected leave(s) and send notifications"  %></p>
+		   <div class='widget' style="padding:10px">	
+		  <% check_box_tag("master",1,false,{ :id => "select_all", :onclick => "toggleItems(this,'people')" }) %><span style="font-weight:bold"> 
 		  <% for person in @people_can_receive_emails %>
-		    &nbsp;<%= check_box_tag("canceled_people[]",person.id,false,{ :class => "canceled_people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span>      
+		    &nbsp;<%= check_box_tag("people[]",person.id,false,{ :class => "people", :onclick => "toggleMaster(this,'select_all')" }) %>&nbsp;<span style="font-weight:bold"><%= person.name %></span><br/>      
 		  <% end %>  
-		  </div>
-		  <div style="float:right;margin-top:-40px;margin-right:20px">
+		
+		   <br/>
 		    <%= submit_tag "Approve and Inform People", :class => 'btn' %>
-		  </div>	
+	
 		  </div>
-	      <% end %>
-	</div>
-</div>
-</div>
-</div>
+
+<% end %>	
