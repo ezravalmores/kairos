@@ -65,6 +65,8 @@ Ncm1Kairos::Application.routes.draw do
   #match "/user_liv" => "user_liv#create_leave", :as => :create_leave, :via => [:post]
   match "/approvals/tasks_approval" => "approvals#tasks_approval", :as => :tasks_approval
   match "/approvals/leaves_approval" => "approvals#leaves_approval", :as => :leaves_approval
+  match "/approvals/canceled_leaves_approval" => "approvals#canceled_leaves_approval", :as => :canceled_leaves_approval
+  
   match "/reports" => "reports#child_sponsorships_graph", :as => :child_sponsorships_graph  
   match "/reports/tasks_report" => "reports#tasks_report", :as => :tasks_report
   match "/reports/utilization_rate_report" => "reports#utilization_rate_report", :as => :utilization_rate_report  
@@ -74,11 +76,14 @@ Ncm1Kairos::Application.routes.draw do
   match 'profile/update_specific_activity_select/:id', :controller=>'profile', :action => 'update_specific_activity_select'
   match "user_livs/:id/cancel_leave", :to => "user_livs#cancel_leave",:as => :cancel_leave ,:via => [:get]
   match "dynamic_specific_tasks/:id" => "person_times#dynamic_specific_tasks", :via => [:post]
+  match "reports/search_task_id/:id" => "reports#search_task_id", :via => [:post]
   match "activities/:id/deactivate", :to => 'activities#deactivate', :as => :deactivate_activity ,:via => [:get]
   match "specific_activities/:id/deactivate", :to => 'specific_activities#deactivate', :as => :deactivate_specific_activity ,:via => [:get]
   
   match "activities/:id/activate", :to => 'activities#activate', :as => :activate_activity ,:via => [:get]
   match "specific_activities/:id/activate", :to => 'specific_activities#activate', :as => :activate_specific_activity ,:via => [:get]
+  
+  match "reports/update_from_remote", :to => 'person_times#update_from_remote', :as => :update_from_remote ,:via => [:get]
   
   
   #resources :approvals do
@@ -115,6 +120,10 @@ Ncm1Kairos::Application.routes.draw do
       put :submit_activities
       put :approve_activities
     end
+    
+   # member do
+   #    put :update_from_remote
+   #  end  
   end
   #resources :reports #do
   #collection  do  
