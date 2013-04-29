@@ -25,10 +25,20 @@ class ApprovalsController < ApplicationController
      
      if current_user.is_supervisor?
         @leaves = leaves.where(:person_id => @persons.map{|l| l.id})
-        @canceled_leaves = leaves.where(:person_id => @persons.map{|l| l.id})
      elsif current_user.is_admin?
         @leaves = leaves
-        @canceled_leaves = canceled_leaves
     end
   end   
+  
+  def canceled_leaves_approval
+    @people_can_receive_emails = Person.where(:can_receive_mails => true)
+    canceled_leaves = UserLiv.is_active.is_canceled
+    @persons = Person.collect_people_in_my_department(current_user.department_id)
+     
+     if current_user.is_supervisor?
+       @canceled_leaves = canceled_leaves.where(:person_id => @persons.map{|l| l.id})
+     elsif current_user.is_admin?
+      @canceled_leaves = canceled_leaves
+     end    
+  end  
 end
