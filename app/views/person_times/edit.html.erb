@@ -1,6 +1,5 @@
 <script>
   	$(document).ready(function() {
-	//    jQuery('#regform_district_id').html("<option value=''>Select District</option>");
 	  jQuery('#person_time_activity_id').change(function() {
       var data=$('#person_time_activity_id').val();
   
@@ -58,9 +57,8 @@
   	 </div>
 
 	 <div class='field'>  
-	   <%= f.label :specific_activity, "Specific Task", :class => 'control-label' %>	
-
-	   <%= f.select("specific_activity_id","", :include_blank => true) %>
+	   <%= f.label :specific_activity, "Specific Task", :class => 'control-label' %>
+	   <%= f.select(:specific_activity_id,options_from_collection_for_select(@specific_activities, :id, :name, @person_time.specific_activity_id), :include_blank => true) %>
 
   	 </div> 
      <br/>

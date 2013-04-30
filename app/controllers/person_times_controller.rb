@@ -73,6 +73,7 @@ class PersonTimesController < ApplicationController
   def edit
     @person_time = PersonTime.find(params[:id])
     @activities = Activity.all
+    @specific_activities = SpecificActivity.where(:activity_id => @person_time.activity_id)
      respond_to do |format|
        format.html {}
      end

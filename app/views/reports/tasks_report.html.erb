@@ -47,19 +47,22 @@
 	    
 				<% for task in @tasks %>
 				  <tr class="<%= cycle('odd','even') %>">
-				  	<td><%= task.created_at.strftime("%B %d, %Y") %></td>
+				  	<td>
+					 		  <div class="handle">
+								 <%=link_to image_tag('trash.gif',:class => 'trash'), person_time_path(task), :confirm => 'Are you sure you want to delete this task?', :method => :delete %>
+							     <%= link_to "edit", edit_person_time_url(task) %>
+							  </div>
+					 <%= task.created_at.strftime("%B %d, %Y") %>
+					</td>
 					<td><%= task.person.first_name + " " + task.person.last_name%></td>
 					<td><%= task.activity.name if !task.activity.nil? %></td>
 					<td><%= task.specific_activity.name if !task.specific_activity.nil? %></td>
 					<td><%= task.start_time.strftime('%l:%M:%S %p').downcase if !task.start_time.nil? %></td>
 					<td><%= task.end_time.strftime('%l:%M:%S %p').downcase if !task.end_time.nil? %></td>
 					<td><%= task.total_time.strftime('%H:%M:%S') if !task.total_time.nil? %></td>
-					<td>
-					  <div class="handle">
-						 <%=link_to image_tag('trash.gif',:class => 'trash'), person_time_path(task), :confirm => 'Are you sure you want to delete this task?', :method => :delete %>
-					     <%= link_to "edit", edit_person_time_url(task) %>
-					  </div>		
-					</td>	
+			
+					
+					
 				  </tr>	
 				<% end %>
 			  </tbody>				
