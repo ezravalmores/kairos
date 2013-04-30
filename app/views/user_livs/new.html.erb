@@ -19,7 +19,8 @@
     <div class="h3">
         <h3><%= "Create A leave" %></h3>
 	</div>
-    <div class='field'>Fill out all information to create a request for leave</div><br/>
+    <div style='margin-left:10px'>
+	<div class='field'>Fill out all information to create a request for leave</div><br/>
       
 	  <%= form_tag create_leave_user_livs_url, :html => {:method => :post, :class => 'person'} do %>
 	
@@ -61,4 +62,5 @@
 	   <%= submit_tag "Save and create leave", :class => 'btn btn-primary' %>
 	  </div>
 	<% end %>
+	</div>
 </div>	
