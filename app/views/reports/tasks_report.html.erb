@@ -59,10 +59,7 @@
 					<td><%= task.specific_activity.name if !task.specific_activity.nil? %></td>
 					<td><%= task.start_time.strftime('%l:%M:%S %p').downcase if !task.start_time.nil? %></td>
 					<td><%= task.end_time.strftime('%l:%M:%S %p').downcase if !task.end_time.nil? %></td>
-					<td><%= task.total_time.strftime('%H:%M:%S') if !task.total_time.nil? %></td>
-			
-					
-					
+					<td><%= task.total_time.strftime('%H:%M:%S') if !task.total_time.nil? %></td>					
 				  </tr>	
 				<% end %>
 			  </tbody>				
@@ -103,11 +100,12 @@
 					<div style='margin-bottom:5px;margin-left:-10px'>
 					  <%= submit_tag "Search Tasks" %>
 					</div>
+				  <% end %>	
 					<div style='margin-bottom:5px;margin-left:70px;margin-top: -27px'>
-					<%= button_to 'Generate Spreadsheet', generate_spreadsheets_url %>
+					  <%= button_to 'Generate Spreadsheet', generate_spreadsheets_url %>
 					</div>
 				  </ul>	
-			    <% end %>
+			    
 		  	 </div> 	
 		</div>
 	</div>	
