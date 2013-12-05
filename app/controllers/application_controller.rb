@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  before_filter :set_user_time_zone
+  
   unless Rails.application.config.consider_all_requests_local
     rescue_from ActiveRecord::RecordNotFound, :with => :redirect_to_application_url
   end
@@ -77,5 +79,11 @@ class ApplicationController < ActionController::Base
      
     def fetch_user
       Person.find(session[:user_id]) unless session[:user_id].nil?
+    end
+    
+    private
+
+    def set_user_time_zone
+      Time.zone = current_user.time_zone if current_user
     end
 end
