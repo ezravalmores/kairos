@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :set_user_time_zone
+  #before_filter :set_user_time_zone
   
   unless Rails.application.config.consider_all_requests_local
     rescue_from ActiveRecord::RecordNotFound, :with => :redirect_to_application_url
