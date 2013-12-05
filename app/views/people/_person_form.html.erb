@@ -45,7 +45,13 @@
 	<font style='font-weight:bold'>User Time Settings</font><br/>
 	   <span><em>This will set the users start time and end of shift time</em></span><br/>
 	   <span><em>It should be in military time</em></span><br/><br/><br/>
-	   	    <div class='control-group'>
+	    <div class='control-group'> 
+	      <%= f.label :time_zone, :class => 'control-label' %>
+		<div class= "controls">		 
+	    <%= f.select(:time_zone,options_for_select(['Pacific Time (US & Canada)','PHT']),:include_blank => true, :class => 'small_select') %> 
+	    </div>  
+	    </div>
+	      <div class='control-group'>
 		       <%= f.label :start_time, :class => 'control-label' %>
 		       <div class= "controls">	
 		     <% if !@person.start_time.nil? %> 
