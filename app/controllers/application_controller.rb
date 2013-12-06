@@ -81,9 +81,5 @@ class ApplicationController < ActionController::Base
       Person.find(session[:user_id]) unless session[:user_id].nil?
     end
     
-    private
-
-    def set_user_time_zone
-      Time.zone = current_user.time_zone if current_user
-    end
+   
 end
