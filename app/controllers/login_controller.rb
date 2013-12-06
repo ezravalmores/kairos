@@ -9,7 +9,7 @@ class LoginController < ApplicationController
           session[:user_id] = @user.id
           activities_today = @user.person_times.user_activities_today
           s = DateTime.current
-          session[:start] = PersonTime.create!(:person_id => current_user.id, :start_time => s, :created_at => s, :updated_at => s) if activities_today.length == 0
+          session[:start] = PersonTime.create!(:person_id => current_user.id, :start_time => Date.today.to_s(:db), :created_at => Date.today.to_s(:db), :updated_at => Date.today.to_s(:db)) if activities_today.length == 0
           redirect_to person_times_url
         else
           reset_session
