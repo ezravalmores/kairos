@@ -4,7 +4,6 @@ class LoginController < ApplicationController
     if request.post?
       @user = Person.authenticate(params[:username],params[:password])
       if @user
-        Time.zone = @user.time_zone
         if Time.now.strftime('%H:%M:%S') >= @user.start_time.strftime('%H:%M:%S')
           session[:user_id] = @user.id
           activities_today = @user.person_times.user_activities_today
